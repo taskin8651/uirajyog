@@ -37,6 +37,27 @@ Route::delete('products/{product}/main-image', [ProductController::class, 'destr
 
 Route::delete('products/{product}/gallery-image/{media}', [ProductController::class, 'destroyGalleryImage'])
     ->name('products.gallery-image.destroy');
+
+     Route::resource('hero-sections', HeroSectionController::class);
+
+    Route::delete('hero-sections/{heroSection}/image', [HeroSectionController::class, 'destroyImage'])
+        ->name('hero-sections.image.destroy');
+
+        Route::resource('brands', BrandController::class);
+
+Route::delete('brands/{brand}/logo', [BrandController::class, 'destroyLogo'])
+    ->name('brands.logo.destroy');
+
+    Route::resource('enquiries', EnquiryController::class);
+
+Route::post('enquiries/{enquiry}/mark-as-read', [EnquiryController::class, 'markAsRead'])
+    ->name('enquiries.mark-as-read');
+
+Route::post('enquiries/{enquiry}/mark-as-unread', [EnquiryController::class, 'markAsUnread'])
+    ->name('enquiries.mark-as-unread');
+
+Route::post('enquiries/{enquiry}/update-status', [EnquiryController::class, 'updateStatus'])
+    ->name('enquiries.update-status');
     
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

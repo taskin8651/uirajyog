@@ -9,15 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model implements HasMedia
+class HeroSection extends Model implements HasMedia
 {
     use SoftDeletes, HasFactory, InteractsWithMedia;
 
-    public $table = 'products';
+    public $table = 'hero_sections';
 
     protected $appends = [
         'image',
-        'images',
     ];
 
     protected $dates = [
@@ -27,22 +26,22 @@ class Product extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'category_id',
-        'name',
-        'slug',
-        'short_description',
+        'title',
+        'subtitle',
         'description',
-        'features',
-        'ingredients',
-        'usage_instruction',
-        'pack_size',
-        'price',
+        'button_text',
+        'button_link',
+        'secondary_button_text',
+        'secondary_button_link',
         'status',
-        'is_featured',
         'sort_order',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -53,27 +52,10 @@ class Product extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('image')->singleFile();
-
-        $this->addMediaCollection('images');
     }
 
     public function getImageAttribute()
     {
         return $this->getMedia('image')->last();
     }
-
-    public function getImagesAttribute()
-    {
-        return $this->getMedia('images');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(ProductCategory::class, 'category_id');
-    }
-
-    public function enquiries()
-{
-    return $this->hasMany(Enquiry::class, 'product_id');
-}
 }
