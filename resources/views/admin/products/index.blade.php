@@ -3,15 +3,74 @@
 
 @section('styles')
 <style>
-.page-card { background:#fff; border-radius:14px; border:1px solid #E2E8F0; overflow:hidden; }
-.btn-primary { display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border-radius:10px; background:var(--accent); color:#fff; border:none; text-decoration:none; font-size:13px; font-weight:600; }
-.btn-primary:hover { opacity:.88; }
-.btn-outline { display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border-radius:9px; border:1.5px solid #E2E8F0; background:#fff; color:#475569; text-decoration:none; }
-.btn-outline:hover { background:#F8FAFC; }
-.status-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:10px; font-size:12px; font-weight:600; }
-.status-active { background:#ECFDF5; color:#166534; }
-.status-inactive { background:#FEF2F2; color:#991B1B; }
-.featured-tag { display:inline-flex; align-items:center; padding:6px 10px; border-radius:10px; background:#EEF2FF; color:#3730A3; font-size:12px; font-weight:600; }
+.page-card {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #E2E8F0;
+    overflow: hidden;
+}
+.btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; border-radius: 10px;
+    background: var(--accent); color: #fff;
+    border: none; font-size: 13.5px; font-weight: 600; text-decoration: none;
+}
+.btn-primary:hover { opacity: .88; }
+.btn-outline {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 16px; border-radius: 10px;
+    border: 1.5px solid #E2E8F0; background: #fff; color: #475569;
+    text-decoration: none; font-size: 13px; font-weight: 600;
+}
+.btn-outline:hover { background: #F8FAFC; }
+.status-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 10px;
+    font-size: 12px; font-weight: 700;
+}
+.status-active { background: #ECFDF5; color: #166534; }
+.status-inactive { background: #FEF2F2; color: #991B1B; }
+.featured-tag {
+    display: inline-flex; align-items: center; padding: 7px 12px;
+    border-radius: 10px; background: #EEF2FF; color: #3730A3;
+    font-size: 12px; font-weight: 700;
+}
+.card-metric { background: #fff; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px 18px; }
+.card-metric-title { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #94A3B8; margin: 0 0 6px; }
+.card-metric-value { font-size: 24px; font-weight: 700; color: #0F172A; margin: 0; }
+
+/* DataTable overrides */
+table.dataTable thead th {
+    background: #F8FAFC !important; color: #64748B !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    text-transform: uppercase; letter-spacing: .06em;
+    padding: 12px 16px !important; border-bottom: 1px solid #E2E8F0 !important;
+    white-space: nowrap;
+}
+table.dataTable tbody td { padding: 13px 16px !important; border-bottom: 1px solid #F1F5F9 !important; font-size: 13.5px; }
+table.dataTable tbody tr:hover td { background: #F8FAFC !important; }
+table.dataTable tbody tr:last-child td { border-bottom: none !important; }
+.dataTables_wrapper .dataTables_filter input {
+    padding: 7px 12px 7px 34px !important; border-radius: 9px !important;
+    border: 1px solid #E2E8F0 !important; font-size: 13px !important;
+    background: #F8FAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 10px center !important;
+    outline: none !important;
+}
+.dataTables_wrapper .dataTables_filter input:focus { border-color: var(--accent) !important; background-color: #fff !important; }
+.dataTables_wrapper .dataTables_filter label { font-size: 13px; color: #64748B; }
+.dataTables_wrapper .dataTables_length select {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid #E2E8F0;
+    font-size: 13px; background: #F8FAFC; color: #374151; outline: none;
+}
+.dataTables_wrapper .dataTables_info { font-size: 12px; color: #94A3B8; padding-top: 10px; }
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 7px !important; font-size: 12px !important; padding: 5px 10px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important;
+}
+.dt-buttons .btn { border-radius: 8px !important; font-size: 12px !important; padding: 6px 12px !important; }
+.btn-danger { background: #FFF1F2 !important; color: #BE123C !important; border: 1.5px solid #FECDD3 !important; }
 </style>
 @endsection
 
@@ -24,54 +83,76 @@
     <a href="{{ route('admin.products.create') }}" class="btn-primary"><i class="fas fa-plus" style="font-size:11px;"></i> Add Product</a>
 </div>
 
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:14px; margin-bottom:24px;">
+    <div class="card-metric">
+        <p class="card-metric-title">Total Products</p>
+        <p class="card-metric-value">{{ $products->total() }}</p>
+    </div>
+    <div class="card-metric">
+        <p class="card-metric-title">Active</p>
+        <p class="card-metric-value">{{ $products->where('status', 1)->count() }}</p>
+    </div>
+    <div class="card-metric">
+        <p class="card-metric-title">Featured</p>
+        <p class="card-metric-value">{{ $products->where('is_featured', 1)->count() }}</p>
+    </div>
+</div>
+
 <div class="page-card">
     <div style="padding:16px 20px; border-bottom:1px solid #F1F5F9; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
         <p style="font-size:14px; font-weight:700; color:#0F172A; margin:0;">Product List</p>
         <span style="font-size:12px; color:#94A3B8;">Use actions to edit, view, or delete products.</span>
     </div>
-    <div style="overflow-x:auto; padding:10px;">
-        <table class="min-w-full datatable" style="width:100%; border-collapse:collapse;">
+    <div style="overflow-x:auto; padding:4px 10px;">
+        <table class="min-w-full datatable datatable-Product" style="width:100%;">
             <thead>
                 <tr>
-                    <th style="padding:12px 16px; text-align:left; color:#64748B; font-size:12px;">ID</th>
-                    <th style="padding:12px 16px; text-align:left; color:#64748B; font-size:12px;">Name</th>
-                    <th style="padding:12px 16px; text-align:left; color:#64748B; font-size:12px;">Category</th>
-                    <th style="padding:12px 16px; text-align:left; color:#64748B; font-size:12px;">Price</th>
-                    <th style="padding:12px 16px; text-align:left; color:#64748B; font-size:12px;">Status</th>
-                    <th style="padding:12px 16px; text-align:left; color:#64748B; font-size:12px;">Featured</th>
-                    <th style="padding:12px 16px; text-align:right; color:#64748B; font-size:12px;">Actions</th>
+                    <th style="width:40px;"></th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Featured</th>
+                    <th style="text-align:right;">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($products as $product)
-                <tr style="border-bottom:1px solid #F1F5F9;">
-                    <td style="padding:14px 16px; color:#475569;">#{{ $product->id }}</td>
-                    <td style="padding:14px 16px; color:#0F172A;">{{ $product->name }}</td>
-                    <td style="padding:14px 16px; color:#475569;">{{ $product->category?->name ?? '—' }}</td>
-                    <td style="padding:14px 16px; color:#0F172A;">{{ $product->price ? '$' . number_format($product->price, 2) : 'N/A' }}</td>
+                <tr data-entry-id="{{ $product->id }}" style="border-bottom:1px solid #F1F5F9;">
+                    <td></td>
+                    <td style="padding:14px 16px; color:#475569; font-size:13px;">#{{ $product->id }}</td>
+                    <td style="padding:14px 16px; color:#0F172A; font-size:13px;">{{ $product->name }}</td>
+                    <td style="padding:14px 16px; color:#475569; font-size:13px;">{{ $product->category?->name ?? '—' }}</td>
+                    <td style="padding:14px 16px; color:#0F172A; font-size:13px;">{{ $product->price ? '$' . number_format($product->price, 2) : 'N/A' }}</td>
                     <td style="padding:14px 16px;"><span class="status-badge {{ $product->status ? 'status-active' : 'status-inactive' }}">{{ $product->status ? 'Active' : 'Inactive' }}</span></td>
                     <td style="padding:14px 16px;">@if($product->is_featured)<span class="featured-tag">Featured</span>@else — @endif</td>
                     <td style="padding:14px 16px; text-align:right; display:flex; justify-content:flex-end; gap:6px; flex-wrap:wrap;">
-                        <a href="{{ route('admin.products.show', $product->id) }}" class="btn-outline">View</a>
-                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn-outline">Edit</a>
-                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                        <a href="{{ route('admin.products.show', $product->id) }}" class="btn-outline"><i class="fas fa-eye" style="font-size:11px;"></i> View</a>
+                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn-outline"><i class="fas fa-pencil-alt" style="font-size:11px;"></i> Edit</a>
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('{{ trans('global.areYouSure') }}');">
                             @method('DELETE') @csrf
-                            <button type="submit" class="btn-outline" style="border-color:#FECACA; color:#991B1B;">Delete</button>
+                            <button type="submit" class="btn-outline" style="border-color:#FECACA; color:#991B1B; background:transparent;" onmouseover="this.style.background='#FFF1F2'" onmouseout="this.style.background='transparent';"><i class="fas fa-trash-alt" style="font-size:11px;"></i> Delete</button>
                         </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <div style="padding:16px;">{{ $products->links() }}</div>
     </div>
 </div>
 @endsection
 
 @section('scripts')
+@parent
 <script>
 $(function () {
-    $('.datatable').DataTable({ paging: false, searching: false, info: false, lengthChange: false, ordering: false, columnDefs:[{ orderable:false, targets:-1 }] });
+    $('.datatable-Product:not(.ajaxTable)').DataTable({
+        scrollX: true,
+        pageLength: 25,
+        ordering: false,
+        columnDefs: [{ orderable: false, targets: -1 }]
+    });
 });
 </script>
 @endsection

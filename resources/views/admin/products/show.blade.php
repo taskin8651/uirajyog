@@ -17,6 +17,14 @@
 .status-active { background:#ECFDF5; color:#166534; }
 .status-inactive { background:#FEF2F2; color:#991B1B; }
 .featured-tag { display:inline-flex; align-items:center; padding:7px 12px; border-radius:10px; background:#EFF6FF; color:#1D4ED8; font-size:12px; font-weight:600; }
+.btn-primary {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 22px; border-radius:10px;
+    background:var(--accent); color:#fff;
+    font-size:13.5px; font-weight:600; border:none;
+    cursor:pointer; transition:opacity .2s; font-family:inherit;
+}
+.btn-primary:hover { opacity:.88; }
 </style>
 @endsection
 
