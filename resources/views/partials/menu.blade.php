@@ -98,6 +98,47 @@
         </div>
         @endcan
 
+        <div style="height:1px; background:rgba(255,255,255,.05); margin:6px 4px;"></div>
+        <p style="font-size:10px; font-weight:700; color:#334155; text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; margin:0;" class="nav-label">Catalog</p>
+
+        @php
+        $catalogActive = request()->is('admin/product-categories*') || request()->is('admin/products*');
+        @endphp
+        <div x-data="{ open: {{ $catalogActive ? 'true' : 'false' }} }">
+            <button @click="open = !open" data-tooltip="Product Management"
+                class="nav-link {{ $catalogActive ? 'active' : '' }}"
+                style="justify-content: space-between;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <i class="fas fa-boxes nav-icon" style="color:{{ $catalogActive ? '#fff' : '#64748B' }};"></i>
+                    <span class="nav-label">Product Management</span>
+                </div>
+                <i class="fas fa-chevron-right chevron" style="font-size:10px; color:#475569; transition:transform .2s;"
+                   :style="open ? 'transform:rotate(90deg)' : ''"></i>
+            </button>
+
+            <div class="submenu" x-show="open"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 -translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 -translate-y-1">
+
+                <a href="{{ route('admin.product-categories.index') }}"
+                   class="sub-link {{ request()->is('admin/product-categories*') ? 'active' : '' }}">
+                    <i class="fas fa-tags" style="margin-right:7px; font-size:11px; color:#475569;"></i>
+                    Product Categories
+                </a>
+
+                <a href="{{ route('admin.products.index') }}"
+                   class="sub-link {{ request()->is('admin/products*') ? 'active' : '' }}">
+                    <i class="fas fa-box-open" style="margin-right:7px; font-size:11px; color:#475569;"></i>
+                    Products
+                </a>
+
+            </div>
+        </div>
+
         {{-- ── DIVIDER ── --}}
         <div style="height:1px; background:rgba(255,255,255,.05); margin:6px 4px;"></div>
         <p style="font-size:10px; font-weight:700; color:#334155; text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; margin:0;" class="nav-label">Account</p>
