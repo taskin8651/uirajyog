@@ -23,7 +23,7 @@
     <div>
         <a href="{{ route('admin.certificates.index') }}" style="font-size:13px; color:var(--accent); text-decoration:none; font-weight:600;">← Back to certificates</a>
         <h2 style="font-size:22px; font-weight:700; color:#0F172A; margin:10px 0 0;">Edit Certificate</h2>
-        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Update the certificate content and image.</p>
+        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Update the certificate content and PDF file.</p>
     </div>
 </div>
 
@@ -37,7 +37,7 @@
             </div>
             <div>
                 <p style="font-size:14px;font-weight:700;color:#0F172A;margin:0;">Certificate content</p>
-                <p style="font-size:12px;color:#94A3B8;margin:2px 0 0;">Edit the certificate.</p>
+                <p style="font-size:12px;color:#94A3B8;margin:2px 0 0;">Edit the certificate details and PDF.</p>
             </div>
         </div>
         <div class="form-card-body">
@@ -48,26 +48,128 @@
                     @error('title')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
                 </div>
                 <div>
-                    <label class="field-label" for="description">Description</label>
-                    <textarea name="description" id="description" class="field-textarea">{{ old('description', $certificate->description) }}</textarea>
-                    @error('description')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+                    <label class="field-label" for="short_description">Short Description</label>
+                    <textarea name="short_description" id="short_description" class="field-textarea" style="min-height:80px;">{{ old('short_description', $certificate->short_description) }}</textarea>
+                    @error('short_description')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
                 </div>
                 <div>
-                    <label class="field-label" for="image">Image</label>
-                    <input type="file" name="image" id="image" accept="image/*" class="field-input">
-                    <img id="preview-image" class="image-preview" style="display:none;" src="" alt="Image preview">
-                    @if($certificate->image)
-                        <div class="image-actions">
-                            <img src="{{ $certificate->image->getUrl() }}" alt="Current image" class="image-preview">
-                            <form action="{{ route('admin.certificates.image.destroy', $certificate->id) }}" method="POST" style="display:inline-block;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-ghost" style="color:#BE123C; border-color:#FECACA;">Remove image</button>
-                            </form>
-                        </div>
-                    @endif
-                    @error('image')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+    <label class="field-label" for="pdf">PDF / Image File</label>
+
+    <input 
+        type="file" 
+        name="pdf" 
+        id="pdf" 
+        accept="application/pdf,image/*" 
+        class="field-input"
+    >
+
+    <div id="file-preview-wrap" style="margin-top:12px; display:none;">
+        <p id="pdf-info" style="font-size:12px; color:#64748B; margin-bottom:8px;">
+            <i id="file-icon" class="fas fa-file" style="margin-right:6px;"></i>
+            <span id="pdf-name"></span>
+        </p>
+
+        <img 
+            id="image-preview" 
+            src="" 
+            alt="Image Preview" 
+            style="max-width:220px; border-radius:12px; border:1px solid #E2E8F0; display:none;"
+        >
+    </div>
+
+    @if($certificate->pdf)
+        @php
+            $file = $certificate->pdf;
+            $mimeType = $file->mime_type ?? '';
+            $isImage = str_starts_with($mimeType, 'image/');
+            $isPdf = $mimeType === 'application/pdf';
+        @endphp
+
+        <div class="image-actions" style="margin-top:12px;">
+            @if($isImage)
+                <div style="margin-bottom:10px;">
+                    <img 
+                        src="{{ $file->getUrl() }}" 
+                        alt="{{ $certificate->title }}" 
+                        style="max-width:220px; border-radius:12px; border:1px solid #E2E8F0;"
+                    >
                 </div>
+
+                <a href="{{ $file->getUrl() }}" target="_blank" class="btn-ghost" style="margin-right:6px;">
+                    <i class="fas fa-image" style="color:#10B981;"></i> View Image
+                </a>
+            @elseif($isPdf)
+                <a href="{{ $file->getUrl() }}" target="_blank" class="btn-ghost" style="margin-right:6px;">
+                    <i class="fas fa-file-pdf" style="color:#EF4444;"></i> View PDF
+                </a>
+            @else
+                <a href="{{ $file->getUrl() }}" target="_blank" class="btn-ghost" style="margin-right:6px;">
+                    <i class="fas fa-file"></i> View File
+                </a>
+            @endif
+
+            <form 
+                action="{{ route('admin.certificates.destroyPdf', $certificate->id) }}" 
+                method="POST" 
+                style="display:inline-block;"
+                onsubmit="return confirm('Are you sure you want to remove this file?')"
+            >
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn-ghost" style="color:#BE123C; border-color:#FECACA;">
+                    Remove File
+                </button>
+            </form>
+        </div>
+    @endif
+
+    @error('pdf')
+        <p class="field-error">
+            <i class="fas fa-exclamation-circle"></i>{{ $message }}
+        </p>
+    @enderror
+</div>
+
+<script>
+$(function () {
+    $('#pdf').on('change', function () {
+        const file = this.files[0];
+
+        if (!file) {
+            $('#file-preview-wrap').hide();
+            $('#image-preview').hide().attr('src', '');
+            $('#pdf-name').text('');
+            return;
+        }
+
+        $('#file-preview-wrap').show();
+        $('#pdf-name').text(file.name);
+
+        if (file.type === 'application/pdf') {
+            $('#file-icon')
+                .attr('class', 'fas fa-file-pdf')
+                .css('color', '#EF4444');
+
+            $('#image-preview').hide().attr('src', '');
+        } else if (file.type.startsWith('image/')) {
+            $('#file-icon')
+                .attr('class', 'fas fa-file-image')
+                .css('color', '#10B981');
+
+            $('#image-preview')
+                .attr('src', URL.createObjectURL(file))
+                .show();
+        } else {
+            $('#file-icon')
+                .attr('class', 'fas fa-file')
+                .css('color', '#64748B');
+
+            $('#image-preview').hide().attr('src', '');
+        }
+    });
+});
+</script>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;">
                     <div>
                         <label class="field-label" for="sort_order">Sort Order</label>
@@ -96,10 +198,11 @@
 @parent
 <script>
 $(function() {
-    $('#image').on('change', function() {
+    $('#pdf').on('change', function() {
         const [file] = this.files;
-        if (!file) { $('#preview-image').hide(); return; }
-        $('#preview-image').attr('src', URL.createObjectURL(file)).show();
+        if (!file) { $('#pdf-info').hide(); return; }
+        $('#pdf-name').text(file.name);
+        $('#pdf-info').show();
     });
 });
 </script>

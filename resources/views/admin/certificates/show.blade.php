@@ -19,7 +19,7 @@
     <div>
         <a href="{{ route('admin.certificates.index') }}" style="font-size:13px; color:var(--accent); text-decoration:none; font-weight:600;">← Back to certificates</a>
         <h2 style="font-size:22px; font-weight:700; color:#0F172A; margin:10px 0 0;">Certificate details</h2>
-        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Review the certificate content and image.</p>
+        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Review the certificate content and PDF file.</p>
     </div>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a href="{{ route('admin.certificates.edit', $certificate->id) }}" class="btn-primary">Edit</a>
@@ -47,15 +47,17 @@
             </div>
         </div>
         <div>
-            <p class="detail-label">Description</p>
-            <p class="detail-value">{{ $certificate->description ?: 'No description provided.' }}</p>
+            <p class="detail-label">Short Description</p>
+            <p class="detail-value">{{ $certificate->short_description ?: 'No description provided.' }}</p>
         </div>
         <div>
-            <p class="detail-label">Image</p>
-            @if($certificate->image)
-                <img src="{{ $certificate->image->getUrl() }}" alt="Certificate image" class="image-preview">
+            <p class="detail-label">PDF File</p>
+            @if($certificate->pdf)
+                <a href="{{ $certificate->pdf->getUrl() }}" target="_blank" class="btn-ghost">
+                    <i class="fas fa-file-pdf" style="color:#EF4444;"></i> Download PDF
+                </a>
             @else
-                <p class="detail-value">No image uploaded.</p>
+                <p class="detail-value">No PDF uploaded.</p>
             @endif
         </div>
     </div>

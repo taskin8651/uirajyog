@@ -17,6 +17,8 @@ class Certificate extends Model implements HasMedia
 
     protected $appends = [
         'pdf',
+        'file_type',
+        'file_url',
     ];
 
     protected $dates = [
@@ -52,5 +54,29 @@ class Certificate extends Model implements HasMedia
     public function getPdfAttribute()
     {
         return $this->getMedia('pdf')->last();
+    }
+
+    public function getFileUrlAttribute()
+    {
+        return $this->pdf ? $this->pdf->getUrl() : null;
+    }
+
+    public function getFileTypeAttribute()
+    {
+        if (! $this->pdf) {
+            return null;
+        }
+
+        $mimeType = $this->pdf->mime_type;
+
+        if ($mimeType === 'application/pdf') {
+            return 'pdf';
+        }
+
+        if (str_starts_with($mimeType, 'image/')) {
+            return 'image';
+        }
+
+        return 'file';
     }
 }

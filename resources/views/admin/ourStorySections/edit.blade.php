@@ -47,6 +47,11 @@
                     <input type="text" name="title" id="title" value="{{ old('title', $ourStorySection->title) }}" class="field-input">
                     @error('title')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
                 </div>
+                    <div>
+                        <label class="field-label" for="short_description">Short Description</label>
+                        <textarea name="short_description" id="short_description" class="field-textarea">{{ old('short_description', $ourStorySection->short_description) }}</textarea>
+                        @error('short_description')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+                    </div>
                 <div>
                     <label class="field-label" for="description">Description</label>
                     <textarea name="description" id="description" class="field-textarea">{{ old('description', $ourStorySection->description) }}</textarea>

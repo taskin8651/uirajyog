@@ -27,7 +27,7 @@ class CertificateController extends Controller
         $request->validate([
             'title'             => 'required|string|max:255',
             'short_description' => 'nullable|string',
-            'pdf'               => 'nullable|file|mimes:pdf|max:5120',
+            'pdf'               => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
             'status'            => 'nullable|boolean',
             'sort_order'        => 'nullable|integer',
         ]);
@@ -65,7 +65,7 @@ class CertificateController extends Controller
         $request->validate([
             'title'             => 'required|string|max:255',
             'short_description' => 'nullable|string',
-            'pdf'               => 'nullable|file|mimes:pdf|max:5120',
+            'pdf'               => 'nullable|file|mimes:pdf,jpg,jpeg,png,webp|max:5120',
             'status'            => 'nullable|boolean',
             'sort_order'        => 'nullable|integer',
         ]);
@@ -103,6 +103,6 @@ class CertificateController extends Controller
     {
         $certificate->clearMediaCollection('pdf');
 
-        return back()->with('success', 'Certificate PDF deleted successfully.');
+        return back()->with('success', 'Certificate file deleted successfully.');
     }
 }

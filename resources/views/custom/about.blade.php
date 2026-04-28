@@ -90,141 +90,191 @@
     </div>
 </section>
 
-  <!-- OUR STORY -->
-  <section class="section-pad bg-white">
+ <!-- OUR STORY -->
+<section class="section-pad bg-white">
     <div class="container">
-      <div class="row align-items-center g-5">
+        <div class="row align-items-center g-5">
 
-        <div class="col-lg-6">
-          <div class="about-story-media">
-            <img
-              src="https://dummyimage.com/1200x900/f00203/ffffff&text=Story+Image+1200x900"
-              class="about-story-img"
-              alt="Story Image 1200x900"
-            />
+            <div class="col-lg-6">
+                <div class="about-story-media">
+                    @if($ourStorySection && $ourStorySection->image)
+                        <img
+                            src="{{ $ourStorySection->image->getUrl() }}"
+                            class="about-story-img"
+                            alt="{{ strip_tags($ourStorySection->title ?? 'Our Story') }}"
+                        >
+                    @else
+                        <img
+                            src="{{ asset('assets/img/story-image.jpg') }}"
+                            class="about-story-img"
+                            alt="Our Story"
+                        >
+                    @endif
 
-            <div class="about-story-badge">
-              <i class="bi bi-shield-check"></i>
-              <div>
-                <div class="fw-bold">Quality First</div>
-                <div class="small text-muted">Checks at every stage</div>
-              </div>
+                    <div class="about-story-badge">
+                        <i class="bi bi-shield-check"></i>
+                        <div>
+                            <div class="fw-bold">Quality First</div>
+                            <div class="small text-muted">Checks at every stage</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="col-lg-6">
+                <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
+                    <i class="bi bi-stars me-1"></i> Our Story
+                </span>
+
+                <h2 class="fw-bold mb-3">
+                    {{ $ourStorySection->title ?? 'Designed for Everyday Use' }}
+                </h2>
+
+                @if($ourStorySection && $ourStorySection->short_description)
+                    <p class="text-muted mb-3">
+                        {{ $ourStorySection->short_description }}
+                    </p>
+                @endif
+
+                <p class="text-muted mb-4">
+                    {!! nl2br(e($ourStorySection->description ?? 'We build products that people use daily — detergents, soaps, cleaning solutions and more. Our focus is performance-first, backed by structured processes and a responsible approach.')) !!}
+                </p>
+
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="about-box">
+                            <div class="about-box-icon">
+                                <i class="bi bi-building-check"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold mb-1">Manufacturing</div>
+                                <div class="small text-muted">Consistency and batch control.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="about-box">
+                            <div class="about-box-icon">
+                                <i class="bi bi-flask"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold mb-1">R&amp;D Focus</div>
+                                <div class="small text-muted">Improving performance continuously.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="about-box">
+                            <div class="about-box-icon">
+                                <i class="bi bi-heart-pulse"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold mb-1">Non-Toxic Focus</div>
+                                <div class="small text-muted">Gentle choices where possible.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="about-box">
+                            <div class="about-box-icon">
+                                <i class="bi bi-recycle"></i>
+                            </div>
+                            <div>
+                                <div class="fw-bold mb-1">Go Green</div>
+                                <div class="small text-muted">Eco-conscious mindset.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-4">
+                    <div class="col-6">
+                        <div class="about-stat">
+                            <div class="about-stat-num">100+</div>
+                            <div class="about-stat-text">Distribution Points</div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="about-stat">
+                            <div class="about-stat-num">50+</div>
+                            <div class="about-stat-text">Products &amp; Variants</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-
-        <div class="col-lg-6">
-          <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
-            <i class="bi bi-stars me-1"></i> Our Story
-          </span>
-
-          <h2 class="fw-bold mb-3">Designed for Everyday Use</h2>
-          <p class="text-muted mb-4">
-            We build products that people use daily — detergents, soaps, cleaning solutions and more.
-            Our focus is performance-first, backed by structured processes and a responsible approach.
-          </p>
-
-          <div class="row g-3">
-            <div class="col-sm-6">
-              <div class="about-box">
-                <div class="about-box-icon"><i class="bi bi-building-check"></i></div>
-                <div>
-                  <div class="fw-bold mb-1">Manufacturing</div>
-                  <div class="small text-muted">Consistency and batch control.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="about-box">
-                <div class="about-box-icon"><i class="bi bi-flask"></i></div>
-                <div>
-                  <div class="fw-bold mb-1">R&amp;D Focus</div>
-                  <div class="small text-muted">Improving performance continuously.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="about-box">
-                <div class="about-box-icon"><i class="bi bi-heart-pulse"></i></div>
-                <div>
-                  <div class="fw-bold mb-1">Non-Toxic Focus</div>
-                  <div class="small text-muted">Gentle choices where possible.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-6">
-              <div class="about-box">
-                <div class="about-box-icon"><i class="bi bi-recycle"></i></div>
-                <div>
-                  <div class="fw-bold mb-1">Go Green</div>
-                  <div class="small text-muted">Eco-conscious mindset.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row g-3 mt-4">
-            <div class="col-6">
-              <div class="about-stat">
-                <div class="about-stat-num">100+</div>
-                <div class="about-stat-text">Distribution Points</div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="about-stat">
-                <div class="about-stat-num">50+</div>
-                <div class="about-stat-text">Products &amp; Variants</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- VALUES -->
-  <section class="section-pad bg-soft">
+ <!-- VALUES -->
+<section class="section-pad bg-soft">
     <div class="container">
-      <div class="text-center mb-5">
-        <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
-          <i class="bi bi-gem me-1"></i> Our Values
-        </span>
-        <h2 class="fw-bold mb-1">What We Stand For</h2>
-        <p class="text-muted mb-0">Principles that guide our products and partnerships.</p>
-      </div>
+        <div class="text-center mb-5">
+            <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+                <i class="bi bi-gem me-1"></i> Our Values
+            </span>
 
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="value-card h-100">
-            <div class="value-icon"><i class="bi bi-shield-check"></i></div>
-            <h5 class="fw-bold mb-2">Quality</h5>
-            <p class="text-muted small mb-0">Structured checks and consistency in every batch.</p>
-          </div>
+            <h2 class="fw-bold mb-1">What We Stand For</h2>
+
+            <p class="text-muted mb-0">
+                Principles that guide our products, manufacturing and partnerships.
+            </p>
         </div>
 
-        <div class="col-md-4">
-          <div class="value-card h-100">
-            <div class="value-icon"><i class="bi bi-flask"></i></div>
-            <h5 class="fw-bold mb-2">Innovation</h5>
-            <p class="text-muted small mb-0">Continuous improvements in formulations & usability.</p>
-          </div>
-        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="value-card h-100">
+                    <div class="value-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
 
-        <div class="col-md-4">
-          <div class="value-card h-100">
-            <div class="value-icon"><i class="bi bi-leaf"></i></div>
-            <h5 class="fw-bold mb-2">Responsibility</h5>
-            <p class="text-muted small mb-0">Eco-conscious thinking aligned with Go Green.</p>
-          </div>
+                    <h5 class="fw-bold mb-2">Quality</h5>
+
+                    <p class="text-muted small mb-0">
+                        We focus on consistent quality, reliable performance and structured checks 
+                        at every important stage of production.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="value-card h-100">
+                    <div class="value-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+
+                    <h5 class="fw-bold mb-2">Innovation</h5>
+
+                    <p class="text-muted small mb-0">
+                        We continuously improve our formulations to deliver better cleaning, 
+                        usability and everyday product experience.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="value-card h-100">
+                    <div class="value-icon">
+                        <i class="bi bi-recycle"></i>
+                    </div>
+
+                    <h5 class="fw-bold mb-2">Responsibility</h5>
+
+                    <p class="text-muted small mb-0">
+                        We follow a Go Green mindset with responsible choices in our products, 
+                        processes and long-term growth.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 
   <!-- PROCESS -->
   <section class="section-pad bg-white">
@@ -279,7 +329,7 @@
         <div class="col-lg-6">
           <div class="about-process-media">
             <img
-              src="https://dummyimage.com/1200x900/7d5de1/ffffff&text=Process+Image+1200x900"
+              src="{{ $certificates->pdf->getUrl() }}"
               class="about-process-img"
               alt="Process Image 1200x900"
             />

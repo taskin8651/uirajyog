@@ -16,7 +16,7 @@
 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px;">
     <div>
         <h2 style="font-size:22px; font-weight:700; color:#0F172A; margin:0;">Certificates</h2>
-        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Manage certificates and their images.</p>
+        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Manage certificates and their PDF files.</p>
     </div>
     <a href="{{ route('admin.certificates.create') }}" class="btn-primary">
         <i class="fas fa-plus" style="font-size:11px;"></i>
@@ -44,9 +44,9 @@
         <table style="width:100%; border-collapse:collapse; min-width:720px;">
             <thead>
                 <tr style="background:#F8FAFC; color:#475569; text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:.08em;">
-                    <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">Image</th>
+                    <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">PDF</th>
                     <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">Title</th>
-                    <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">Description</th>
+                    <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">Short Description</th>
                     <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">Sort</th>
                     <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0;">Status</th>
                     <th style="padding:14px 16px; border-bottom:1px solid #E2E8F0; text-align:right;">Actions</th>
@@ -55,15 +55,17 @@
             <tbody>
                 @forelse($certificates as $certificate)
                 <tr style="border-bottom:1px solid #F1F5F9;">
-                    <td style="padding:14px 16px; vertical-align:middle;">
-                        @if($certificate->image)
-                            <img src="{{ $certificate->image->getUrl() }}" alt="Certificate image" class="image-thumb">
+                    <td style="padding:14px 16px; vertical-align:middle; text-align:center;">
+                        @if($certificate->pdf)
+                            <a href="{{ $certificate->pdf->getUrl() }}" target="_blank" style="color:#EF4444; text-decoration:none; font-size:16px;" title="Download PDF">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
                         @else
-                            <div style="width:48px; height:48px; border-radius:12px; background:#E2E8F0; display:flex; align-items:center; justify-content:center; color:#64748B; font-size:12px;">NO</div>
+                            <div style="color:#94A3B8; font-size:12px;">—</div>
                         @endif
                     </td>
                     <td style="padding:14px 16px; vertical-align:middle; color:#0F172A; font-weight:600;">{{ $certificate->title ?: 'Untitled' }}</td>
-                    <td style="padding:14px 16px; vertical-align:middle; color:#475569; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ $certificate->description ?: 'No description' }}</td>
+                    <td style="padding:14px 16px; vertical-align:middle; color:#475569; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ $certificate->short_description ?: 'No description' }}</td>
                     <td style="padding:14px 16px; vertical-align:middle; color:#475569;">{{ $certificate->sort_order }}</td>
                     <td style="padding:14px 16px; vertical-align:middle;">
                         <span class="status-pill" style="background:{{ $certificate->status ? '#DCFCE7' : '#FEE2E2' }}; color:{{ $certificate->status ? '#15803D' : '#B91C1C' }};">{{ $certificate->status ? 'Active' : 'Inactive' }}</span>

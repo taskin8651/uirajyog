@@ -22,7 +22,7 @@
     <div>
         <a href="{{ route('admin.certificates.index') }}" style="font-size:13px; color:var(--accent); text-decoration:none; font-weight:600;">← Back to certificates</a>
         <h2 style="font-size:22px; font-weight:700; color:#0F172A; margin:10px 0 0;">Add Certificate</h2>
-        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Create a new certificate with image.</p>
+        <p style="font-size:13px; color:#64748B; margin:6px 0 0;">Create a new certificate with PDF file.</p>
     </div>
 </div>
 
@@ -35,7 +35,7 @@
             </div>
             <div>
                 <p style="font-size:14px;font-weight:700;color:#0F172A;margin:0;">Certificate content</p>
-                <p style="font-size:12px;color:#94A3B8;margin:2px 0 0;">Add title, description and image for the certificate.</p>
+                <p style="font-size:12px;color:#94A3B8;margin:2px 0 0;">Add title, short description and PDF file for the certificate.</p>
             </div>
         </div>
         <div class="form-card-body">
@@ -46,16 +46,41 @@
                     @error('title')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
                 </div>
                 <div>
-                    <label class="field-label" for="description">Description</label>
-                    <textarea name="description" id="description" class="field-textarea">{{ old('description') }}</textarea>
-                    @error('description')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+                    <label class="field-label" for="short_description">Short Description</label>
+                    <textarea name="short_description" id="short_description" class="field-textarea" style="min-height:80px;">{{ old('short_description') }}</textarea>
+                    @error('short_description')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
                 </div>
-                <div>
-                    <label class="field-label" for="image">Image</label>
-                    <input type="file" name="image" id="image" accept="image/*" class="field-input">
-                    <img id="preview-image" class="image-preview" style="display:none;" src="" alt="Image preview">
-                    @error('image')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
-                </div>
+               <div>
+    <label class="field-label" for="pdf">PDF / Image File</label>
+
+    <input 
+        type="file" 
+        name="pdf" 
+        id="pdf" 
+        accept="application/pdf,image/*" 
+        class="field-input"
+    >
+
+    <div id="file-preview-wrap" style="margin-top:12px; display:none;">
+        <p id="pdf-info" style="font-size:12px; color:#64748B; margin-bottom:8px;">
+            <i id="file-icon" class="fas fa-file" style="margin-right:6px;"></i>
+            <span id="pdf-name"></span>
+        </p>
+
+        <img 
+            id="image-preview" 
+            src="" 
+            alt="Image Preview" 
+            style="max-width:220px; border-radius:12px; border:1px solid #E2E8F0; display:none;"
+        >
+    </div>
+
+    @error('pdf')
+        <p class="field-error">
+            <i class="fas fa-exclamation-circle"></i>{{ $message }}
+        </p>
+    @enderror
+</div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start;">
                     <div>
                         <label class="field-label" for="sort_order">Sort Order</label>
@@ -84,10 +109,11 @@
 @parent
 <script>
 $(function() {
-    $('#image').on('change', function() {
+    $('#pdf').on('change', function() {
         const [file] = this.files;
-        if (!file) { $('#preview-image').hide(); return; }
-        $('#preview-image').attr('src', URL.createObjectURL(file)).show();
+        if (!file) { $('#pdf-info').hide(); return; }
+        $('#pdf-name').text(file.name);
+        $('#pdf-info').show();
     });
 });
 </script>
