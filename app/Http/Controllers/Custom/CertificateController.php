@@ -20,6 +20,10 @@ class CertificateController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('custom.certificate', compact('certificates', 'faqs'));
+             $certificateImages = $certificates->filter(function ($certificate) {
+            return $certificate->file_type === 'image';
+        })->values();
+
+        return view('custom.certificate', compact('certificates', 'faqs', 'certificateImages'));
     }
 }

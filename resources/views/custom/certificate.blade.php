@@ -27,7 +27,7 @@
           <a href="#documents" class="btn btn-brand btn-lg">
             <i class="bi bi-download"></i> View Documents
           </a>
-          <a href="#request" class="btn btn-outline-dark btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg">
             <i class="bi bi-chat-dots"></i> Request Certificates
           </a>
         </div>
@@ -40,79 +40,101 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <div class="certp-hero-media">
-          <div id="certPageSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+     <div class="col-lg-6">
+    <div class="certp-hero-media">
+        <div id="certPageSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
             <div class="carousel-inner">
 
-              <div class="carousel-item active">
-                <div class="certp-slide">
-                  <img src="https://dummyimage.com/1400x900/0a2c5a/ffffff&text=Certificate+Slide+1+1400x900" class="certp-slide-img" alt="Certificate Slide 1">
-                  <div class="certp-slide-overlay"></div>
-                  <div class="certp-slide-caption">
-                    <div class="certp-chip2"><i class="bi bi-patch-check"></i> GMP Compliance</div>
-                    <div class="small text-white-50">Structured manufacturing & quality processes</div>
-                  </div>
-                </div>
-              </div>
+                @forelse($certificateImages as $key => $certificate)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <div class="certp-slide">
+                            <img 
+                                src="{{ $certificate->file_url }}" 
+                                class="certp-slide-img" 
+                                alt="{{ $certificate->title }}"
+                            >
 
-              <div class="carousel-item">
-                <div class="certp-slide">
-                  <img src="https://dummyimage.com/1400x900/198754/ffffff&text=Certificate+Slide+2+1400x900" class="certp-slide-img" alt="Certificate Slide 2">
-                  <div class="certp-slide-overlay"></div>
-                  <div class="certp-slide-caption">
-                    <div class="certp-chip2"><i class="bi bi-award"></i> ISO Standards</div>
-                    <div class="small text-white-50">Quality systems • documentation • audits</div>
-                  </div>
-                </div>
-              </div>
+                            <div class="certp-slide-overlay"></div>
 
-              <div class="carousel-item">
-                <div class="certp-slide">
-                  <img src="https://dummyimage.com/1400x900/f2f2f2/111111&text=Certificate+Slide+3+1400x900" class="certp-slide-img" alt="Certificate Slide 3">
-                  <div class="certp-slide-overlay"></div>
-                  <div class="certp-slide-caption">
-                    <div class="certp-chip2"><i class="bi bi-clipboard-check"></i> Quality Audits</div>
-                    <div class="small text-white-50">Checks at every stage of production</div>
-                  </div>
-                </div>
-              </div>
+                            <div class="certp-slide-caption">
+                                <div class="certp-chip2">
+                                    <i class="bi bi-patch-check"></i> {{ $certificate->title }}
+                                </div>
+
+                                <div class="small text-white-50">
+                                    {{ $certificate->short_description ?? 'Quality, manufacturing and compliance document.' }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="carousel-item active">
+                        <div class="certp-slide">
+                            <img 
+                                src="https://dummyimage.com/1400x900/0a2c5a/ffffff&text=Certificate+Slide+1400x900" 
+                                class="certp-slide-img" 
+                                alt="Certificate Slide"
+                            >
+
+                            <div class="certp-slide-overlay"></div>
+
+                            <div class="certp-slide-caption">
+                                <div class="certp-chip2">
+                                    <i class="bi bi-patch-check"></i> GMP Compliance
+                                </div>
+
+                                <div class="small text-white-50">
+                                    Structured manufacturing & quality processes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
 
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#certPageSlider" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#certPageSlider" data-bs-slide="next">
-              <span class="carousel-control-next-icon"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+            @if($certificateImages->count() > 1)
+                <button class="carousel-control-prev" type="button" data-bs-target="#certPageSlider" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
 
-            <div class="carousel-indicators certp-dots">
-              <button type="button" data-bs-target="#certPageSlider" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#certPageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#certPageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button class="carousel-control-next" type="button" data-bs-target="#certPageSlider" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+                <div class="carousel-indicators certp-dots">
+                    @foreach($certificateImages as $key => $certificate)
+                        <button 
+                            type="button" 
+                            data-bs-target="#certPageSlider" 
+                            data-bs-slide-to="{{ $key }}" 
+                            class="{{ $key == 0 ? 'active' : '' }}" 
+                            aria-label="Slide {{ $key + 1 }}">
+                        </button>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </div>
+
+    <div class="row g-3 mt-3">
+        <div class="col-6">
+            <div class="certp-mini">
+                <div class="certp-mini-num">GMP</div>
+                <div class="certp-mini-text">Certified Unit</div>
             </div>
-          </div>
         </div>
 
-        <div class="row g-3 mt-3">
-          <div class="col-6">
+        <div class="col-6">
             <div class="certp-mini">
-              <div class="certp-mini-num">GMP</div>
-              <div class="certp-mini-text">Certified Unit</div>
+                <div class="certp-mini-num">ISO</div>
+                <div class="certp-mini-text">Quality Systems</div>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="certp-mini">
-              <div class="certp-mini-num">ISO</div>
-              <div class="certp-mini-text">Quality Systems</div>
-            </div>
-          </div>
         </div>
-
-      </div>
+    </div>
+</div>
 
     </div>
   </div>
@@ -185,7 +207,7 @@
             </div>
 
             <div class="col-lg-5 text-lg-end">
-                <a href="{{ url('/#contact') }}" class="btn btn-brand">
+                <a href="{{ route('custom.enquiry') }}" class="btn btn-brand">
                     <i class="bi bi-chat-dots"></i> Request Official Copies
                 </a>
             </div>
@@ -536,10 +558,10 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
-          <a href="index.html#contact" class="btn btn-outline-light btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-chat-dots"></i> Contact
           </a>
         </div>

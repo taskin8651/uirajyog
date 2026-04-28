@@ -183,7 +183,7 @@
         <p class="text-muted mb-0">Built for safety, uniformity and repeatable performance.</p>
       </div>
       <div class="col-lg-5 text-lg-end">
-        <a href="index.html#partner" class="btn btn-outline-dark">
+        <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark">
           <i class="bi bi-people"></i> Distributor Enquiry
         </a>
       </div>
@@ -354,10 +354,10 @@
         </div>
 
         <div class="d-flex gap-2 flex-wrap mt-4">
-          <a href="index.html#certs" class="btn btn-brand">
+          <a href="{{ route('certificates.index') }}" class="btn btn-brand">
             <i class="bi bi-patch-check"></i> View Certifications
           </a>
-          <a href="index.html#contact" class="btn btn-outline-dark">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark">
             <i class="bi bi-chat-dots"></i> Request Details
           </a>
         </div>
@@ -536,10 +536,10 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
-          <a href="index.html#contact" class="btn btn-outline-light btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-chat-dots"></i> Contact
           </a>
         </div>

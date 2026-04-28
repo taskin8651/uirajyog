@@ -317,10 +317,10 @@
           </div>
 
           <div class="mt-4 d-flex gap-2 flex-wrap">
-            <a href="index.html#mfg" class="btn btn-brand btn-lg">
+            <a href="{{ route('custom.manufacturing') }}" class="btn btn-brand btn-lg">
               <i class="bi bi-building"></i> Explore Manufacturing
             </a>
-            <a href="index.html#certs" class="btn btn-outline-dark btn-lg">
+            <a href="{{ route('certificates.index') }}" class="btn btn-outline-dark btn-lg">
               <i class="bi bi-patch-check"></i> View Certifications
             </a>
           </div>
@@ -353,10 +353,10 @@
         </div>
 
         <div class="d-flex gap-2 flex-wrap">
-          <a href="index.html#partner" class="btn btn-brand btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-brand btn-lg">
             <i class="bi bi-send"></i> Submit Enquiry
           </a>
-          <a href="index.html#contact" class="btn btn-outline-dark btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg">
             <i class="bi bi-chat-dots"></i> Contact Us
           </a>
         </div>

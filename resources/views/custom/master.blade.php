@@ -68,7 +68,7 @@
   <div class="container">
 
     <!-- Brand (Logo only) -->
-    <a class="navbar-brand brand-premium" href="index.html">
+    <a class="navbar-brand brand-premium" href="{{ route('home') }}">
       <img src="{{ $siteSetting->logo->getUrl() ?? 'assets/img/logo.png' }}" alt="Raj Yog" class="brand-logo" />
     </a>
 

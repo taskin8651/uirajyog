@@ -27,7 +27,7 @@
           <a href="#catalog" class="btn btn-brand btn-lg">
             <i class="bi bi-grid-3x3-gap"></i> Browse Catalog
           </a>
-          <a href="index.html#partner" class="btn btn-outline-dark btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg">
             <i class="bi bi-people"></i> Distributor Enquiry
           </a>
         </div>
@@ -185,14 +185,14 @@
 
                             <div class="product-item-actions">
                                 <a 
-                                    href="{{ url('products/' . $product->slug) }}" 
+                                    href="{{ route('products.show', $product->slug) }}" 
                                     class="btn btn-sm btn-brand"
                                 >
                                     <i class="bi bi-eye"></i> View
                                 </a>
 
                                 <a 
-                                    href="{{ url('/#contact') }}?product={{ urlencode($product->name) }}" 
+                                    href="{{ route('custom.enquiry') }}?product={{ urlencode($product->name) }}" 
                                     class="btn btn-sm btn-outline-dark"
                                 >
                                     <i class="bi bi-chat-dots"></i> Enquire
@@ -226,7 +226,7 @@
           <div>
             <div class="products-category-title">Home Care Range</div>
             <div class="products-category-text">Laundry • Dishwash • Cleaning essentials for modern homes.</div>
-            <a href="index.html#partner" class="btn btn-light mt-3"><i class="bi bi-people"></i> Distributor Enquiry</a>
+            <a href="{{ route('custom.enquiry') }}" class="btn btn-light mt-3"><i class="bi bi-people"></i> Distributor Enquiry</a>
           </div>
           <i class="bi bi-droplet-half products-category-icon"></i>
         </div>
@@ -237,7 +237,7 @@
           <div>
             <div class="products-category-title">Personal Care Range</div>
             <div class="products-category-text">Gentle hygiene products designed for everyday comfort.</div>
-            <a href="index.html#contact" class="btn btn-dark mt-3"><i class="bi bi-chat-dots"></i> Ask for Catalog</a>
+            <a href="{{ route('custom.enquiry') }}" class="btn btn-dark mt-3"><i class="bi bi-chat-dots"></i> Ask for Catalog</a>
           </div>
           <i class="bi bi-heart-pulse products-category-icon"></i>
         </div>
@@ -263,10 +263,10 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp Now
           </a>
-          <a href="index.html#contact" class="btn btn-outline-light btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-chat-dots"></i> Contact
           </a>
         </div>
