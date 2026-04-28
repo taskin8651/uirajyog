@@ -118,3 +118,13 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 
+
+// Frontend Routes
+
+Route::get('/', [App\Http\Controllers\Custom\HomeController::class, 'index'])->name('home');
+
+Route::get('/products', [App\Http\Controllers\Custom\ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{slug}', [App\Http\Controllers\Custom\ProductController::class, 'show'])->name('products.show');
+
+Route::get('/about', [App\Http\Controllers\Custom\AboutController::class, 'index'])->name('about');
+

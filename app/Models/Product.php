@@ -45,6 +45,11 @@ class Product extends Model implements HasMedia
         'deleted_at',
     ];
 
+    protected $casts = [
+        'status' => 'boolean',
+        'is_featured' => 'boolean',
+    ];
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -53,7 +58,6 @@ class Product extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('image')->singleFile();
-
         $this->addMediaCollection('images');
     }
 
@@ -73,7 +77,7 @@ class Product extends Model implements HasMedia
     }
 
     public function enquiries()
-{
-    return $this->hasMany(Enquiry::class, 'product_id');
-}
+    {
+        return $this->hasMany(Enquiry::class, 'product_id');
+    }
 }

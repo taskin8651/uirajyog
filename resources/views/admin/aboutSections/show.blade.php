@@ -47,6 +47,10 @@
             </div>
         </div>
         <div>
+            <p class="detail-label">Short Description</p>
+            <p class="detail-value">{{ $aboutSection->short_description ?: 'No short description provided.' }}</p>
+        </div>
+        <div>
             <p class="detail-label">Description</p>
             <p class="detail-value">{{ $aboutSection->description ?: 'No description provided.' }}</p>
         </div>

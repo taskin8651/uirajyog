@@ -36,6 +36,10 @@ class ProductCategory extends Model implements HasMedia
         'deleted_at',
     ];
 
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
@@ -49,5 +53,10 @@ class ProductCategory extends Model implements HasMedia
     public function getImageAttribute()
     {
         return $this->getMedia('image')->last();
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id');
     }
 }
