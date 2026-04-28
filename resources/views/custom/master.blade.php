@@ -1,3 +1,8 @@
+@php
+    // Fetch site settings (assuming only one record)
+    $siteSetting = App\Models\SiteSetting::first();
+    $products = App\Models\Product::pluck('name', 'slug')->toArray();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +28,14 @@
       <div class="topbar-left">
         <span class="topbar-item">
           <i class="bi bi-geo-alt"></i>
-          <span>Kota, Rajasthan</span>
+          <span>{{ $siteSetting->city ?? 'Kota, Rajasthan' }}</span>
         </span>
 
         <span class="topbar-dot"></span>
 
         <span class="topbar-item">
           <i class="bi bi-shield-check"></i>
-          <span>GMP & ISO Certified Manufacturing</span>
+          <span>{{ $siteSetting->certification ?? 'GMP & ISO Certified Manufacturing' }}</span>
         </span>
       </div>
 
@@ -43,12 +48,12 @@
 
         <span class="topbar-divider"></span>
 
-        <a class="topbar-link" href="tel:+91XXXXXXXXXX">
+        <a class="topbar-link" href="tel:{{ $siteSetting->phone ?? '+91 77426 56449' }}">
           <i class="bi bi-telephone"></i>
-          <span>+91 77426 56449</span>
+          <span>{{ $siteSetting->phone ?? '+91 77426 56449' }}</span>
         </a>
 
-        <a class="topbar-cta" href="https://wa.me/91XXXXXXXXXX" target="_blank">
+        <a class="topbar-cta" href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank">
           <i class="bi bi-whatsapp"></i>
           <span class="d-none d-md-inline">WhatsApp</span>
         </a>
@@ -64,7 +69,7 @@
 
     <!-- Brand (Logo only) -->
     <a class="navbar-brand brand-premium" href="index.html">
-      <img src="assets/img/logo.png" alt="Raj Yog" class="brand-logo" />
+      <img src="{{ $siteSetting->logo->getUrl() ?? 'assets/img/logo.png' }}" alt="Raj Yog" class="brand-logo" />
     </a>
 
     <button class="navbar-toggler premium-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
@@ -75,58 +80,93 @@
       <ul class="navbar-nav ms-auto align-items-lg-center nav-premium">
 
         <li class="nav-item">
-          <a class="nav-link navlink-premium active" href="index.html">Home</a>
-        </li>
+    <a class="nav-link navlink-premium {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
+        Home
+    </a>
+</li>
 
-        <li class="nav-item">
-          <a class="nav-link navlink-premium" href="about.html">About</a>
-        </li>
+<li class="nav-item">
+    <a class="nav-link navlink-premium {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">
+        About
+    </a>
+</li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link navlink-premium dropdown-toggle" href="#" data-bs-toggle="dropdown">
-            Products
-          </a>
-          <ul class="dropdown-menu dropdown-premium">
+<li class="nav-item dropdown">
+    <a 
+        class="nav-link navlink-premium dropdown-toggle {{ request()->routeIs('products.*') ? 'active' : '' }}" 
+        href="#" 
+        data-bs-toggle="dropdown"
+    >
+        Products
+    </a>
+
+    <ul class="dropdown-menu dropdown-premium">
+        @foreach($products as $slug => $name)
             <li>
-              <a class="dropdown-item" href="#products">
-                <i class="bi bi-droplet-half me-2"></i> Home Care
-              </a>
+                <a 
+                    class="dropdown-item {{ request()->routeIs('products.show') && request()->route('slug') == $slug ? 'active' : '' }}" 
+                    href="{{ route('products.show', $slug) }}"
+                >
+                    {{ $name }}
+                </a>
             </li>
-            <li>
-              <a class="dropdown-item" href="#products">
-                <i class="bi bi-heart-pulse me-2"></i> Personal Care
-              </a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#products">
+        @endforeach
+
+        <li>
+            <a 
+                class="dropdown-item {{ request()->routeIs('products.index') ? 'active' : '' }}" 
+                href="{{ route('products.index') }}"
+            >
                 <i class="bi bi-grid-3x3-gap me-2"></i> All Products
-              </a>
-            </li>
-          </ul>
+            </a>
         </li>
+    </ul>
+</li>
 
-        <li class="nav-item">
-          <a class="nav-link navlink-premium" href="#mfg">Manufacturing & R&D</a>
-        </li>
+<li class="nav-item">
+    <a 
+        class="nav-link navlink-premium {{ request()->routeIs('custom.manufacturing') ? 'active' : '' }}" 
+        href="{{ route('custom.manufacturing') }}"
+    >
+        Manufacturing & R&D
+    </a>
+</li>
 
-        <li class="nav-item">
-          <a class="nav-link navlink-premium" href="#green">Sustainability</a>
-        </li>
+<li class="nav-item">
+    <a 
+        class="nav-link navlink-premium {{ request()->routeIs('sustainability') ? 'active' : '' }}" 
+        href="#"
+    >
+        Sustainability
+    </a>
+</li>
 
-        <li class="nav-item">
-          <a class="nav-link navlink-premium" href="#certs">Certifications</a>
-        </li>
+<li class="nav-item">
+    <a 
+        class="nav-link navlink-premium {{ request()->routeIs('certificates.index') ? 'active' : '' }}" 
+        href="{{ route('certificates.index') }}"
+    >
+        Certifications
+    </a>
+</li>
 
-        <li class="nav-item">
-          <a class="nav-link navlink-premium" href="#partner">Investor / Distributor</a>
-        </li>
+<li class="nav-item">
+    <a 
+        class="nav-link navlink-premium {{ request()->is('*#partner') ? 'active' : '' }}" 
+        href="#partner"
+    >
+        Investor / Distributor
+    </a>
+</li>
 
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-          <a class="btn btn-brand btn-brand-nav" href="#contact">
-            <i class="bi bi-chat-dots"></i> Contact
-          </a>
-        </li>
+<li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+    <a 
+        class="btn btn-brand btn-brand-nav {{ request()->routeIs('custom.enquiry') ? 'active' : '' }}" 
+        href="{{ route('custom.enquiry') }}"
+    >
+        <i class="bi bi-chat-dots me-1"></i> Contact
+    </a>
+</li>
 
       </ul>
     </div>
@@ -150,8 +190,8 @@
 
       <!-- Brand -->
       <div class="col-lg-4">
-        <a href="#home" class="footer-brand">
-          <img src="assets/img/logo.png" alt="Raj Yog" class="footer-logo">
+        <a href="{{ route('home') }}" class="footer-brand">
+          <img src="{{ $siteSetting->logo->getUrl() ?? 'assets/img/logo.png' }}" alt="Raj Yog" class="footer-logo">
         </a>
 
         <p class="footer-desc">
@@ -166,10 +206,11 @@
         </div>
 
         <div class="footer-social mt-3">
-          <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="footer-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-          <a href="#" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="{{ $siteSetting->facebook_url ?? '#' }}" class="footer-social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="{{ $siteSetting->instagram_url ?? '#' }}" class="footer-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="{{ $siteSetting->youtube_url ?? '#' }}" class="footer-social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="{{ $siteSetting->linkedin_url ?? '#' }}" class="footer-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="{{ $siteSetting->twitter_url ?? '#' }}" class="footer-social-btn" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
         </div>
       </div>
 
@@ -177,20 +218,19 @@
       <div class="col-6 col-lg-2">
         <h6 class="footer-title">Company</h6>
         <ul class="footer-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#mfg">Manufacturing & R&D</a></li>
-          <li><a href="#green">Sustainability</a></li>
-          <li><a href="#certs">Certifications</a></li>
+          <li><a href="{{ route('about') }}">About</a></li>
+          <li><a href="{{ route('custom.manufacturing') }}">Manufacturing & R&D</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="{{ route('certificates.index') }}">Certifications</a></li>
         </ul>
       </div>
 
       <div class="col-6 col-lg-2">
         <h6 class="footer-title">Products</h6>
         <ul class="footer-links">
-          <li><a href="#products">Home Care</a></li>
-          <li><a href="#products">Personal Care</a></li>
-          <li><a href="#products">Best Sellers</a></li>
-          <li><a href="#products">New Launches</a></li>
+          @foreach($products as $slug => $name)
+            <li><a href="{{ route('products.show', $slug) }}">{{ $name }}</a></li>
+          @endforeach
         </ul>
       </div>
 
@@ -202,7 +242,7 @@
           <div class="footer-contact-item">
             <span class="footer-contact-icon"><i class="bi bi-geo-alt"></i></span>
             <div>
-              <div class="fw-bold">Kota, Rajasthan</div>
+              <div class="fw-bold">{{ $siteSetting->city ?? 'Kota, Rajasthan' }}</div>
               <div class="small text-white-50">India</div>
             </div>
           </div>
@@ -210,7 +250,7 @@
           <div class="footer-contact-item">
             <span class="footer-contact-icon"><i class="bi bi-envelope"></i></span>
             <div>
-              <div class="fw-bold">info@rajyog.com</div>
+              <div class="fw-bold">{{ $siteSetting->email ?? 'info@rajyog.com' }}</div>
               <div class="small text-white-50">Email us anytime</div>
             </div>
           </div>
@@ -218,7 +258,7 @@
           <div class="footer-contact-item">
             <span class="footer-contact-icon"><i class="bi bi-telephone"></i></span>
             <div>
-              <div class="fw-bold">+91 77426 56449</div>
+              <div class="fw-bold">{{ $siteSetting->phone ?? '+91 77426 56449' }}</div>
               <div class="small text-white-50">Mon–Sat • 10AM–6PM</div>
             </div>
           </div>
@@ -250,7 +290,7 @@
     <!-- Bottom bar -->
     <div class="footer-bottom">
       <div class="small text-white-50">
-        © <span id="year"></span> Raj Yog. All Rights Reserved.
+        &copy; {{ date('Y') }} {{ $siteSetting->company_name ?? 'Raj Yog' }}. All rights reserved.
       </div>
 
       <div class="footer-bottom-links small">

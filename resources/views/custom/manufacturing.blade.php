@@ -6,82 +6,121 @@
 
 <!-- BREADCRUMB -->
 <section class="mrd-breadcrumb">
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="index.html#home">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Manufacturing & R&D</li>
-      </ol>
-    </nav>
-  </div>
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{ url('/') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Manufacturing & R&D
+                </li>
+            </ol>
+        </nav>
+    </div>
 </section>
 
 <!-- HERO -->
 <section class="mrd-hero section-pad">
-  <div class="mrd-hero-bg"></div>
-  <div class="container position-relative">
-    <div class="row align-items-center g-5">
+    <div class="mrd-hero-bg"></div>
 
-      <div class="col-lg-7">
-        <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
-          <i class="bi bi-gear-wide-connected me-1"></i> Manufacturing Excellence • Research Driven
-        </span>
+    <div class="container position-relative">
+        <div class="row align-items-center g-5">
 
-        <h1 class="fw-bold display-6 mb-3">
-          Manufacturing & R&D built for <span class="text-brand">Consistency</span>, <span class="text-brand">Quality</span> & Scale
-        </h1>
+            <div class="col-lg-7">
+                <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
+                    <i class="bi bi-gear-wide-connected me-1"></i>
+                    Manufacturing Excellence • Research Driven
+                </span>
 
-        <p class="text-muted mb-4">
-          Our process is designed for repeatable performance — from incoming checks to final quality assurance —
-          supported by continuous research and formulation upgrades.
-        </p>
+                <h1 class="fw-bold display-6 mb-3">
+                    Manufacturing & R&D built for 
+                    <span class="text-brand">Consistency</span>, 
+                    <span class="text-brand">Quality</span> & Scale
+                </h1>
 
-        <div class="d-flex gap-2 flex-wrap">
-          <a href="#process" class="btn btn-brand btn-lg">
-            <i class="bi bi-diagram-3"></i> View Process
-          </a>
-          <a href="#quality" class="btn btn-outline-dark btn-lg">
-            <i class="bi bi-shield-check"></i> Quality Promise
-          </a>
-        </div>
+                <p class="text-muted mb-4">
+                    Our process is designed for repeatable performance — from incoming checks to final quality assurance —
+                    supported by continuous research and formulation upgrades.
+                </p>
 
-        <div class="mrd-hero-chips mt-4">
-          <div class="mrd-chip"><i class="bi bi-patch-check"></i> GMP Certified</div>
-          <div class="mrd-chip"><i class="bi bi-award"></i> ISO Systems</div>
-          <div class="mrd-chip"><i class="bi bi-clipboard-check"></i> QC Monitoring</div>
-          <div class="mrd-chip"><i class="bi bi-flask"></i> R&D Support</div>
-        </div>
-      </div>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a href="#process" class="btn btn-brand btn-lg">
+                        <i class="bi bi-diagram-3"></i> View Process
+                    </a>
 
-      <div class="col-lg-5">
-        <div class="mrd-hero-media">
-          <img
-            src="https://dummyimage.com/1200x900/0a2c5a/ffffff&text=Facility+Hero+1200x900"
-            class="mrd-hero-img"
-            alt="Facility Hero 1200x900"
-          />
-          <div class="mrd-hero-float">
-            <div class="mrd-float-item">
-              <i class="bi bi-speedometer2"></i>
-              <div>
-                <div class="fw-bold">Batch Consistency</div>
-                <div class="small text-white-50">Monitored production</div>
-              </div>
+                    <a href="#quality" class="btn btn-outline-dark btn-lg">
+                        <i class="bi bi-shield-check"></i> Quality Promise
+                    </a>
+                </div>
+
+                <div class="mrd-hero-chips mt-4">
+                    <div class="mrd-chip">
+                        <i class="bi bi-patch-check"></i> GMP Certified
+                    </div>
+
+                    <div class="mrd-chip">
+                        <i class="bi bi-award"></i> ISO Systems
+                    </div>
+
+                    <div class="mrd-chip">
+                        <i class="bi bi-clipboard-check"></i> QC Monitoring
+                    </div>
+
+                    <div class="mrd-chip">
+                        <i class="bi bi-lightbulb"></i> R&D Support
+                    </div>
+                </div>
             </div>
-            <div class="mrd-float-divider"></div>
-            <div class="mrd-float-item">
-              <i class="bi bi-check2-circle"></i>
-              <div>
-                <div class="fw-bold">Quality Checks</div>
-                <div class="small text-white-50">Every stage QC</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
+            <div class="col-lg-5">
+                <div class="mrd-hero-media">
+                    @if($heroManufactureSection && $heroManufactureSection->image)
+                        <img
+                            src="{{ $heroManufactureSection->image->getUrl() }}"
+                            class="mrd-hero-img"
+                            alt="{{ $heroManufactureSection->title }}"
+                        >
+                    @else
+                        <img
+                            src="https://dummyimage.com/1200x900/0a2c5a/ffffff&text=Facility+Hero+1200x900"
+                            class="mrd-hero-img"
+                            alt="Manufacturing Facility"
+                        >
+                    @endif
+
+                    <div class="mrd-hero-float">
+                        <div class="mrd-float-item">
+                            <i class="bi bi-speedometer2"></i>
+                            <div>
+                                <div class="fw-bold">Batch Consistency</div>
+                                <div class="small text-white-50">Monitored production</div>
+                            </div>
+                        </div>
+
+                        <div class="mrd-float-divider"></div>
+
+                        <div class="mrd-float-item">
+                            <i class="bi bi-check2-circle"></i>
+                            <div>
+                                <div class="fw-bold">Quality Checks</div>
+                                <div class="small text-white-50">Every stage QC</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if($heroManufactureSection)
+                    <div class="text-center mt-3">
+                        <div class="small text-muted">
+                            {{ $heroManufactureSection->title }}
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+        </div>
     </div>
-  </div>
 </section>
 
 <!-- KPI STRIP -->
@@ -362,49 +401,128 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="section-pad bg-soft">
-  <div class="container">
-    <div class="row align-items-end g-3 mb-4">
-      <div class="col-lg-7">
-        <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
-          <i class="bi bi-images me-1"></i> Facility Preview
-        </span>
-        <h2 class="fw-bold mb-1">Manufacturing Snapshot</h2>
-        <p class="text-muted mb-0">Dummy images show intended sizes — replace with real facility photos later.</p>
-      </div>
-    </div>
+@php
+    $manufactureImages = isset($manufactureSections)
+        ? $manufactureSections->filter(function ($section) {
+            return $section->image;
+        })->values()
+        : collect();
+@endphp
 
-    <div class="row g-4">
-      <div class="col-lg-6">
-        <div class="mrd-gallery-big">
-          <img src="https://dummyimage.com/1400x900/0a2c5a/ffffff&text=Gallery+Big+1400x900" alt="Gallery Big 1400x900">
+@if($manufactureImages->count())
+    <!-- GALLERY -->
+    <section class="section-pad bg-soft">
+        <div class="container">
+            <div class="row align-items-end g-3 mb-4">
+                <div class="col-lg-7">
+                    <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+                        <i class="bi bi-images me-1"></i> Facility Preview
+                    </span>
+
+                    <h2 class="fw-bold mb-1">
+                        Manufacturing Snapshot
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        A visual look at our manufacturing process, facility and quality-focused production areas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <!-- Big Image -->
+                <div class="col-lg-6">
+                    <div class="mrd-gallery-big">
+                        <img 
+                            src="{{ $manufactureImages[0]->image->getUrl() }}" 
+                            alt="{{ $manufactureImages[0]->title }}"
+                        >
+                    </div>
+
+                    <h6 class="fw-bold mt-3 mb-0">
+                        {{ $manufactureImages[0]->title }}
+                    </h6>
+                </div>
+
+                <!-- Right Images -->
+                <div class="col-lg-6">
+                    <div class="row g-4">
+
+                        <div class="col-6">
+                            <div class="mrd-gallery-small">
+                                <img 
+                                    src="{{ isset($manufactureImages[1]) ? $manufactureImages[1]->image->getUrl() : $manufactureImages[0]->image->getUrl() }}" 
+                                    alt="{{ isset($manufactureImages[1]) ? $manufactureImages[1]->title : $manufactureImages[0]->title }}"
+                                >
+                            </div>
+
+                            <h6 class="fw-bold mt-3 mb-0">
+                                {{ isset($manufactureImages[1]) ? $manufactureImages[1]->title : $manufactureImages[0]->title }}
+                            </h6>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="mrd-gallery-small">
+                                <img 
+                                    src="{{ isset($manufactureImages[2]) ? $manufactureImages[2]->image->getUrl() : $manufactureImages[0]->image->getUrl() }}" 
+                                    alt="{{ isset($manufactureImages[2]) ? $manufactureImages[2]->title : $manufactureImages[0]->title }}"
+                                >
+                            </div>
+
+                            <h6 class="fw-bold mt-3 mb-0">
+                                {{ isset($manufactureImages[2]) ? $manufactureImages[2]->title : $manufactureImages[0]->title }}
+                            </h6>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="mrd-gallery-wide">
+                                <img 
+                                    src="{{ isset($manufactureImages[3]) ? $manufactureImages[3]->image->getUrl() : $manufactureImages[0]->image->getUrl() }}" 
+                                    alt="{{ isset($manufactureImages[3]) ? $manufactureImages[3]->title : $manufactureImages[0]->title }}"
+                                >
+                            </div>
+
+                            <h6 class="fw-bold mt-3 mb-0">
+                                {{ isset($manufactureImages[3]) ? $manufactureImages[3]->title : $manufactureImages[0]->title }}
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </section>
+@else
+    <!-- GALLERY FALLBACK -->
+    <section class="section-pad bg-soft">
+        <div class="container">
+            <div class="row align-items-end g-3 mb-4">
+                <div class="col-lg-7">
+                    <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+                        <i class="bi bi-images me-1"></i> Facility Preview
+                    </span>
 
-      <div class="col-lg-6">
-        <div class="row g-4">
-          <div class="col-6">
-            <div class="mrd-gallery-small">
-              <img src="https://dummyimage.com/700x700/f2f2f2/111111&text=700x700" alt="700x700">
+                    <h2 class="fw-bold mb-1">
+                        Manufacturing Snapshot
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Facility images will appear here once uploaded from admin.
+                    </p>
+                </div>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="mrd-gallery-small">
-              <img src="https://dummyimage.com/700x700/e9f1ff/0a2c5a&text=700x700" alt="700x700">
+
+            <div class="text-center bg-white rounded-4 p-5">
+                <i class="bi bi-images display-5 text-muted"></i>
+                <h5 class="fw-bold mt-3 mb-1">No gallery images found</h5>
+                <p class="text-muted mb-0">Please upload manufacture section images from admin.</p>
             </div>
-          </div>
-          <div class="col-12">
-            <div class="mrd-gallery-wide">
-              <img src="https://dummyimage.com/1400x600/fff7cc/1a1a1a&text=Gallery+Wide+1400x600" alt="1400x600">
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
+    </section>
+@endif
 
-  </div>
-</section>
 
 <!-- CTA STRIP -->
 <section class="mrd-cta section-pad">
