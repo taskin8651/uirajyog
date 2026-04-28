@@ -255,6 +255,8 @@
         <button type="submit" class="btn-primary">
             <i class="fas fa-save"></i> {{ trans('global.save') }}
         </button>
+        </form>
+
         <a href="{{ route('admin.roles.index') }}" class="btn-ghost">
             {{ trans('global.cancel') }}
         </a>
@@ -270,7 +272,6 @@
     @endcan
 </div>
 
-</form>
 @endsection
 
 @section('scripts')

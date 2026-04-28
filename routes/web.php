@@ -32,22 +32,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
      Route::resource('product-categories', ProductCategoryController::class);
      Route::resource('products', ProductController::class);
 
+    
 Route::delete('products/{product}/main-image', [ProductController::class, 'destroyMainImage'])
     ->name('products.main-image.destroy');
 
 Route::delete('products/{product}/gallery-image/{media}', [ProductController::class, 'destroyGalleryImage'])
     ->name('products.gallery-image.destroy');
 
+    // Hero Sections
      Route::resource('hero-sections', HeroSectionController::class);
 
     Route::delete('hero-sections/{heroSection}/image', [HeroSectionController::class, 'destroyImage'])
         ->name('hero-sections.image.destroy');
 
+        // brands
         Route::resource('brands', BrandController::class);
 
 Route::delete('brands/{brand}/logo', [BrandController::class, 'destroyLogo'])
     ->name('brands.logo.destroy');
 
+    // enquiries
     Route::resource('enquiries', EnquiryController::class);
 
 Route::post('enquiries/{enquiry}/mark-as-read', [EnquiryController::class, 'markAsRead'])
@@ -58,6 +62,50 @@ Route::post('enquiries/{enquiry}/mark-as-unread', [EnquiryController::class, 'ma
 
 Route::post('enquiries/{enquiry}/update-status', [EnquiryController::class, 'updateStatus'])
     ->name('enquiries.update-status');
+
+    // manufacture sections
+    Route::resource('manufacture-sections', ManufactureSectionController::class);
+
+Route::delete('manufacture-sections/{manufactureSection}/image', [ManufactureSectionController::class, 'destroyImage'])
+    ->name('manufacture-sections.image.destroy');
+
+    // FAQ
+     Route::resource('faqs', FaqController::class);
+
+     // Certificates
+     Route::resource('certificates', CertificateController::class);
+
+Route::delete('certificates/{certificate}/pdf', [CertificateController::class, 'destroyPdf'])
+    ->name('certificates.pdf.destroy');
+
+
+    // About Sections
+Route::resource('about-sections', AboutSectionController::class);
+
+Route::delete('about-sections/{aboutSection}/image', [AboutSectionController::class, 'destroyImage'])
+    ->name('about-sections.image.destroy');
+
+    // Our Story Sections
+    Route::resource('our-story-sections', OurStorySectionController::class);
+
+Route::delete('our-story-sections/{ourStorySection}/image', [OurStorySectionController::class, 'destroyImage'])
+    ->name('our-story-sections.image.destroy');
+
+    // Site Settings
+    Route::get('site-settings', [SiteSettingController::class, 'index'])
+    ->name('site-settings.index');
+
+Route::put('site-settings/{siteSetting}', [SiteSettingController::class, 'update'])
+    ->name('site-settings.update');
+
+Route::delete('site-settings/{siteSetting}/logo', [SiteSettingController::class, 'destroyLogo'])
+    ->name('site-settings.logo.destroy');
+
+Route::delete('site-settings/{siteSetting}/footer-logo', [SiteSettingController::class, 'destroyFooterLogo'])
+    ->name('site-settings.footer-logo.destroy');
+
+Route::delete('site-settings/{siteSetting}/favicon', [SiteSettingController::class, 'destroyFavicon'])
+    ->name('site-settings.favicon.destroy');
     
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

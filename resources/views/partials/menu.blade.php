@@ -141,6 +141,82 @@
 
         {{-- ── DIVIDER ── --}}
         <div style="height:1px; background:rgba(255,255,255,.05); margin:6px 4px;"></div>
+        <p style="font-size:10px; font-weight:700; color:#334155; text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; margin:0;" class="nav-label">Content</p>
+
+        {{-- Brands --}}
+        @can('brand_access')
+        <a href="{{ route('admin.brands.index') }}" data-tooltip="Brands"
+           class="nav-link {{ request()->is('admin/brands*') ? 'active' : '' }}">
+            <i class="fas fa-tags nav-icon" style="color:{{ request()->is('admin/brands*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Brands</span>
+        </a>
+        @endcan
+
+        {{-- Enquiries --}}
+        @can('enquiry_access')
+        <a href="{{ route('admin.enquiries.index') }}" data-tooltip="Enquiries"
+           class="nav-link {{ request()->is('admin/enquiries*') ? 'active' : '' }}">
+            <i class="fas fa-envelope nav-icon" style="color:{{ request()->is('admin/enquiries*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Enquiries</span>
+        </a>
+        @endcan
+
+        {{-- Hero Sections --}}
+        @can('hero_section_access')
+        <a href="{{ route('admin.hero-sections.index') }}" data-tooltip="Hero Sections"
+           class="nav-link {{ request()->is('admin/hero-sections*') ? 'active' : '' }}">
+            <i class="fas fa-image nav-icon" style="color:{{ request()->is('admin/hero-sections*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Hero Sections</span>
+        </a>
+        @endcan
+
+        {{-- Manufacture Sections --}}
+        @can('manufacture_section_access')
+        <a href="{{ route('admin.manufacture-sections.index') }}" data-tooltip="Manufacture Sections"
+           class="nav-link {{ request()->is('admin/manufacture-sections*') ? 'active' : '' }}">
+            <i class="fas fa-cogs nav-icon" style="color:{{ request()->is('admin/manufacture-sections*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Manufacture</span>
+        </a>
+        @endcan
+
+        {{-- FAQs --}}
+        @can('faq_access')
+        <a href="{{ route('admin.faqs.index') }}" data-tooltip="FAQs"
+           class="nav-link {{ request()->is('admin/faqs*') ? 'active' : '' }}">
+            <i class="fas fa-question-circle nav-icon" style="color:{{ request()->is('admin/faqs*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">FAQs</span>
+        </a>
+        @endcan
+
+        {{-- Certificates --}}
+        @can('certificate_access')
+        <a href="{{ route('admin.certificates.index') }}" data-tooltip="Certificates"
+           class="nav-link {{ request()->is('admin/certificates*') ? 'active' : '' }}">
+            <i class="fas fa-certificate nav-icon" style="color:{{ request()->is('admin/certificates*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Certificates</span>
+        </a>
+        @endcan
+
+        {{-- About Sections --}}
+        @can('about_section_access')
+        <a href="{{ route('admin.about-sections.index') }}" data-tooltip="About Sections"
+           class="nav-link {{ request()->is('admin/about-sections*') ? 'active' : '' }}">
+            <i class="fas fa-info-circle nav-icon" style="color:{{ request()->is('admin/about-sections*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">About</span>
+        </a>
+        @endcan
+
+        {{-- Our Story Sections --}}
+        @can('our_story_section_access')
+        <a href="{{ route('admin.our-story-sections.index') }}" data-tooltip="Our Story Sections"
+           class="nav-link {{ request()->is('admin/our-story-sections*') ? 'active' : '' }}">
+            <i class="fas fa-book-open nav-icon" style="color:{{ request()->is('admin/our-story-sections*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Our Story</span>
+        </a>
+        @endcan
+
+        {{-- ── DIVIDER ── --}}
+        <div style="height:1px; background:rgba(255,255,255,.05); margin:6px 4px;"></div>
         <p style="font-size:10px; font-weight:700; color:#334155; text-transform:uppercase; letter-spacing:.08em; padding:4px 10px; margin:0;" class="nav-label">Account</p>
 
         {{-- Change Password --}}

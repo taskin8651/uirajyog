@@ -134,10 +134,11 @@
     <button type="submit" class="btn-primary">
         <i class="fas fa-check"></i> {{ trans('global.save') }}
     </button>
+    </form>
+
     <a href="{{ route('admin.permissions.index') }}" class="btn-ghost">
         {{ trans('global.cancel') }}
     </a>
 </div>
 
-</form>
 @endsection
