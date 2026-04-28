@@ -76,7 +76,7 @@ Route::delete('manufacture-sections/{manufactureSection}/image', [ManufactureSec
      Route::resource('certificates', CertificateController::class);
 
 Route::delete('certificates/{certificate}/pdf', [CertificateController::class, 'destroyPdf'])
-    ->name('certificates.pdf.destroy');
+    ->name('certificates.destroyPdf');
 
 
     // About Sections

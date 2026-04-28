@@ -377,24 +377,43 @@
 
                 </div>
             </div>
+@php
+    $qualityImage = isset($certificateImages) && $certificateImages->count()
+        ? $certificateImages->first()
+        : null;
+@endphp
 
-            <div class="col-lg-6">
-                <div class="certp-quality-media">
-                    <img
-                        src="{{ asset('assets/img/quality-media.jpg') }}"
-                        class="certp-quality-img"
-                        alt="Quality Media"
-                    >
+<div class="col-lg-6">
+    <div class="certp-quality-media">
+        @if($qualityImage && $qualityImage->file_url)
+            <img
+                src="{{ $qualityImage->file_url }}"
+                class="certp-quality-img"
+                alt="{{ $qualityImage->title }}"
+            >
+        @else
+            <img
+                src="{{ asset('assets/img/quality-media.jpg') }}"
+                class="certp-quality-img"
+                alt="Quality Media"
+            >
+        @endif
 
-                    <div class="certp-quality-float">
-                        <i class="bi bi-clipboard-check"></i>
-                        <div>
-                            <div class="fw-bold">Stage-wise QC</div>
-                            <div class="small text-muted">Incoming • In-process • Final</div>
-                        </div>
-                    </div>
+        <div class="certp-quality-float">
+            <i class="bi bi-clipboard-check"></i>
+
+            <div>
+                <div class="fw-bold">
+                    {{ $qualityImage->title ?? 'Stage-wise QC' }}
+                </div>
+
+                <div class="small text-muted">
+                    {{ $qualityImage->short_description ?? 'Incoming • In-process • Final' }}
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
         </div>
     </div>
