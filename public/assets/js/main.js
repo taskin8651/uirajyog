@@ -233,3 +233,53 @@ $(document).ready(function () {
 
     filterProducts();
 });
+
+
+
+// Enquiry form demo handling
+document.addEventListener("DOMContentLoaded", function () {
+  const enquiryForm = document.getElementById("rajYogEnquiryForm");
+  const successBox = document.getElementById("enquirySuccess");
+
+  if (!enquiryForm) return;
+
+  enquiryForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(enquiryForm);
+
+    const name = formData.get("name") || "";
+    const phone = formData.get("phone") || "";
+    const email = formData.get("email") || "";
+    const city = formData.get("city") || "";
+    const type = formData.get("type") || "";
+    const product = formData.get("product") || "";
+    const message = formData.get("message") || "";
+
+    const whatsappNumber = "919876543210";
+
+    const whatsappMessage =
+      "New Enquiry from Raj Yog Website%0A%0A" +
+      "Name: " + encodeURIComponent(name) + "%0A" +
+      "Phone: " + encodeURIComponent(phone) + "%0A" +
+      "Email: " + encodeURIComponent(email) + "%0A" +
+      "City: " + encodeURIComponent(city) + "%0A" +
+      "Enquiry Type: " + encodeURIComponent(type) + "%0A" +
+      "Product: " + encodeURIComponent(product) + "%0A" +
+      "Message: " + encodeURIComponent(message);
+
+    if (successBox) {
+      successBox.classList.remove("d-none");
+    }
+
+    window.open("https://wa.me/" + whatsappNumber + "?text=" + whatsappMessage, "_blank");
+
+    enquiryForm.reset();
+
+    setTimeout(function () {
+      if (successBox) {
+        successBox.classList.add("d-none");
+      }
+    }, 5000);
+  });
+});

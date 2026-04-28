@@ -231,7 +231,7 @@
         @endif
 
         {{-- Settings placeholder --}}
-        <a href="#" data-tooltip="Settings"
+        <a href="{{ route('admin.site-settings.index') }}" data-tooltip="Settings"
            class="nav-link">
             <i class="fas fa-cog nav-icon" style="color:#64748B;"></i>
             <span class="nav-label">Settings</span>

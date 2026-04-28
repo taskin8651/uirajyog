@@ -92,19 +92,19 @@ Route::delete('our-story-sections/{ourStorySection}/image', [OurStorySectionCont
     ->name('our-story-sections.image.destroy');
 
     // Site Settings
-    Route::get('site-settings', [SiteSettingController::class, 'index'])
+    Route::get('site-settings', [App\Http\Controllers\Admin\SiteSettingController::class, 'index'])
     ->name('site-settings.index');
 
-Route::put('site-settings/{siteSetting}', [SiteSettingController::class, 'update'])
+Route::put('site-settings/{siteSetting}', [App\Http\Controllers\Admin\SiteSettingController::class, 'update'])
     ->name('site-settings.update');
 
-Route::delete('site-settings/{siteSetting}/logo', [SiteSettingController::class, 'destroyLogo'])
+Route::delete('site-settings/{siteSetting}/logo', [App\Http\Controllers\Admin\SiteSettingController::class, 'destroyLogo'])
     ->name('site-settings.logo.destroy');
 
-Route::delete('site-settings/{siteSetting}/footer-logo', [SiteSettingController::class, 'destroyFooterLogo'])
+Route::delete('site-settings/{siteSetting}/footer-logo', [App\Http\Controllers\Admin\SiteSettingController::class, 'destroyFooterLogo'])
     ->name('site-settings.footer-logo.destroy');
 
-Route::delete('site-settings/{siteSetting}/favicon', [SiteSettingController::class, 'destroyFavicon'])
+Route::delete('site-settings/{siteSetting}/favicon', [App\Http\Controllers\Admin\SiteSettingController::class, 'destroyFavicon'])
     ->name('site-settings.favicon.destroy');
     
 });
@@ -128,3 +128,13 @@ Route::get('/products/{slug}', [App\Http\Controllers\Custom\ProductController::c
 
 Route::get('/about', [App\Http\Controllers\Custom\AboutController::class, 'index'])->name('about');
 
+Route::get('/certificates', [App\Http\Controllers\Custom\CertificateController::class, 'index'])->name('certificates.index');
+
+Route::get('/enquiry', [App\Http\Controllers\Custom\EnquiryController::class, 'index'])
+    ->name('custom.enquiry');
+
+Route::post('/enquiry-submit', [App\Http\Controllers\Custom\EnquiryController::class, 'store'])
+    ->name('custom.enquiry.submit');
+
+Route::get('/manufacturing', [App\Http\Controllers\Custom\ManufacturingController::class, 'index'])
+    ->name('custom.manufacturing');
