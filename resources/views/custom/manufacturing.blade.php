@@ -4,6 +4,9 @@
 
 @section('content')
 
+@php 
+ $siteSetting = App\Models\SiteSetting::first();
+@endphp
 <!-- BREADCRUMB -->
 <section class="mrd-breadcrumb">
     <div class="container">
@@ -228,20 +231,35 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <div class="mrd-process-media">
-          <img
-            src="https://dummyimage.com/1200x900/f2f2f2/111111&text=Process+Image+1200x900"
-            class="mrd-process-img"
-            alt="Process Image 1200x900"
-          />
-          <div class="mrd-process-overlay"></div>
-          <div class="mrd-process-caption">
-            <div class="mrd-process-cap-title">Quality at Every Stage</div>
-            <div class="small text-white-50">Incoming • In-process • Final QC</div>
-          </div>
+     <div class="col-lg-6">
+    <div class="mrd-process-media">
+        @if($processManufactureSection && $processManufactureSection->image)
+            <img
+                src="{{ $processManufactureSection->image->getUrl() }}"
+                class="mrd-process-img"
+                alt="{{ $processManufactureSection->title ?? 'Process Image' }}"
+            >
+        @else
+            <img
+                src="https://dummyimage.com/1200x900/f2f2f2/111111&text=Process+Image+1200x900"
+                class="mrd-process-img"
+                alt="Process Image"
+            >
+        @endif
+
+        <div class="mrd-process-overlay"></div>
+
+        <div class="mrd-process-caption">
+            <div class="mrd-process-cap-title">
+                {{ $processManufactureSection->title ?? 'Quality at Every Stage' }}
+            </div>
+
+            <div class="small text-white-50">
+                Incoming • In-process • Final QC
+            </div>
         </div>
-      </div>
+    </div>
+</div>
     </div>
 
   </div>
@@ -301,101 +319,167 @@
   <div class="container">
     <div class="row align-items-center g-5">
 
-      <div class="col-lg-6">
-        <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
-          <i class="bi bi-shield-check me-1"></i> Quality & Compliance
-        </span>
+    <div class="col-lg-6">
+    <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
+        <i class="bi bi-shield-check me-1"></i> Quality & Compliance
+    </span>
 
-        <h2 class="fw-bold mb-3">Quality Promise, Documented Systems</h2>
-        <p class="text-muted mb-4">
-          Our approach supports safe manufacturing, consistent batches, and predictable performance.
-          We focus on monitoring, documentation and disciplined operations.
-        </p>
+    <h2 class="fw-bold mb-3">
+        Quality Promise, Documented Systems
+    </h2>
 
-        <div class="accordion accordion-premium" id="mrdAcc">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="a1">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c1" aria-expanded="true">
-                What checks are done in Quality Control?
-              </button>
-            </h2>
-            <div id="c1" class="accordion-collapse collapse show" data-bs-parent="#mrdAcc">
-              <div class="accordion-body text-muted">
-                Incoming checks, in-process monitoring and final inspection before dispatch — to maintain consistency and safety.
-              </div>
+    <p class="text-muted mb-4">
+        Our approach supports safe manufacturing, consistent batches, and predictable performance.
+        We focus on monitoring, documentation and disciplined operations.
+    </p>
+
+    <div class="accordion accordion-premium" id="mrdAcc">
+
+        @forelse($faqs as $key => $faq)
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="mrdFaqHeading{{ $key }}">
+                    <button 
+                        class="accordion-button {{ $key == 0 ? '' : 'collapsed' }}" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#mrdFaqCollapse{{ $key }}" 
+                        aria-expanded="{{ $key == 0 ? 'true' : 'false' }}"
+                    >
+                        {{ $faq->question }}
+                    </button>
+                </h2>
+
+                <div 
+                    id="mrdFaqCollapse{{ $key }}" 
+                    class="accordion-collapse collapse {{ $key == 0 ? 'show' : '' }}" 
+                    data-bs-parent="#mrdAcc"
+                >
+                    <div class="accordion-body text-muted">
+                        {!! nl2br(e($faq->answer)) !!}
+                    </div>
+                </div>
             </div>
-          </div>
+        @empty
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="a1">
+                    <button 
+                        class="accordion-button" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#c1" 
+                        aria-expanded="true"
+                    >
+                        What checks are done in Quality Control?
+                    </button>
+                </h2>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="a2">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
-                How does R&D improve performance?
-              </button>
-            </h2>
-            <div id="c2" class="accordion-collapse collapse" data-bs-parent="#mrdAcc">
-              <div class="accordion-body text-muted">
-                R&D focuses on improving usability, effectiveness and stability while aligning with eco-conscious product goals.
-              </div>
+                <div id="c1" class="accordion-collapse collapse show" data-bs-parent="#mrdAcc">
+                    <div class="accordion-body text-muted">
+                        Incoming checks, in-process monitoring and final inspection before dispatch — to maintain consistency and safety.
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="a3">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
-                What about responsible sourcing & sustainability?
-              </button>
-            </h2>
-            <div id="c3" class="accordion-collapse collapse" data-bs-parent="#mrdAcc">
-              <div class="accordion-body text-muted">
-                We emphasize responsible decisions and structured processes to support sustainability objectives over time.
-              </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="a2">
+                    <button 
+                        class="accordion-button collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#c2"
+                    >
+                        How does R&D improve performance?
+                    </button>
+                </h2>
+
+                <div id="c2" class="accordion-collapse collapse" data-bs-parent="#mrdAcc">
+                    <div class="accordion-body text-muted">
+                        R&D focuses on improving usability, effectiveness and stability while aligning with eco-conscious product goals.
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="d-flex gap-2 flex-wrap mt-4">
-          <a href="{{ route('certificates.index') }}" class="btn btn-brand">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="a3">
+                    <button 
+                        class="accordion-button collapsed" 
+                        type="button" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#c3"
+                    >
+                        What about responsible sourcing & sustainability?
+                    </button>
+                </h2>
+
+                <div id="c3" class="accordion-collapse collapse" data-bs-parent="#mrdAcc">
+                    <div class="accordion-body text-muted">
+                        We emphasize responsible decisions and structured processes to support sustainability objectives over time.
+                    </div>
+                </div>
+            </div>
+        @endforelse
+
+    </div>
+
+    <div class="d-flex gap-2 flex-wrap mt-4">
+        <a href="{{ route('certificates.index') }}" class="btn btn-brand">
             <i class="bi bi-patch-check"></i> View Certifications
-          </a>
-          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark">
+        </a>
+
+        <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark">
             <i class="bi bi-chat-dots"></i> Request Details
-          </a>
-        </div>
+        </a>
+    </div>
+</div>
+     <div class="col-lg-6">
+    <div class="mrd-quality-media">
+        @if($qualityManufactureSection && $qualityManufactureSection->image)
+            <img
+                src="{{ $qualityManufactureSection->image->getUrl() }}"
+                class="mrd-quality-img"
+                alt="{{ $qualityManufactureSection->title ?? 'Quality Image' }}"
+            >
+        @else
+            <img
+                src="https://dummyimage.com/1200x900/e9f1ff/0a2c5a&text=Quality+Image+1200x900"
+                class="mrd-quality-img"
+                alt="Quality Image"
+            >
+        @endif
 
-      </div>
-
-      <div class="col-lg-6">
-        <div class="mrd-quality-media">
-          <img
-            src="https://dummyimage.com/1200x900/e9f1ff/0a2c5a&text=Quality+Image+1200x900"
-            class="mrd-quality-img"
-            alt="Quality Image 1200x900"
-          />
-          <div class="mrd-quality-float mrd-qf-1">
+        <div class="mrd-quality-float mrd-qf-1">
             <i class="bi bi-patch-check"></i>
             <div>
-              <div class="fw-bold">GMP</div>
-              <div class="small text-muted">Certified Unit</div>
+                <div class="fw-bold">GMP</div>
+                <div class="small text-muted">Certified Unit</div>
             </div>
-          </div>
+        </div>
 
-          <div class="mrd-quality-float mrd-qf-2">
+        <div class="mrd-quality-float mrd-qf-2">
             <i class="bi bi-award"></i>
             <div>
-              <div class="fw-bold">ISO</div>
-              <div class="small text-muted">Quality Systems</div>
+                <div class="fw-bold">ISO</div>
+                <div class="small text-muted">Quality Systems</div>
             </div>
-          </div>
+        </div>
 
-          <div class="mrd-quality-float mrd-qf-3">
+        <div class="mrd-quality-float mrd-qf-3">
             <i class="bi bi-clipboard-check"></i>
             <div>
-              <div class="fw-bold">QC</div>
-              <div class="small text-muted">Monitoring</div>
+                <div class="fw-bold">QC</div>
+                <div class="small text-muted">Monitoring</div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+
+    @if($qualityManufactureSection)
+        <div class="text-center mt-3">
+            <div class="small text-muted">
+                {{ $qualityManufactureSection->title }}
+            </div>
+        </div>
+    @endif
+</div>
 
     </div>
   </div>
@@ -536,7 +620,7 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
           <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">

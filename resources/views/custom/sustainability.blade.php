@@ -3,15 +3,21 @@
 @section('content')
 
 <!-- BREADCRUMB -->
+<!-- BREADCRUMB -->
 <section class="sus-breadcrumb">
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="index.html#home">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Sustainability</li>
-      </ol>
-    </nav>
-  </div>
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">
+                    Sustainability
+                </li>
+            </ol>
+        </nav>
+    </div>
 </section>
 
 <!-- HERO -->
@@ -38,7 +44,7 @@
           <a href="#pillars" class="btn btn-brand btn-lg">
             <i class="bi bi-diagram-3"></i> Sustainability Pillars
           </a>
-          <a href="index.html#partner" class="btn btn-outline-dark btn-lg">
+          <a href="{{ route('home') }}#partner" class="btn btn-outline-dark btn-lg">
             <i class="bi bi-people"></i> Partner With Us
           </a>
         </div>
@@ -52,21 +58,36 @@
       </div>
 
       <div class="col-lg-5">
-        <div class="sus-hero-media">
-          <img
-            src="https://dummyimage.com/1200x900/0f3b2e/ffffff&text=Go+Green+Hero+1200x900"
-            class="sus-hero-img"
-            alt="Go Green Hero 1200x900"
-          />
-          <div class="sus-hero-badge">
+    <div class="sus-hero-media">
+        @if($firstSustainabilitySection && $firstSustainabilitySection->image)
+            <img
+                src="{{ $firstSustainabilitySection->image->getUrl() }}"
+                class="sus-hero-img"
+                alt="{{ $firstSustainabilitySection->title ?? 'Sustainability' }}"
+            >
+        @else
+            <img
+                src="https://dummyimage.com/1200x900/0f3b2e/ffffff&text=Go+Green+Hero+1200x900"
+                class="sus-hero-img"
+                alt="Go Green Hero"
+            >
+        @endif
+
+        <div class="sus-hero-badge">
             <i class="bi bi-tree"></i>
+
             <div>
-              <div class="fw-bold">Go Green Mission</div>
-              <div class="small text-white-50">Responsible by design</div>
+                <div class="fw-bold">
+                    {{ $firstSustainabilitySection->title ?? 'Go Green Mission' }}
+                </div>
+
+                <div class="small text-white-50">
+                    Responsible by design
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
     </div>
   </div>
@@ -246,31 +267,46 @@
         </div>
 
         <div class="d-flex gap-2 flex-wrap mt-4">
-          <a href="products.html" class="btn btn-brand btn-lg">
+          <a href="{{ route('products.index') }}" class="btn btn-brand btn-lg">
             <i class="bi bi-box-seam"></i> Explore Products
           </a>
-          <a href="index.html#contact" class="btn btn-outline-dark btn-lg">
+          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg">
             <i class="bi bi-chat-dots"></i> Talk to Us
           </a>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <div class="sus-approach-media">
-          <img
-            src="https://dummyimage.com/1200x900/f2f2f2/111111&text=Approach+Image+1200x900"
-            class="sus-approach-img"
-            alt="Approach Image 1200x900"
-          />
-          <div class="sus-approach-float">
+    <div class="sus-approach-media">
+        @if($approachSustainabilitySection && $approachSustainabilitySection->image)
+            <img
+                src="{{ $approachSustainabilitySection->image->getUrl() }}"
+                class="sus-approach-img"
+                alt="{{ $approachSustainabilitySection->title ?? 'Sustainability Approach' }}"
+            >
+        @else
+            <img
+                src="https://dummyimage.com/1200x900/f2f2f2/111111&text=Approach+Image+1200x900"
+                class="sus-approach-img"
+                alt="Approach Image"
+            >
+        @endif
+
+        <div class="sus-approach-float">
             <i class="bi bi-leaf"></i>
+
             <div>
-              <div class="fw-bold">Go Green</div>
-              <div class="small text-muted">Practical responsibility</div>
+                <div class="fw-bold">
+                    {{ $approachSustainabilitySection->title ?? 'Go Green' }}
+                </div>
+
+                <div class="small text-muted">
+                    Practical responsibility
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
 
     </div>
 
@@ -317,48 +353,129 @@
 </section>
 
 <!-- GALLERY -->
-<section class="section-pad bg-soft">
-  <div class="container">
-    <div class="row align-items-end g-3 mb-4">
-      <div class="col-lg-8">
-        <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
-          <i class="bi bi-images me-1"></i> Sustainability Preview
-        </span>
-        <h2 class="fw-bold mb-1">Go Green Visuals</h2>
-        <p class="text-muted mb-0">Dummy images show intended sizes — replace with real visuals later.</p>
-      </div>
-    </div>
+@php
+    $sustainabilityImages = isset($sustainabilitySections)
+        ? $sustainabilitySections->filter(function ($section) {
+            return $section->image;
+        })->values()
+        : collect();
+@endphp
 
-    <div class="row g-4">
-      <div class="col-lg-6">
-        <div class="sus-gallery-big">
-          <img src="https://dummyimage.com/1400x900/0f3b2e/ffffff&text=Big+1400x900" alt="Big 1400x900">
+@if($sustainabilityImages->count())
+    <section class="section-pad bg-soft">
+        <div class="container">
+            <div class="row align-items-end g-3 mb-4">
+                <div class="col-lg-8">
+                    <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+                        <i class="bi bi-images me-1"></i> Sustainability Preview
+                    </span>
+
+                    <h2 class="fw-bold mb-1">
+                        Go Green Visuals
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        A visual look at our Go Green approach, responsible choices and sustainability mindset.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-6">
+                    <div class="sus-gallery-big">
+                        <img 
+                            src="{{ $sustainabilityImages[0]->image->getUrl() }}" 
+                            alt="{{ $sustainabilityImages[0]->title ?? 'Sustainability Image' }}"
+                        >
+                    </div>
+
+                    <h6 class="fw-bold mt-3 mb-0">
+                        {{ $sustainabilityImages[0]->title ?? 'Go Green Visual' }}
+                    </h6>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row g-4">
+
+                        <div class="col-6">
+                            <div class="sus-gallery-small">
+                                <img 
+                                    src="{{ isset($sustainabilityImages[1]) ? $sustainabilityImages[1]->image->getUrl() : $sustainabilityImages[0]->image->getUrl() }}" 
+                                    alt="{{ isset($sustainabilityImages[1]) ? $sustainabilityImages[1]->title : $sustainabilityImages[0]->title }}"
+                                >
+                            </div>
+
+                            <h6 class="fw-bold mt-3 mb-0">
+                                {{ isset($sustainabilityImages[1]) ? $sustainabilityImages[1]->title : $sustainabilityImages[0]->title }}
+                            </h6>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="sus-gallery-small">
+                                <img 
+                                    src="{{ isset($sustainabilityImages[2]) ? $sustainabilityImages[2]->image->getUrl() : $sustainabilityImages[0]->image->getUrl() }}" 
+                                    alt="{{ isset($sustainabilityImages[2]) ? $sustainabilityImages[2]->title : $sustainabilityImages[0]->title }}"
+                                >
+                            </div>
+
+                            <h6 class="fw-bold mt-3 mb-0">
+                                {{ isset($sustainabilityImages[2]) ? $sustainabilityImages[2]->title : $sustainabilityImages[0]->title }}
+                            </h6>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="sus-gallery-wide">
+                                <img 
+                                    src="{{ isset($sustainabilityImages[3]) ? $sustainabilityImages[3]->image->getUrl() : $sustainabilityImages[0]->image->getUrl() }}" 
+                                    alt="{{ isset($sustainabilityImages[3]) ? $sustainabilityImages[3]->title : $sustainabilityImages[0]->title }}"
+                                >
+                            </div>
+
+                            <h6 class="fw-bold mt-3 mb-0">
+                                {{ isset($sustainabilityImages[3]) ? $sustainabilityImages[3]->title : $sustainabilityImages[0]->title }}
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </section>
+@else
+    <section class="section-pad bg-soft">
+        <div class="container">
+            <div class="row align-items-end g-3 mb-4">
+                <div class="col-lg-8">
+                    <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+                        <i class="bi bi-images me-1"></i> Sustainability Preview
+                    </span>
 
-      <div class="col-lg-6">
-        <div class="row g-4">
-          <div class="col-6">
-            <div class="sus-gallery-small">
-              <img src="https://dummyimage.com/700x700/e9f1ff/0a2c5a&text=700x700" alt="700x700">
+                    <h2 class="fw-bold mb-1">
+                        Go Green Visuals
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Sustainability visuals will appear here once uploaded from admin.
+                    </p>
+                </div>
             </div>
-          </div>
-          <div class="col-6">
-            <div class="sus-gallery-small">
-              <img src="https://dummyimage.com/700x700/fff7cc/1a1a1a&text=700x700" alt="700x700">
+
+            <div class="text-center bg-white rounded-4 p-5">
+                <i class="bi bi-images display-5 text-muted"></i>
+
+                <h5 class="fw-bold mt-3 mb-1">
+                    No sustainability images found
+                </h5>
+
+                <p class="text-muted mb-0">
+                    Please upload sustainability section images from admin.
+                </p>
             </div>
-          </div>
-          <div class="col-12">
-            <div class="sus-gallery-wide">
-              <img src="https://dummyimage.com/1400x600/f2f2f2/111111&text=Wide+1400x600" alt="Wide 1400x600">
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-
-  </div>
-</section>
+    </section>
+@endif
 
 <!-- CTA STRIP -->
 <section class="sus-cta section-pad">
@@ -372,11 +489,11 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
-          <a href="index.html#partner" class="btn btn-outline-light btn-lg">
-            <i class="bi bi-people"></i> Become Partner
+           <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
+            <i class="bi bi-chat-dots"></i> Contact
           </a>
         </div>
       </div>

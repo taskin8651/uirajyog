@@ -53,7 +53,7 @@
           <span>{{ $siteSetting->phone ?? '+91 77426 56449' }}</span>
         </a>
 
-        <a class="topbar-cta" href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank">
+        <a class="topbar-cta" href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank">
           <i class="bi bi-whatsapp"></i>
           <span class="d-none d-md-inline">WhatsApp</span>
         </a>
@@ -135,7 +135,7 @@
 <li class="nav-item">
     <a 
         class="nav-link navlink-premium {{ request()->routeIs('sustainability') ? 'active' : '' }}" 
-        href="#"
+        href="{{ route('custom.sustainability') }}"
     >
         Sustainability
     </a>
@@ -220,7 +220,7 @@
         <ul class="footer-links">
           <li><a href="{{ route('about') }}">About</a></li>
           <li><a href="{{ route('custom.manufacturing') }}">Manufacturing & R&D</a></li>
-          <li><a href="#">Sustainability</a></li>
+          <li><a href="{{ route('custom.sustainability') }}">Sustainability</a></li>
           <li><a href="{{ route('certificates.index') }}">Certifications</a></li>
         </ul>
       </div>

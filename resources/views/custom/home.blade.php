@@ -3,6 +3,10 @@
 @section('content')
 
 
+@php 
+ $siteSetting = App\Models\SiteSetting::first();
+@endphp
+
 <!-- HERO (Premium + Product Slider) -->
 <!-- HERO SECTION -->
 <section id="home" class="hero hero-premium section-pad">

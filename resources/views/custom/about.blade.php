@@ -2,7 +2,9 @@
 
 @section('content')
 
-
+@php 
+ $siteSetting = App\Models\SiteSetting::first();
+@endphp
 
   <!-- ABOUT PAGE HERO -->
 <section class="about-page-hero section-pad">

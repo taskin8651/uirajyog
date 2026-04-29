@@ -2,6 +2,9 @@
 
 @section('content')
 
+@php 
+ $siteSetting = App\Models\SiteSetting::first();
+@endphp
 
 <!-- HERO -->
 <section class="certp-hero section-pad">

@@ -14,6 +14,15 @@ class SustainabilityController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        return view('custom.sustainability', compact('sustainabilitySections'));
+        $firstSustainabilitySection = $sustainabilitySections->first();
+
+        $approachSustainabilitySection = $sustainabilitySections->skip(1)->first() 
+            ?? $firstSustainabilitySection;
+
+        return view('custom.sustainability', compact(
+            'sustainabilitySections',
+            'firstSustainabilitySection',
+            'approachSustainabilitySection'
+        ));
     }
 }
