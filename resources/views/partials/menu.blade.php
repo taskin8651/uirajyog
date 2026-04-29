@@ -214,6 +214,15 @@
             <span class="nav-label">Our Story</span>
         </a>
         @endcan
+        
+        {{-- Sustainability Sections --}}
+        @can('sustainability_section_access')
+        <a href="{{ route('admin.sustainability-sections.index') }}" data-tooltip="Sustainability Sections"
+           class="nav-link {{ request()->is('admin/sustainability-sections*') ? 'active' : '' }}">
+            <i class="fas fa-leaf nav-icon" style="color:{{ request()->is('admin/sustainability-sections*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Sustainability</span>
+        </a>
+        @endcan
 
         {{-- ── DIVIDER ── --}}
         <div style="height:1px; background:rgba(255,255,255,.05); margin:6px 4px;"></div>

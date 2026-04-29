@@ -106,6 +106,12 @@ Route::delete('site-settings/{siteSetting}/footer-logo', [App\Http\Controllers\A
 
 Route::delete('site-settings/{siteSetting}/favicon', [App\Http\Controllers\Admin\SiteSettingController::class, 'destroyFavicon'])
     ->name('site-settings.favicon.destroy');
+
+    // Sustainability Sections
+    Route::resource('sustainability-sections', SustainabilitySectionController::class);
+
+Route::delete('sustainability-sections/{sustainabilitySection}/image', [SustainabilitySectionController::class, 'destroyImage'])
+    ->name('sustainability-sections.image.destroy');
     
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
@@ -138,3 +144,6 @@ Route::post('/enquiry-submit', [App\Http\Controllers\Custom\EnquiryController::c
 
 Route::get('/manufacturing', [App\Http\Controllers\Custom\ManufacturingController::class, 'index'])
     ->name('custom.manufacturing');
+
+Route::get('/sustainability', [App\Http\Controllers\Custom\SustainabilityController::class, 'index'])
+    ->name('custom.sustainability');
