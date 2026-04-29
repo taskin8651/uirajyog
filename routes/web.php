@@ -42,13 +42,13 @@ Route::delete('products/{product}/gallery-image/{media}', [ProductController::cl
     // Hero Sections
      Route::resource('hero-sections', HeroSectionController::class);
 
-    Route::delete('hero-sections/{heroSection}/image', [HeroSectionController::class, 'destroyImage'])
+    Route::delete('hero-sections/{heroSection}/image', [App\Http\Controllers\Admin\HeroSectionController::class, 'destroyImage'])
         ->name('hero-sections.image.destroy');
 
         // brands
         Route::resource('brands', BrandController::class);
 
-Route::delete('brands/{brand}/logo', [BrandController::class, 'destroyLogo'])
+Route::delete('brands/{brand}/logo', [App\Http\Controllers\Admin\BrandController::class, 'destroyLogo'])
     ->name('brands.logo.destroy');
 
     // enquiries
@@ -66,7 +66,7 @@ Route::post('enquiries/{enquiry}/update-status', [EnquiryController::class, 'upd
     // manufacture sections
     Route::resource('manufacture-sections', ManufactureSectionController::class);
 
-Route::delete('manufacture-sections/{manufactureSection}/image', [ManufactureSectionController::class, 'destroyImage'])
+Route::delete('manufacture-sections/{manufactureSection}/image', [App\Http\Controllers\Admin\ManufactureSectionController::class, 'destroyImage'])
     ->name('manufacture-sections.image.destroy');
 
     // FAQ
@@ -75,20 +75,20 @@ Route::delete('manufacture-sections/{manufactureSection}/image', [ManufactureSec
      // Certificates
      Route::resource('certificates', CertificateController::class);
 
-Route::delete('certificates/{certificate}/pdf', [CertificateController::class, 'destroyPdf'])
+Route::delete('certificates/{certificate}/pdf', [App\Http\Controllers\Admin\CertificateController::class, 'destroyPdf'])
     ->name('certificates.destroyPdf');
 
 
     // About Sections
 Route::resource('about-sections', AboutSectionController::class);
 
-Route::delete('about-sections/{aboutSection}/image', [AboutSectionController::class, 'destroyImage'])
+Route::delete('about-sections/{aboutSection}/image', [App\Http\Controllers\Admin\AboutSectionController::class, 'destroyImage'])
     ->name('about-sections.image.destroy');
 
     // Our Story Sections
     Route::resource('our-story-sections', OurStorySectionController::class);
 
-Route::delete('our-story-sections/{ourStorySection}/image', [OurStorySectionController::class, 'destroyImage'])
+Route::delete('our-story-sections/{ourStorySection}/image', [App\Http\Controllers\Admin\OurStorySectionController::class, 'destroyImage'])
     ->name('our-story-sections.image.destroy');
 
     // Site Settings
@@ -110,7 +110,7 @@ Route::delete('site-settings/{siteSetting}/favicon', [App\Http\Controllers\Admin
     // Sustainability Sections
     Route::resource('sustainability-sections', SustainabilitySectionController::class);
 
-Route::delete('sustainability-sections/{sustainabilitySection}/image', [SustainabilitySectionController::class, 'destroyImage'])
+Route::delete('sustainability-sections/{sustainabilitySection}/image', [App\Http\Controllers\Admin\SustainabilitySectionController::class, 'destroyImage'])
     ->name('sustainability-sections.image.destroy');
     
 });
@@ -148,5 +148,5 @@ Route::get('/manufacturing', [App\Http\Controllers\Custom\ManufacturingControlle
 Route::get('/sustainability', [App\Http\Controllers\Custom\SustainabilityController::class, 'index'])
     ->name('custom.sustainability');
     
-Route::get('/investor', [App\Http\Controllers\Custom\InvestController::class, 'index'])
+Route::get('/investor-distributors', [App\Http\Controllers\Custom\InvestController::class, 'index'])
     ->name('custom.investor');
