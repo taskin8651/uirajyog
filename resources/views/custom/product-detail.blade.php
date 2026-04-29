@@ -383,21 +383,143 @@
             <div class="col-lg-4">
                 <div class="pd-side sticky-lg-top">
 
-                    <div class="pd-enquiry-card">
-                        <div class="pd-enquiry-icon">
-                            <i class="bi bi-chat-dots"></i>
-                        </div>
+                    @php
+    $phone = $siteSetting->phone ?? '+91XXXXXXXXXX';
+    $whatsappNumber = $siteSetting->whatsapp_number ?? $phone;
+    $whatsappClean = preg_replace('/[^0-9]/', '', $whatsappNumber);
 
-                        <h5 class="fw-bold mb-2">Need Product Details?</h5>
+    if ($whatsappClean && strlen($whatsappClean) === 10) {
+        $whatsappClean = '91' . $whatsappClean;
+    }
+@endphp
 
-                        <p class="text-muted small mb-3">
-                            Send us an enquiry for pricing, availability, bulk orders or distributor details.
-                        </p>
+<div class="pd-enquiry-card">
+    <div class="pd-enquiry-head">
+        <div class="fw-bold">Quick Enquiry</div>
+        <div class="small text-muted">We’ll respond within 24–48 hours.</div>
+    </div>
 
-                        <a href="{{ url('/#contact') }}?product={{ urlencode($product->name) }}" class="btn btn-brand w-100">
-                            <i class="bi bi-send"></i> Enquire Now
-                        </a>
-                    </div>
+    @if(session('success'))
+        <div class="alert alert-success rounded-4 mb-3">
+            <i class="bi bi-check-circle me-1"></i> {{ session('success') }}
+        </div>
+    @endif
+
+    <form class="pd-enquiry-form" action="{{ route('custom.enquiry.submit') }}" method="POST">
+        @csrf
+
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+        <div class="mb-3">
+            <label class="form-label">Your Name *</label>
+            <input 
+                type="text" 
+                name="name" 
+                value="{{ old('name') }}" 
+                class="form-control @error('name') is-invalid @enderror" 
+                placeholder="Enter your name"
+                required
+            >
+
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone *</label>
+            <input 
+                type="text" 
+                name="phone" 
+                value="{{ old('phone') }}" 
+                class="form-control @error('phone') is-invalid @enderror" 
+                placeholder="Enter phone number"
+                required
+            >
+
+            @error('phone')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input 
+                type="email" 
+                name="email" 
+                value="{{ old('email') }}" 
+                class="form-control @error('email') is-invalid @enderror" 
+                placeholder="Enter email address"
+            >
+
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Enquiry Type</label>
+            <select name="subject" class="form-select @error('subject') is-invalid @enderror">
+                <option value="">Choose enquiry type</option>
+                <option value="Product Information" {{ old('subject', 'Product Information') == 'Product Information' ? 'selected' : '' }}>
+                    Product Information
+                </option>
+                <option value="Distributor / Partnership" {{ old('subject') == 'Distributor / Partnership' ? 'selected' : '' }}>
+                    Distributor / Partnership
+                </option>
+                <option value="Bulk Order" {{ old('subject') == 'Bulk Order' ? 'selected' : '' }}>
+                    Bulk Order
+                </option>
+                <option value="Other" {{ old('subject') == 'Other' ? 'selected' : '' }}>
+                    Other
+                </option>
+            </select>
+
+            @error('subject')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Message *</label>
+            <textarea 
+                name="message" 
+                class="form-control @error('message') is-invalid @enderror" 
+                rows="3" 
+                placeholder="Write your message..."
+                required
+            >{{ old('message', 'I am interested in ' . $product->name . '. Please share more details.') }}</textarea>
+
+            @error('message')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <button type="submit" class="btn btn-brand btn-lg w-100">
+            <i class="bi bi-send"></i> Send Enquiry
+        </button>
+
+        <div class="pd-enquiry-divider"></div>
+
+        <div class="pd-enquiry-quick">
+            @if($phone)
+                <a href="tel:{{ $phone }}" class="pd-qbtn">
+                    <i class="bi bi-telephone"></i> Call
+                </a>
+            @endif
+
+            @if($whatsappClean)
+                <a href="https://wa.me/{{ $whatsappClean }}" target="_blank" class="pd-qbtn pd-qbtn-wa">
+                    <i class="bi bi-whatsapp"></i> WhatsApp
+                </a>
+            @endif
+        </div>
+
+        <div class="pd-enquiry-note small text-muted">
+            By submitting, you agree to be contacted by our team.
+        </div>
+    </form>
+</div>
 
                     <div class="pd-side-card mt-3">
                         <h6 class="fw-bold mb-3">Why Rajyog Green?</h6>

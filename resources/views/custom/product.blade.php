@@ -2,6 +2,9 @@
 
 @section('content')
 
+@php 
+ $siteSetting = App\Models\SiteSetting::first();
+@endphp
 
 <!-- PRODUCTS HERO -->
 <section class="products-page-hero section-pad">
@@ -41,14 +44,28 @@
       </div>
 
       <div class="col-lg-5">
-        <div class="products-hero-media">
-          <img
-            src="https://dummyimage.com/1200x900/004b8f/ffffff&text=Products+Hero+1200x900"
-            class="products-hero-img"
-            alt="Products Hero 1200x900"
-          />
-        </div>
-      </div>
+    <div class="products-hero-media">
+        @if($heroProduct && $heroProduct->image)
+            <img
+                src="{{ $heroProduct->image->getUrl() }}"
+                class="products-hero-img"
+                alt="{{ $heroProduct->name }}"
+            >
+        @elseif($heroCategory && $heroCategory->image)
+            <img
+                src="{{ $heroCategory->image->getUrl() }}"
+                class="products-hero-img"
+                alt="{{ $heroCategory->name }}"
+            >
+        @else
+            <img
+                src="https://dummyimage.com/1200x900/004b8f/ffffff&text=Products+Hero+1200x900"
+                class="products-hero-img"
+                alt="Products Hero"
+            >
+        @endif
+    </div>
+</div>
     </div>
   </div>
 </section>
@@ -263,7 +280,7 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp Now
           </a>
           <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
