@@ -147,3 +147,6 @@ Route::get('/manufacturing', [App\Http\Controllers\Custom\ManufacturingControlle
 
 Route::get('/sustainability', [App\Http\Controllers\Custom\SustainabilityController::class, 'index'])
     ->name('custom.sustainability');
+    
+Route::get('/investor', [App\Http\Controllers\Custom\InvestController::class, 'index'])
+    ->name('custom.investor');

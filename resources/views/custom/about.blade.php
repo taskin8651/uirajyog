@@ -355,7 +355,7 @@
         </div>
 
         <div class="d-flex gap-2 flex-wrap">
-          <a href="{{ route('custom.enquiry') }}" class="btn btn-brand btn-lg">
+          <a href="{{ route('custom.investor') }}" class="btn btn-brand btn-lg">
             <i class="bi bi-send"></i> Submit Enquiry
           </a>
           <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg">
