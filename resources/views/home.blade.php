@@ -221,15 +221,15 @@
         <div style="display:flex; gap:16px; flex-wrap:wrap;">
             <div style="background:rgba(255,255,255,.15); padding:8px 16px; border-radius:10px; backdrop-filter:blur(4px);">
                 <span style="font-size:11px; opacity:.8; display:block;">Total Users</span>
-                <span style="font-size:18px; font-weight:700;">1,284</span>
+                <span style="font-size:18px; font-weight:700;">{{ number_format($stats['users']['total']) }}</span>
             </div>
             <div style="background:rgba(255,255,255,.15); padding:8px 16px; border-radius:10px;">
-                <span style="font-size:11px; opacity:.8; display:block;">Active Now</span>
-                <span style="font-size:18px; font-weight:700;">42</span>
+                <span style="font-size:11px; opacity:.8; display:block;">Active Users</span>
+                <span style="font-size:18px; font-weight:700;">{{ number_format($stats['users']['active']) }}</span>
             </div>
             <div style="background:rgba(255,255,255,.15); padding:8px 16px; border-radius:10px;">
-                <span style="font-size:11px; opacity:.8; display:block;">Today's Logins</span>
-                <span style="font-size:18px; font-weight:700;">138</span>
+                <span style="font-size:11px; opacity:.8; display:block;">Unread Enquiries</span>
+                <span style="font-size:18px; font-weight:700;">{{ number_format($stats['enquiries']['unread']) }}</span>
             </div>
         </div>
     </div>
@@ -238,54 +238,128 @@
 {{-- ═══════════════════════════════════════════
      STAT CARDS
 ════════════════════════════════════════════ --}}
-<div class="stat-grid mb-6" style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+<div class="stat-grid mb-6" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
 
+    {{-- Enquiries --}}
     <div class="stat-card">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
-                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Total Users</p>
-                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">1,284</p>
-                <span class="badge badge-up">↑ 12.5% this month</span>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Enquiries</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['enquiries']['total']) }}</p>
+                <span class="badge {{ $stats['enquiries']['unread'] > 0 ? 'badge-down' : 'badge-up' }}">
+                    {{ $stats['enquiries']['unread'] }} unread
+                </span>
             </div>
-            <div class="icon-wrap"><i class="fas fa-users"></i></div>
+            <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
         </div>
-        <div class="progress-bar mt-3"><div class="progress-bar-fill" style="width:72%"></div></div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['enquiries']['total'] > 0 ? min(100, ($stats['enquiries']['pending'] / $stats['enquiries']['total']) * 100) : 0 }}%"></div>
+        </div>
     </div>
 
+    {{-- Brands --}}
     <div class="stat-card">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
-                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Total Roles</p>
-                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">8</p>
-                <span class="badge" style="background:#F3F4F6; color:#374151;">2 added recently</span>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Brands</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['brands']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['brands']['active'] }} active</span>
             </div>
-            <div class="icon-wrap" style="background:#F0FDF4; color:#16A34A;"><i class="fas fa-shield-alt"></i></div>
+            <div class="icon-wrap" style="background:#F0FDF4; color:#16A34A;"><i class="fas fa-tag"></i></div>
         </div>
-        <div class="progress-bar mt-3"><div class="progress-bar-fill" style="width:40%; background:#16A34A;"></div></div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['brands']['total'] > 0 ? ($stats['brands']['active'] / $stats['brands']['total']) * 100 : 0 }}%; background:#16A34A;"></div>
+        </div>
     </div>
 
+    {{-- Hero Sections --}}
     <div class="stat-card">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
-                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Permissions</p>
-                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">64</p>
-                <span class="badge" style="background:#FEF3C7; color:#92400E;">Active & assigned</span>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Hero Sections</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['hero_sections']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['hero_sections']['active'] }} active</span>
             </div>
-            <div class="icon-wrap" style="background:#FFFBEB; color:#D97706;"><i class="fas fa-lock"></i></div>
+            <div class="icon-wrap" style="background:#FEF3C7; color:#D97706;"><i class="fas fa-image"></i></div>
         </div>
-        <div class="progress-bar mt-3"><div class="progress-bar-fill" style="width:88%; background:#D97706;"></div></div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['hero_sections']['total'] > 0 ? ($stats['hero_sections']['active'] / $stats['hero_sections']['total']) * 100 : 0 }}%; background:#D97706;"></div>
+        </div>
     </div>
 
+    {{-- Manufacture Sections --}}
     <div class="stat-card">
         <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <div>
-                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Audit Logs</p>
-                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">5,918</p>
-                <span class="badge badge-down">↑ 3.2% today</span>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Manufacture</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['manufacture_sections']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['manufacture_sections']['active'] }} active</span>
             </div>
-            <div class="icon-wrap" style="background:#FFF1F2; color:#E11D48;"><i class="fas fa-history"></i></div>
+            <div class="icon-wrap" style="background:#DBEAFE; color:#2563EB;"><i class="fas fa-cogs"></i></div>
         </div>
-        <div class="progress-bar mt-3"><div class="progress-bar-fill" style="width:55%; background:#E11D48;"></div></div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['manufacture_sections']['total'] > 0 ? ($stats['manufacture_sections']['active'] / $stats['manufacture_sections']['total']) * 100 : 0 }}%; background:#2563EB;"></div>
+        </div>
+    </div>
+
+    {{-- FAQs --}}
+    <div class="stat-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">FAQs</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['faqs']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['faqs']['active'] }} active</span>
+            </div>
+            <div class="icon-wrap" style="background:#FCE7F3; color:#DB2777;"><i class="fas fa-question-circle"></i></div>
+        </div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['faqs']['total'] > 0 ? ($stats['faqs']['active'] / $stats['faqs']['total']) * 100 : 0 }}%; background:#DB2777;"></div>
+        </div>
+    </div>
+
+    {{-- Certificates --}}
+    <div class="stat-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Certificates</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['certificates']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['certificates']['active'] }} active</span>
+            </div>
+            <div class="icon-wrap" style="background:#D1FAE5; color:#059669;"><i class="fas fa-certificate"></i></div>
+        </div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['certificates']['total'] > 0 ? ($stats['certificates']['active'] / $stats['certificates']['total']) * 100 : 0 }}%; background:#059669;"></div>
+        </div>
+    </div>
+
+    {{-- About Sections --}}
+    <div class="stat-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">About Us</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['about_sections']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['about_sections']['active'] }} active</span>
+            </div>
+            <div class="icon-wrap" style="background:#EDE9FE; color:#7C3AED;"><i class="fas fa-info-circle"></i></div>
+        </div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['about_sections']['total'] > 0 ? ($stats['about_sections']['active'] / $stats['about_sections']['total']) * 100 : 0 }}%; background:#7C3AED;"></div>
+        </div>
+    </div>
+
+    {{-- Our Story Sections --}}
+    <div class="stat-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+            <div>
+                <p style="font-size:12px; color:#6B7280; font-weight:600; margin:0 0 6px; text-transform:uppercase; letter-spacing:.05em;">Our Story</p>
+                <p style="font-size:26px; font-weight:700; color:#111827; margin:0 0 8px; line-height:1;">{{ number_format($stats['our_story_sections']['total']) }}</p>
+                <span class="badge badge-up">{{ $stats['our_story_sections']['active'] }} active</span>
+            </div>
+            <div class="icon-wrap" style="background:#CCFBF1; color:#0F766E;"><i class="fas fa-book"></i></div>
+        </div>
+        <div class="progress-bar mt-3">
+            <div class="progress-bar-fill" style="width:{{ $stats['our_story_sections']['total'] > 0 ? ($stats['our_story_sections']['active'] / $stats['our_story_sections']['total']) * 100 : 0 }}%; background:#0F766E;"></div>
+        </div>
     </div>
 
 </div>
@@ -295,11 +369,11 @@
 ════════════════════════════════════════════ --}}
 <div class="chart-grid mb-6" style="display:grid; grid-template-columns:2fr 1fr; gap:16px;">
 
-    {{-- Line Chart --}}
+    {{-- Enquiries Line Chart --}}
     <div class="chart-card">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
             <div>
-                <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">User Registrations</p>
+                <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">Enquiry Trends</p>
                 <p style="font-size:12px; color:#9CA3AF; margin:3px 0 0;">Last 7 days activity</p>
             </div>
             <div style="display:flex; gap:6px;">
@@ -307,19 +381,117 @@
                 <button style="padding:5px 12px; border-radius:8px; border:1.5px solid #E5E7EB; background:#fff; color:#6B7280; font-size:12px; cursor:pointer;">Month</button>
             </div>
         </div>
-        <canvas id="lineChart" height="90"></canvas>
+        <canvas id="enquiriesChart" height="90"></canvas>
     </div>
 
-    {{-- Doughnut Chart --}}
+    {{-- Content Sections Overview --}}
     <div class="chart-card">
         <div style="margin-bottom:16px;">
-            <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">User Roles</p>
-            <p style="font-size:12px; color:#9CA3AF; margin:3px 0 0;">Distribution by role</p>
+            <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">Content Sections</p>
+            <p style="font-size:12px; color:#9CA3AF; margin:3px 0 0;">Active content overview</p>
         </div>
-        <canvas id="doughnutChart" height="160"></canvas>
-        <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px;" id="doughnut-legend"></div>
+        <canvas id="contentChart" height="160"></canvas>
+        <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px;" id="content-legend"></div>
     </div>
 
+</div>
+
+{{-- ═══════════════════════════════════════════
+     ENQUIRY STATUS CHART
+════════════════════════════════════════════ --}}
+<div class="chart-grid mb-6" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+
+    {{-- Enquiry Status Distribution --}}
+    <div class="chart-card">
+        <div style="margin-bottom:16px;">
+            <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">Enquiry Status</p>
+            <p style="font-size:12px; color:#9CA3AF; margin:3px 0 0;">Current status distribution</p>
+        </div>
+        <canvas id="statusChart" height="200"></canvas>
+        <div style="margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:6px;" id="status-legend"></div>
+    </div>
+
+    {{-- User Registrations --}}
+    <div class="chart-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div>
+                <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">User Registrations</p>
+                <p style="font-size:12px; color:#9CA3AF; margin:3px 0 0;">Last 7 days</p>
+            </div>
+        </div>
+        <canvas id="usersChart" height="200"></canvas>
+    </div>
+
+</div>
+
+{{-- ═══════════════════════════════════════════
+     RECENT ENQUIRIES
+════════════════════════════════════════════ --}}
+<div class="chart-card mb-6">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <p style="font-size:15px; font-weight:700; color:#111827; margin:0;">Recent Enquiries</p>
+        <a href="{{ route('admin.enquiries.index') }}" style="font-size:12px; color:var(--accent); font-weight:600; text-decoration:none;">View All →</a>
+    </div>
+    <div style="overflow-x:auto;">
+        <table class="dash-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                    <th>Read</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($recentEnquiries as $enquiry)
+                <tr>
+                    <td style="font-weight:600;">{{ $enquiry->name }}</td>
+                    <td>{{ $enquiry->email }}</td>
+                    <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ $enquiry->subject }}</td>
+                    <td>
+                        @php
+                            $statusColors = [
+                                'new' => 'pill-blue',
+                                'in_progress' => 'pill-yellow',
+                                'completed' => 'pill-green',
+                                'cancelled' => 'pill-red'
+                            ];
+                            $statusLabels = [
+                                'new' => 'New',
+                                'in_progress' => 'In Progress',
+                                'completed' => 'Completed',
+                                'cancelled' => 'Cancelled'
+                            ];
+                        @endphp
+                        <span class="pill {{ $statusColors[$enquiry->status] ?? 'pill-blue' }}">
+                            {{ $statusLabels[$enquiry->status] ?? 'New' }}
+                        </span>
+                    </td>
+                    <td>
+                        @if($enquiry->is_read)
+                            <span class="pill pill-green">Read</span>
+                        @else
+                            <span class="pill pill-red">Unread</span>
+                        @endif
+                    </td>
+                    <td style="color:#9CA3AF; font-size:12px;">{{ $enquiry->created_at->diffForHumans() }}</td>
+                    <td>
+                        <a href="{{ route('admin.enquiries.show', $enquiry) }}" style="color:var(--accent); font-size:12px; font-weight:600; text-decoration:none;">View</a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="7" style="text-align:center; color:#9CA3AF; padding:20px;">
+                        No enquiries found
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {{-- ═══════════════════════════════════════════
@@ -338,67 +510,37 @@
                 <tr>
                     <th>User</th>
                     <th>Role</th>
-                    <th>Status</th>
                     <th>Joined</th>
                 </tr>
             </thead>
             <tbody>
+                @forelse($recentUsers as $user)
                 <tr>
                     <td>
                         <div style="display:flex; align-items:center; gap:10px;">
-                            <div class="avatar">A</div>
+                            <div class="avatar">{{ strtoupper(substr($user->name, 0, 1)) }}</div>
                             <div>
-                                <p style="margin:0; font-weight:600; font-size:13px;">Alice Johnson</p>
-                                <p style="margin:0; font-size:11px; color:#9CA3AF;">alice@example.com</p>
+                                <p style="margin:0; font-weight:600; font-size:13px;">{{ $user->name }}</p>
+                                <p style="margin:0; font-size:11px; color:#9CA3AF;">{{ $user->email }}</p>
                             </div>
                         </div>
                     </td>
-                    <td><span class="pill pill-blue">Admin</span></td>
-                    <td><span class="pill pill-green">Active</span></td>
-                    <td style="color:#9CA3AF; font-size:12px;">2 days ago</td>
-                </tr>
-                <tr>
                     <td>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <div class="avatar" style="background:#0EA5E9;">R</div>
-                            <div>
-                                <p style="margin:0; font-weight:600; font-size:13px;">Rahul Sharma</p>
-                                <p style="margin:0; font-size:11px; color:#9CA3AF;">rahul@example.com</p>
-                            </div>
-                        </div>
+                        @if($user->roles->count() > 0)
+                            <span class="pill pill-blue">{{ $user->roles->first()->title }}</span>
+                        @else
+                            <span class="pill" style="background:#F3F4F6; color:#374151;">No Role</span>
+                        @endif
                     </td>
-                    <td><span class="pill pill-yellow">Editor</span></td>
-                    <td><span class="pill pill-green">Active</span></td>
-                    <td style="color:#9CA3AF; font-size:12px;">5 days ago</td>
+                    <td style="color:#9CA3AF; font-size:12px;">{{ optional($user->created_at)->diffForHumans() }}</td>
                 </tr>
+                @empty
                 <tr>
-                    <td>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <div class="avatar" style="background:#10B981;">P</div>
-                            <div>
-                                <p style="margin:0; font-weight:600; font-size:13px;">Priya Singh</p>
-                                <p style="margin:0; font-size:11px; color:#9CA3AF;">priya@example.com</p>
-                            </div>
-                        </div>
+                    <td colspan="3" style="text-align:center; color:#9CA3AF; padding:20px;">
+                        No users found
                     </td>
-                    <td><span class="pill" style="background:#F3F4F6; color:#374151;">Viewer</span></td>
-                    <td><span class="pill pill-yellow">Pending</span></td>
-                    <td style="color:#9CA3AF; font-size:12px;">1 week ago</td>
                 </tr>
-                <tr>
-                    <td>
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <div class="avatar" style="background:#8B5CF6;">M</div>
-                            <div>
-                                <p style="margin:0; font-weight:600; font-size:13px;">Mohammed Ali</p>
-                                <p style="margin:0; font-size:11px; color:#9CA3AF;">mali@example.com</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td><span class="pill pill-blue">Moderator</span></td>
-                    <td><span class="pill pill-red">Inactive</span></td>
-                    <td style="color:#9CA3AF; font-size:12px;">2 weeks ago</td>
-                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
@@ -445,13 +587,43 @@
 <div class="chart-card mb-2">
     <p style="font-size:15px; font-weight:700; color:#111827; margin:0 0 14px;">Quick Actions</p>
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:10px;">
+        @can('enquiry_access')
+        <a href="{{ route('admin.enquiries.index') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#DBEAFE; color:#2563EB; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            <i class="fas fa-envelope"></i> View Enquiries
+        </a>
+        @endcan
+        @can('brand_create')
+        <a href="{{ route('admin.brands.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#F0FDF4; color:#16A34A; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            <i class="fas fa-tag"></i> Add Brand
+        </a>
+        @endcan
+        @can('hero_section_create')
+        <a href="{{ route('admin.hero-sections.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#FEF3C7; color:#D97706; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            <i class="fas fa-image"></i> Add Hero
+        </a>
+        @endcan
+        @can('manufacture_section_create')
+        <a href="{{ route('admin.manufacture-sections.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#EDE9FE; color:#7C3AED; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            <i class="fas fa-cogs"></i> Add Manufacture
+        </a>
+        @endcan
+        @can('faq_create')
+        <a href="{{ route('admin.faqs.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#FCE7F3; color:#DB2777; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            <i class="fas fa-question-circle"></i> Add FAQ
+        </a>
+        @endcan
+        @can('certificate_create')
+        <a href="{{ route('admin.certificates.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#D1FAE5; color:#059669; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+            <i class="fas fa-certificate"></i> Add Certificate
+        </a>
+        @endcan
         @can('user_create')
         <a href="{{ route('admin.users.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:var(--accent-light); color:var(--accent); text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
             <i class="fas fa-user-plus"></i> Add User
         </a>
         @endcan
         @can('role_create')
-        <a href="{{ route('admin.roles.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#F0FDF4; color:#16A34A; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
+        <a href="{{ route('admin.roles.create') }}" style="display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:10px; background:#CCFBF1; color:#0F766E; text-decoration:none; font-size:13px; font-weight:600; transition:opacity .2s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
             <i class="fas fa-plus-circle"></i> New Role
         </a>
         @endcan
@@ -477,18 +649,19 @@
 @parent
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-// ─────────── CHARTS ───────────
+// ─────────── DYNAMIC CHART DATA ───────────
+const chartData = @json($chartData);
 const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#4F46E5';
 
-// Line Chart
-const lineCtx = document.getElementById('lineChart').getContext('2d');
-const lineChart = new Chart(lineCtx, {
+// ─────────── ENQUIRIES TREND CHART ───────────
+const enquiriesCtx = document.getElementById('enquiriesChart').getContext('2d');
+const enquiriesChart = new Chart(enquiriesCtx, {
     type: 'line',
     data: {
         labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
         datasets: [{
-            label: 'Registrations',
-            data: [18, 35, 22, 48, 31, 57, 42],
+            label: 'Enquiries',
+            data: chartData.enquiries_last_7_days,
             borderColor: accentColor,
             backgroundColor: accentColor + '1A',
             borderWidth: 2.5,
@@ -509,35 +682,97 @@ const lineChart = new Chart(lineCtx, {
     }
 });
 
-// Doughnut
-const roleColors = ['#4F46E5','#0EA5E9','#10B981','#F59E0B','#EF4444'];
-const roleLabels = ['Admin','Editor','Moderator','Viewer','Guest'];
-const roleData   = [12, 24, 8, 36, 20];
-const dCtx = document.getElementById('doughnutChart').getContext('2d');
-new Chart(dCtx, {
+// ─────────── CONTENT SECTIONS CHART ───────────
+const contentColors = ['#4F46E5','#0EA5E9','#10B981','#F59E0B','#EF4444','#8B5CF6','#EC4899'];
+const contentLabels = ['Brands','Hero','Manufacture','FAQs','Certificates','About','Our Story'];
+const contentData = Object.values(chartData.content_sections_overview);
+
+const contentCtx = document.getElementById('contentChart').getContext('2d');
+new Chart(contentCtx, {
     type: 'doughnut',
     data: {
-        labels: roleLabels,
-        datasets: [{ data: roleData, backgroundColor: roleColors, borderWidth: 0, hoverOffset: 6 }]
+        labels: contentLabels,
+        datasets: [{ data: contentData, backgroundColor: contentColors, borderWidth: 0, hoverOffset: 6 }]
     },
     options: {
         responsive: true,
         cutout: '68%',
         plugins: {
             legend: { display: false },
-            tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` } }
+            tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}` } }
         }
     }
 });
 
-// Custom Legend
-const legendEl = document.getElementById('doughnut-legend');
-roleLabels.forEach((l, i) => {
-    legendEl.innerHTML += `<div style="display:flex;align-items:center;gap:6px;">
-        <span style="width:10px;height:10px;border-radius:3px;background:${roleColors[i]};display:inline-block;"></span>
-        <span style="font-size:12px;color:#6B7280;">${l}</span>
-        <span style="font-size:12px;font-weight:700;color:#111827;margin-left:auto;">${roleData[i]}%</span>
-    </div>`;
+// Content Legend
+const contentLegendEl = document.getElementById('content-legend');
+contentLabels.forEach((label, i) => {
+    if (contentData[i] > 0) {
+        contentLegendEl.innerHTML += `<div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:10px;height:10px;border-radius:3px;background:${contentColors[i]};display:inline-block;"></span>
+            <span style="font-size:12px;color:#6B7280;">${label}</span>
+            <span style="font-size:12px;font-weight:700;color:#111827;margin-left:auto;">${contentData[i]}</span>
+        </div>`;
+    }
+});
+
+// ─────────── ENQUIRY STATUS CHART ───────────
+const statusColors = ['#4F46E5','#0EA5E9','#10B981','#EF4444'];
+const statusLabels = ['New','In Progress','Completed','Cancelled'];
+const statusData = Object.values(chartData.enquiry_status_distribution);
+
+const statusCtx = document.getElementById('statusChart').getContext('2d');
+new Chart(statusCtx, {
+    type: 'pie',
+    data: {
+        labels: statusLabels,
+        datasets: [{ data: statusData, backgroundColor: statusColors, borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}` } }
+        }
+    }
+});
+
+// Status Legend
+const statusLegendEl = document.getElementById('status-legend');
+statusLabels.forEach((label, i) => {
+    if (statusData[i] > 0) {
+        statusLegendEl.innerHTML += `<div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:10px;height:10px;border-radius:3px;background:${statusColors[i]};display:inline-block;"></span>
+            <span style="font-size:12px;color:#6B7280;">${label}</span>
+            <span style="font-size:12px;font-weight:700;color:#111827;margin-left:auto;">${statusData[i]}</span>
+        </div>`;
+    }
+});
+
+// ─────────── USER REGISTRATIONS CHART ───────────
+const usersCtx = document.getElementById('usersChart').getContext('2d');
+const usersChart = new Chart(usersCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+        datasets: [{
+            label: 'Registrations',
+            data: chartData.user_registrations_last_7_days,
+            backgroundColor: accentColor + '80',
+            borderColor: accentColor,
+            borderWidth: 1,
+            borderRadius: 4,
+            borderSkipped: false,
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+            x: { grid: { display: false }, ticks: { font: { size: 12 }, color: '#9CA3AF' } },
+            y: { grid: { color: '#F3F4F6' }, ticks: { font: { size: 12 }, color: '#9CA3AF' } }
+        }
+    }
 });
 
 // ─────────── THEME ENGINE ───────────
