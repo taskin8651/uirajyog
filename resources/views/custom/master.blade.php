@@ -8,7 +8,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raj Yog – Go Green</title>
+  <title>{{ $siteSetting->site_title ?? 'Raj Yog – Go Green' }}</title>
+  <meta name="title" content="{{ $siteSetting->meta_title ?? 'Raj Yog – Go Green' }}" />
+  <meta name="description" content="{{ $siteSetting->meta_description ?? 'Raj Yog is a leading manufacturer of herbal and natural products, committed to sustainability and quality. Our GMP & ISO certified facilities produce a wide range of health and wellness products that promote a greener future.' }}" />
+  <meta name="keywords" content="{{ $siteSetting->meta_keywords ?? 'herbal products, natural products, sustainable manufacturing, GMP certified, ISO certified, eco-friendly, health and wellness' }}" />
+  <meta name="author" content="{{ $siteSetting->company_name ?? 'Raj Yog' }}" />
+
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -41,9 +46,9 @@
 
       <!-- Right -->
       <div class="topbar-right">
-        <a class="topbar-link" href="mailto:info@rajyog.com">
+        <a class="topbar-link" href="mailto:{{ $siteSetting->email ?? 'info@rajyog.com' }}">
           <i class="bi bi-envelope"></i>
-          <span>info@rajyog.com</span>
+          <span>{{ $siteSetting->email ?? 'info@rajyog.com' }}</span>
         </a>
 
         <span class="topbar-divider"></span>
@@ -195,8 +200,7 @@
         </a>
 
         <p class="footer-desc">
-          Eco-friendly home & personal care products focused on quality, performance, and responsibility —
-          built for modern Indian homes.
+         {{ $siteSetting->copyright_text ?? 'Raj Yog is a leading manufacturer of herbal and natural products, committed to sustainability and quality. Our GMP & ISO certified facilities produce a wide range of health and wellness products that promote a greener future.' }}
         </p>
 
         <div class="footer-chips">

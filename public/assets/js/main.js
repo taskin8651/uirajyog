@@ -283,3 +283,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 5000);
   });
 });
+// Password visibility toggle functionality
+
+document.addEventListener("DOMContentLoaded", function () {
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener("click", function () {
+            const icon = this.querySelector("i");
+            const isPassword = passwordInput.getAttribute("type") === "password";
+
+            passwordInput.setAttribute("type", isPassword ? "text" : "password");
+
+            if (icon) {
+                icon.classList.toggle("bi-eye", !isPassword);
+                icon.classList.toggle("bi-eye-slash", isPassword);
+            }
+        });
+    }
+});
+
+// Password visibility toggle functionality
+
+document.addEventListener("DOMContentLoaded", function () {
+    function setupPasswordToggle(buttonId, inputId) {
+        const toggleButton = document.getElementById(buttonId);
+        const passwordInput = document.getElementById(inputId);
+
+        if (!toggleButton || !passwordInput) return;
+
+        toggleButton.addEventListener("click", function () {
+            const icon = this.querySelector("i");
+            const isPassword = passwordInput.getAttribute("type") === "password";
+
+            passwordInput.setAttribute("type", isPassword ? "text" : "password");
+
+            if (icon) {
+                icon.classList.toggle("bi-eye", !isPassword);
+                icon.classList.toggle("bi-eye-slash", isPassword);
+            }
+        });
+    }
+
+    setupPasswordToggle("togglePassword", "password");
+    setupPasswordToggle("togglePasswordConfirm", "password_confirmation");
+});
