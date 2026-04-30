@@ -14,6 +14,8 @@
   <meta name="keywords" content="{{ $siteSetting->meta_keywords ?? 'herbal products, natural products, sustainable manufacturing, GMP certified, ISO certified, eco-friendly, health and wellness' }}" />
   <meta name="author" content="{{ $siteSetting->company_name ?? 'Raj Yog' }}" />
 
+  <link rel="icon" href="{{ $siteSetting->favicon->getUrl() ?? 'assets/img/favicon.png' }}" type="image/png" />
+
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
