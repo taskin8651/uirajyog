@@ -6,16 +6,27 @@ $phpPath     = '/opt/cpanel/ea-php82/root/usr/bin/php';
 $homePath    = '/home/rajyogreen';
 
 header('Content-Type: text/html; charset=utf-8');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-function runCommand($command)
+function runCmd($command)
 {
-    $output = shell_exec($command . ' 2>&1');
-
-    if ($output === null || trim($output) === '') {
-        return "No output / command not executed. shell_exec may be disabled or permission issue.\n";
+    if (!function_exists('exec')) {
+        return "ERROR: exec() function disabled on server.\n";
     }
 
-    return $output;
+    $output = [];
+    $returnCode = 0;
+
+    exec($command . ' 2>&1', $output, $returnCode);
+
+    $text = implode("\n", $output);
+
+    if (trim($text) === '') {
+        $text = "No output returned from command.";
+    }
+
+    return $text . "\nReturn code: " . $returnCode . "\n";
 }
 
 echo '<pre>';
@@ -27,30 +38,33 @@ if (!is_dir($projectRoot)) {
     exit("Project folder not found: {$projectRoot}");
 }
 
-echo "Project folder: {$projectRoot}\n";
-echo "Current user: " . trim(runCommand('whoami')) . "\n\n";
+echo "Project folder: {$projectRoot}\n\n";
+
+echo "PHP current user:\n";
+echo get_current_user() . "\n\n";
+
+echo "Disabled functions:\n";
+echo ini_get('disable_functions') . "\n\n";
+
+echo "Whoami:\n";
+echo htmlspecialchars(runCmd('whoami')) . "\n";
 
 echo "Git version:\n";
-echo htmlspecialchars(runCommand($gitPath . ' --version'));
+echo htmlspecialchars(runCmd($gitPath . ' --version')) . "\n";
 
-echo "\nGit status before pull:\n";
-echo htmlspecialchars(runCommand('HOME=' . $homePath . ' ' . $gitPath . ' -C ' . $projectRoot . ' status'));
+echo "Git status before pull:\n";
+echo htmlspecialchars(runCmd('HOME=' . $homePath . ' ' . $gitPath . ' -C ' . $projectRoot . ' status')) . "\n";
 
-echo "\nGit pull:\n";
-$pullOutput = runCommand('HOME=' . $homePath . ' ' . $gitPath . ' -C ' . $projectRoot . ' pull');
+echo "Git pull:\n";
+$pull = runCmd('HOME=' . $homePath . ' ' . $gitPath . ' -C ' . $projectRoot . ' pull');
+echo htmlspecialchars($pull) . "\n";
 
-if (stripos($pullOutput, 'Already up to date') !== false || stripos($pullOutput, 'Already up-to-date') !== false) {
-    echo "Already up to date.\n";
-} else {
-    echo htmlspecialchars($pullOutput);
-}
+echo "Laravel optimize clear:\n";
+echo htmlspecialchars(runCmd($phpPath . ' ' . $projectRoot . '/artisan optimize:clear')) . "\n";
 
-echo "\nLaravel optimize clear:\n";
-echo htmlspecialchars(runCommand($phpPath . ' ' . $projectRoot . '/artisan optimize:clear'));
+echo "Git status after pull:\n";
+echo htmlspecialchars(runCmd('HOME=' . $homePath . ' ' . $gitPath . ' -C ' . $projectRoot . ' status')) . "\n";
 
-echo "\nGit status after pull:\n";
-echo htmlspecialchars(runCommand('HOME=' . $homePath . ' ' . $gitPath . ' -C ' . $projectRoot . ' status'));
-
-echo "\nDeploy Finished.";
+echo "Deploy Finished.";
 
 echo '</pre>';
