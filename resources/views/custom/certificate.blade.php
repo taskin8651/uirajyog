@@ -580,7 +580,7 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/{{ $siteSetting->whatsapp ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
+          <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
           <a href="{{ route('custom.investor') }}" class="btn btn-outline-light btn-lg">
