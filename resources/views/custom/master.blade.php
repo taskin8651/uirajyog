@@ -141,7 +141,7 @@
 
 <li class="nav-item">
     <a 
-        class="nav-link navlink-premium {{ request()->routeIs('sustainability') ? 'active' : '' }}" 
+        class="nav-link navlink-premium {{ request()->routeIs('custom.sustainability') ? 'active' : '' }}" 
         href="{{ route('custom.sustainability') }}"
     >
         Sustainability
