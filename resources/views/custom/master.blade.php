@@ -160,7 +160,7 @@
 <li class="nav-item">
     <a 
         class="nav-link navlink-premium {{ request()->routeIs('custom.investor') ? 'active' : '' }}" 
-        href="{{ route('custom.investor') }}"
+        href="{{ url('/') . '#partner' }}"
     >
         Investor / Distributor
     </a>
@@ -228,7 +228,7 @@
           <li><a href="{{ route('custom.manufacturing') }}">Manufacturing & R&D</a></li>
           <li><a href="{{ route('custom.sustainability') }}">Sustainability</a></li>
           <li><a href="{{ route('certificates.index') }}">Certifications</a></li>
-          <li><a href="{{ route('custom.investor') }}">Investor / Distributor</a></li>
+          <li><a href="{{ url('/') . '#partner' }}">Investor / Distributor</a></li>
           <li><a href="{{ route('custom.enquiry') }}">Contact</a></li>
         </ul>
       </div>

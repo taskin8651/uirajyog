@@ -420,7 +420,7 @@
             </div>
 
             <div class="d-flex gap-2 flex-wrap">
-                <a href="{{ route('custom.investor') }}" class="btn btn-outline-dark">
+                <a href="{{ url('/') . '#partner' }}" class="btn btn-outline-dark">
                     <i class="bi bi-people"></i> Distributor Enquiry
                 </a>
 
@@ -965,7 +965,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('custom.investor') }}" class="btn btn-brand">
+            <a href="{{ url('/') . '#partner' }}" class="btn btn-brand">
                 <i class="bi bi-people"></i> Become a Partner
             </a>
         </div>

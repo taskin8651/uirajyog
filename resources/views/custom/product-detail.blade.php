@@ -181,21 +181,28 @@
     </div>
 @endif
 
-                            @if($product->pack_size)
-                                <div class="pd-variants mt-4">
-                                    <div class="fw-bold mb-2">Available Pack Size</div>
+                           @if($product->pack_size)
+    @php
+        $packSizes = preg_split('/[\/,|]+/', $product->pack_size);
+        $packSizes = array_filter(array_map('trim', $packSizes));
+    @endphp
 
-                                    <div class="pd-variant-chips">
-                                        <span class="pd-variant active">
-                                            {{ $product->pack_size }}
-                                        </span>
-                                    </div>
+    <div class="pd-variants mt-4">
+        <div class="fw-bold mb-2">Available Pack Size</div>
 
-                                    <div class="small text-muted mt-2">
-                                        Pack sizes may vary by region and availability.
-                                    </div>
-                                </div>
-                            @endif
+        <div class="pd-variant-chips">
+            @foreach($packSizes as $key => $size)
+                <span class="pd-variant {{ $key == 0 ? 'active' : '' }}">
+                    {{ $size }}
+                </span>
+            @endforeach
+        </div>
+
+        <div class="small text-muted mt-2">
+            Pack sizes may vary by region and availability.
+        </div>
+    </div>
+@endif
 
                             @if($product->price)
                                 <div class="pd-price mt-4">

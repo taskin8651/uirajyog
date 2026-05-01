@@ -583,7 +583,7 @@
           <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
-          <a href="{{ route('custom.investor') }}" class="btn btn-outline-light btn-lg">
+          <a href="{{ url('/') . '#partner' }}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-chat-dots"></i> Contact
           </a>
         </div>

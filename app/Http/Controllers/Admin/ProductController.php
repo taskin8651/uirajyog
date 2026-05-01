@@ -25,6 +25,7 @@ class ProductController extends Controller
     {
         $categories = ProductCategory::where('status', 1)
             ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
             ->pluck('name', 'id')
             ->prepend('Please select', '');
 
@@ -46,7 +47,7 @@ class ProductController extends Controller
 
             'image'              => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'images'             => 'nullable|array',
-            'images.*'           => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'images.*'           => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
 
             'status'             => 'nullable|boolean',
             'is_featured'        => 'nullable|boolean',
@@ -56,7 +57,7 @@ class ProductController extends Controller
         $product = Product::create([
             'category_id'        => $request->category_id,
             'name'               => $request->name,
-            'slug'               => Str::slug($request->name),
+            'slug'               => $this->makeUniqueSlug($request->name),
             'short_description'  => $request->short_description,
             'description'        => $request->description,
             'features'           => $request->features,
@@ -97,8 +98,11 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $product->load('category');
+
         $categories = ProductCategory::where('status', 1)
             ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'desc')
             ->pluck('name', 'id')
             ->prepend('Please select', '');
 
@@ -120,7 +124,7 @@ class ProductController extends Controller
 
             'image'              => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'images'             => 'nullable|array',
-            'images.*'           => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'images.*'           => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
 
             'status'             => 'nullable|boolean',
             'is_featured'        => 'nullable|boolean',
@@ -130,7 +134,7 @@ class ProductController extends Controller
         $product->update([
             'category_id'        => $request->category_id,
             'name'               => $request->name,
-            'slug'               => Str::slug($request->name),
+            'slug'               => $this->makeUniqueSlug($request->name, $product->id),
             'short_description'  => $request->short_description,
             'description'        => $request->description,
             'features'           => $request->features,
@@ -174,7 +178,7 @@ class ProductController extends Controller
             ->with('success', 'Product deleted successfully.');
     }
 
-    public function destroyMainImage(Product $product)
+    public function destroyImage(Product $product)
     {
         $product->clearMediaCollection('image');
 
@@ -184,8 +188,8 @@ class ProductController extends Controller
     public function destroyGalleryImage(Product $product, Media $media)
     {
         if (
-            $media->model_id == $product->id &&
-            $media->model_type == Product::class &&
+            $media->model_type === Product::class &&
+            (int) $media->model_id === (int) $product->id &&
             $media->collection_name === 'images'
         ) {
             $media->delete();
@@ -193,6 +197,26 @@ class ProductController extends Controller
             return back()->with('success', 'Product gallery image deleted successfully.');
         }
 
-        return back()->with('error', 'Invalid media selected.');
+        return back()->with('error', 'Invalid gallery image selected.');
+    }
+
+    private function makeUniqueSlug(string $name, ?int $ignoreId = null): string
+    {
+        $slug = Str::slug($name);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (
+            Product::where('slug', $slug)
+                ->when($ignoreId, function ($query) use ($ignoreId) {
+                    $query->where('id', '!=', $ignoreId);
+                })
+                ->exists()
+        ) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
+        return $slug;
     }
 }

@@ -30,14 +30,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Product Categories
      Route::resource('product-categories', ProductCategoryController::class);
-     Route::resource('products', ProductController::class);
+       Route::resource('products', ProductController::class);
 
-    
-Route::delete('products/{product}/main-image', [ProductController::class, 'destroyMainImage'])
-    ->name('products.main-image.destroy');
+    Route::delete('products/{product}/image', [ProductController::class, 'destroyImage'])
+        ->name('products.image.destroy');
 
-Route::delete('products/{product}/gallery-image/{media}', [ProductController::class, 'destroyGalleryImage'])
-    ->name('products.gallery-image.destroy');
+    Route::delete('products/{product}/gallery/{media}', [ProductController::class, 'destroyGalleryImage'])
+        ->name('products.gallery.destroy');
 
     // Hero Sections
      Route::resource('hero-sections', HeroSectionController::class);
