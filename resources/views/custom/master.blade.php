@@ -159,6 +159,15 @@
 
 <li class="nav-item">
     <a 
+        class="nav-link navlink-premium {{ request()->routeIs('blogs.*') ? 'active' : '' }}" 
+        href="{{ route('blogs.index') }}"
+    >
+        Blog
+    </a>
+</li>
+
+<li class="nav-item">
+    <a 
         class="nav-link navlink-premium {{ request()->routeIs('custom.investor') ? 'active' : '' }}" 
         href="{{ url('/') . '#partner' }}"
     >

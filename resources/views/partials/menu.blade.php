@@ -152,6 +152,12 @@
         </a>
         @endcan
 
+        <a href="{{ route('admin.blogs.index') }}" data-tooltip="Blogs"
+           class="nav-link {{ request()->is('admin/blogs*') ? 'active' : '' }}">
+            <i class="fas fa-newspaper nav-icon" style="color:{{ request()->is('admin/blogs*') ? '#fff' : '#64748B' }};"></i>
+            <span class="nav-label">Blogs</span>
+        </a>
+
         {{-- Enquiries --}}
         @can('enquiry_access')
         <a href="{{ route('admin.enquiries.index') }}" data-tooltip="Enquiries"

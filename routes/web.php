@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutSectionController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\EnquiryController;
@@ -58,6 +59,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
         // brands
         Route::resource('brands', BrandController::class);
+
+        Route::resource('blogs', BlogController::class);
 
 Route::delete('brands/{brand}/logo', [App\Http\Controllers\Admin\BrandController::class, 'destroyLogo'])
     ->name('brands.logo.destroy');
@@ -142,6 +145,9 @@ Route::get('/', [App\Http\Controllers\Custom\HomeController::class, 'index'])->n
 
 Route::get('/products', [App\Http\Controllers\Custom\ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [App\Http\Controllers\Custom\ProductController::class, 'show'])->name('products.show');
+
+Route::get('/blogs', [App\Http\Controllers\Custom\BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{slug}', [App\Http\Controllers\Custom\BlogController::class, 'show'])->name('blogs.show');
 
 Route::get('/about', [App\Http\Controllers\Custom\AboutController::class, 'index'])->name('about');
 
