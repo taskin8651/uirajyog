@@ -21,25 +21,28 @@
       <div class="col-lg-6">
         <div class="hero-kicker">
           <span class="badge badge-soft rounded-pill px-3 py-2">
-            <i class="bi bi-leaf me-1"></i> Green Today for a Better Tomorrow
+            <i class="bi bi-buildings me-1"></i> OEM & Private Label Manufacturing Partner
           </span>
         </div>
 
-        <h1 class="hero-title fw-bold mb-3">
-          Eco-Friendly <span class="text-brand">Home</span> & <span class="text-brand">Personal</span> Care
-          <span class="d-block">Products That Perform.</span>
-        </h1>
+        <h5 class="hero-title fw-bold mb-3">
+          OEM & Contract Manufacturing for
+          <span class="text-brand">Home Care</span> &
+          <span class="text-brand">Personal Care</span>
+          <span class="d-block">Products.</span>
+        </h5>
 
         <p class="hero-sub text-muted mb-4">
-          Research-backed formulations, safer chemistry, and everyday performance — built for modern Indian homes.
+Private Label Manufacturing | Custom Formulations | GMP & ISO Certified Production
+From Research to Retail – Your Trusted Manufacturing Partner
         </p>
 
         <div class="d-flex flex-wrap gap-2">
-          <a href="#products" class="btn btn-brand btn-lg hero-btn">
-            <i class="bi bi-bag"></i> Explore Products
+          <a href="#contact" class="btn btn-brand btn-lg hero-btn">
+            <i class="bi bi-file-earmark-text"></i> Request OEM Quote
           </a>
-          <a href="#partner" class="btn btn-outline-dark btn-lg hero-btn-outline">
-            <i class="bi bi-people"></i> Become a Distributor
+          <a href="#certs" class="btn btn-outline-dark btn-lg hero-btn-outline">
+            <i class="bi bi-download"></i> Download Catalogue
           </a>
         </div>
 
@@ -56,20 +59,20 @@
           <div class="hero-trust-divider"></div>
 
           <div class="hero-trust-item">
-            <i class="bi bi-droplet-half"></i>
+            <i class="bi bi-gear-wide-connected"></i>
             <div>
-              <div class="fw-bold">Non-Toxic Focus</div>
-              <div class="small text-muted">Skin & fabric friendly</div>
+              <div class="fw-bold">OEM Solutions</div>
+              <div class="small text-muted">Private label support</div>
             </div>
           </div>
 
           <div class="hero-trust-divider d-none d-md-block"></div>
 
           <div class="hero-trust-item d-none d-md-flex">
-            <i class="bi bi-recycle"></i>
+            <i class="bi bi-box-seam"></i>
             <div>
-              <div class="fw-bold">Go Green</div>
-              <div class="small text-muted">Eco-minded formulations</div>
+              <div class="fw-bold">Bulk Manufacturing</div>
+              <div class="small text-muted">Scalable supply</div>
             </div>
           </div>
         </div>
@@ -79,164 +82,203 @@
           <div class="col-sm-4">
             <div class="hero-mini-card">
               <div class="hero-mini-icon"><i class="bi bi-heart-pulse"></i></div>
-              <div class="fw-bold">Gentle</div>
-              <div class="small text-muted">Daily safe usage</div>
+              <div class="fw-bold">Formulation</div>
+              <div class="small text-muted">Custom development</div>
             </div>
           </div>
 
           <div class="col-sm-4">
             <div class="hero-mini-card">
-              <div class="hero-mini-icon"><i class="bi bi-stars"></i></div>
-              <div class="fw-bold">Powerful</div>
-              <div class="small text-muted">High performance</div>
+              <div class="hero-mini-icon"><i class="bi bi-award"></i></div>
+              <div class="fw-bold">Quality</div>
+              <div class="small text-muted">Batch control</div>
             </div>
           </div>
 
           <div class="col-sm-4">
             <div class="hero-mini-card">
-              <div class="hero-mini-icon"><i class="bi bi-graph-up-arrow"></i></div>
-              <div class="fw-bold">Scalable</div>
-              <div class="small text-muted">Distributor network</div>
+              <div class="hero-mini-icon"><i class="bi bi-truck"></i></div>
+              <div class="fw-bold">Supply</div>
+              <div class="small text-muted">Pan India support</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- RIGHT: PRODUCT SLIDER -->
-    <div class="col-lg-6">
-    <div class="hero-slider-wrap soft-card shadow-soft">
-        <div 
+      <div class="col-lg-6">
+        <div class="hero-slider-wrap soft-card shadow-soft">
+          <div 
             id="heroProductSlider" 
             class="carousel slide carousel-fade" 
             data-bs-ride="carousel" 
             data-bs-interval="3500"
-        >
+          >
 
             <div class="carousel-inner rounded-xxl">
 
-                @forelse($heroSections as $key => $heroSection)
-                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <div class="hero-slide">
+              @forelse($heroSections as $key => $heroSection)
+                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                  <div class="hero-slide">
 
-                            @if($heroSection->image)
-                                <img 
-                                    src="{{ $heroSection->image->getUrl() }}" 
-                                    class="d-block w-100 hero-slide-img" 
-                                    alt="{{ $heroSection->title ?? 'Hero Slide' }}"
-                                >
-                            @else
-                                <img 
-                                    src="{{ asset('assets/img/hero_one.png') }}" 
-                                    class="d-block w-100 hero-slide-img" 
-                                    alt="{{ $heroSection->title ?? 'Hero Slide' }}"
-                                >
-                            @endif
+                    @if($heroSection->image)
+                      <img 
+                        src="{{ $heroSection->image->getUrl() }}" 
+                        class="d-block w-100 hero-slide-img" 
+                        alt="{{ $heroSection->title ?? 'AARL Manufacturing Slide' }}"
+                      >
+                    @else
+                      <img 
+                        src="{{ asset('assets/img/hero_one.png') }}" 
+                        class="d-block w-100 hero-slide-img" 
+                        alt="{{ $heroSection->title ?? 'AARL Manufacturing Slide' }}"
+                      >
+                    @endif
 
-                            <div class="hero-slide-overlay"></div>
+                    <div class="hero-slide-overlay"></div>
 
-                            <div class="hero-slide-caption">
-                                @if($heroSection->subtitle)
-                                    <span class="hero-chip">
-                                        {{ $heroSection->subtitle }}
-                                    </span>
-                                @endif
+                    <div class="hero-slide-caption">
+                      @if($heroSection->subtitle)
+                        <span class="hero-chip">
+                          {{ $heroSection->subtitle }}
+                        </span>
+                      @else
+                        <span class="hero-chip">
+                          OEM Manufacturing
+                        </span>
+                      @endif
 
-                                <h5 class="fw-bold mb-1">
-                                    {{ $heroSection->title ?? 'Raj Yog Go Green' }}
-                                </h5>
+                      <h5 class="fw-bold mb-1">
+                        {{ $heroSection->title ?? 'Private Label Manufacturing Support' }}
+                      </h5>
 
-                                @if($heroSection->description)
-                                    <p class="small mb-0 text-white-50">
-                                        {{ $heroSection->description }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
+                      @if($heroSection->description)
+                        <p class="small mb-0 text-white-50">
+                          {{ $heroSection->description }}
+                        </p>
+                      @else
+                        <p class="small mb-0 text-white-50">
+                          Custom formulation • Packaging support • Bulk production
+                        </p>
+                      @endif
                     </div>
-                @empty
-                    <div class="carousel-item active">
-                        <div class="hero-slide">
-                            <img 
-                                src="{{ asset('assets/img/hero_one.png') }}" 
-                                class="d-block w-100 hero-slide-img" 
-                                alt="Hero Slide"
-                            >
+                  </div>
+                </div>
+              @empty
+                <div class="carousel-item active">
+                  <div class="hero-slide">
+                    <img 
+                      src="{{ asset('assets/img/hero_one.png') }}" 
+                      class="d-block w-100 hero-slide-img" 
+                      alt="AARL Manufacturing"
+                    >
 
-                            <div class="hero-slide-overlay"></div>
+                    <div class="hero-slide-overlay"></div>
 
-                            <div class="hero-slide-caption">
-                                <span class="hero-chip">Home Care</span>
+                    <div class="hero-slide-caption">
+                      <span class="hero-chip">OEM Manufacturing</span>
 
-                                <h5 class="fw-bold mb-1">
-                                    Ultra White Laundry Soap
-                                </h5>
+                      <h5 class="fw-bold mb-1">
+                        Private Label Manufacturing Support
+                      </h5>
 
-                                <p class="small mb-0 text-white-50">
-                                    Brighter wash • Fabric friendly • Fresh finish
-                                </p>
-                            </div>
-                        </div>
+                      <p class="small mb-0 text-white-50">
+                        Custom formulation • Packaging support • Bulk production
+                      </p>
                     </div>
-                @endforelse
+                  </div>
+                </div>
+              @endforelse
 
             </div>
 
             @if($heroSections->count() > 1)
-                <!-- Controls -->
-                <button 
-                    class="carousel-control-prev" 
+              <!-- Controls -->
+              <button 
+                class="carousel-control-prev" 
+                type="button" 
+                data-bs-target="#heroProductSlider" 
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+
+              <button 
+                class="carousel-control-next" 
+                type="button" 
+                data-bs-target="#heroProductSlider" 
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+
+              <!-- Dots -->
+              <div class="carousel-indicators hero-dots">
+                @foreach($heroSections as $key => $heroSection)
+                  <button 
                     type="button" 
                     data-bs-target="#heroProductSlider" 
-                    data-bs-slide="prev"
-                >
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-
-                <button 
-                    class="carousel-control-next" 
-                    type="button" 
-                    data-bs-target="#heroProductSlider" 
-                    data-bs-slide="next"
-                >
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-
-                <!-- Dots -->
-                <div class="carousel-indicators hero-dots">
-                    @foreach($heroSections as $key => $heroSection)
-                        <button 
-                            type="button" 
-                            data-bs-target="#heroProductSlider" 
-                            data-bs-slide-to="{{ $key }}" 
-                            class="{{ $key == 0 ? 'active' : '' }}" 
-                            aria-label="Slide {{ $key + 1 }}"
-                        ></button>
-                    @endforeach
-                </div>
+                    data-bs-slide-to="{{ $key }}" 
+                    class="{{ $key == 0 ? 'active' : '' }}" 
+                    aria-label="Slide {{ $key + 1 }}"
+                  ></button>
+                @endforeach
+              </div>
             @endif
 
-        </div>
-    </div>
-
-    <!-- Small quick stats -->
-    <div class="row g-3 mt-3">
-        <div class="col-6">
-            <div class="hero-stat">
-                <div class="hero-stat-num">GMP</div>
-                <div class="hero-stat-text">Certified Unit</div>
-            </div>
+          </div>
         </div>
 
-        <div class="col-6">
-            <div class="hero-stat">
-                <div class="hero-stat-num">ISO</div>
-                <div class="hero-stat-text">Quality Systems</div>
-            </div>
-        </div>
+        <!-- Small quick stats -->
+       <div class="row g-3 mt-3">
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-patch-check-fill"></i> ISO</div>
+      <div class="hero-stat-text">ISO Certified</div>
     </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-shield-check"></i> GMP</div>
+      <div class="hero-stat-text">GMP Certified</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-geo-alt-fill"></i> INDIA</div>
+      <div class="hero-stat-text">Made in India</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-box-seam-fill"></i> OEM</div>
+      <div class="hero-stat-text">OEM Solutions</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-buildings-fill"></i> BULK</div>
+      <div class="hero-stat-text">Bulk Manufacturing</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-award-fill"></i> ICI UK</div>
+      <div class="hero-stat-text">ISO 2600-2010</div>
+    </div>
+  </div>
+
 </div>
+      </div>
+
     </div>
   </div>
 </section>

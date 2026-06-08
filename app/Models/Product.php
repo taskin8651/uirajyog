@@ -28,6 +28,7 @@ class Product extends Model implements HasMedia
 
     protected $fillable = [
         'category_id',
+        'subcategory',
         'name',
         'slug',
         'short_description',

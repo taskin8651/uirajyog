@@ -146,6 +146,12 @@
                                     </span>
                                 @endif
 
+                                @if($product->subcategory)
+                                    <span class="pd-chip">
+                                        <i class="bi bi-diagram-3"></i> {{ $product->subcategory }}
+                                    </span>
+                                @endif
+
                                 <span class="pd-chip pd-chip-green">
                                     <i class="bi bi-recycle"></i> Go Green
                                 </span>
@@ -307,6 +313,13 @@
                                                         <th scope="row">Category</th>
                                                         <td>{{ $product->category->name ?? 'General' }}</td>
                                                     </tr>
+
+                                                    @if($product->subcategory)
+                                                        <tr>
+                                                            <th scope="row">Sub Category</th>
+                                                            <td>{{ $product->subcategory }}</td>
+                                                        </tr>
+                                                    @endif
 
                                                     <tr>
                                                         <th scope="row">Product Name</th>

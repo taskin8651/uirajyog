@@ -36,15 +36,14 @@
                     Manufacturing Excellence • Research Driven
                 </span>
 
-                <h1 class="fw-bold display-6 mb-3">
-                    Manufacturing & R&D built for 
-                    <span class="text-brand">Consistency</span>, 
-                    <span class="text-brand">Quality</span> & Scale
-                </h1>
+              <h1 class="fw-bold display-6 mb-3">
+  OEM & Private Label Manufacturing Solutions
+</h1>
 
                 <p class="text-muted mb-4">
-                    Our process is designed for repeatable performance — from incoming checks to final quality assurance —
-                    supported by continuous research and formulation upgrades.
+                   Advance Ayurved Research Laboratories (AARL) provides complete OEM and private label manufacturing services for home care and personal care brands across India.
+We help businesses develop customized, high-quality, market-ready products with reliable manufacturing support.
+
                 </p>
 
                 <div class="d-flex gap-2 flex-wrap">
@@ -173,6 +172,155 @@
   </div>
 </section>
 
+
+<!-- SERVICES SECTION START -->
+<section class="section-pad bg-soft">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+        <i class="bi bi-gear-wide-connected me-1"></i> Services
+      </span>
+      <h2 class="fw-bold mb-2">OEM & Private Label Manufacturing Services</h2>
+      <p class="text-muted mb-0">
+        Complete support from product development to packaging and bulk manufacturing.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-3">
+        <div class="mrd-rd-card h-100">
+          <div class="mrd-rd-ico">
+            <i class="bi bi-eyedropper"></i>
+          </div>
+          <h6 class="fw-bold mb-2">Custom Product Development</h6>
+          <p class="text-muted small mb-0">
+            We create customized formulations according to client requirements.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="mrd-rd-card h-100">
+          <div class="mrd-rd-ico">
+            <i class="bi bi-box-seam"></i>
+          </div>
+          <h6 class="fw-bold mb-2">Packaging Solutions</h6>
+          <p class="text-muted small mb-0">
+            Support for bottle selection, labeling, and packaging design.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="mrd-rd-card h-100">
+          <div class="mrd-rd-ico">
+            <i class="bi bi-buildings"></i>
+          </div>
+          <h6 class="fw-bold mb-2">Bulk Manufacturing</h6>
+          <p class="text-muted small mb-0">
+            Large-scale production capability with consistent quality standards.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="mrd-rd-card h-100">
+          <div class="mrd-rd-ico">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h6 class="fw-bold mb-2">Quality Assurance</h6>
+          <p class="text-muted small mb-0">
+            Strict quality testing at every manufacturing stage.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- SERVICES SECTION END -->
+
+<!-- INDUSTRIES SERVED SECTION START -->
+<section class="section-pad industries-served">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <span class="badge badge-soft rounded-pill px-3 py-2 mb-2">
+        <i class="bi bi-grid-3x3-gap me-1"></i> Industries Served
+      </span>
+      <h2 class="fw-bold mb-2">Industries We Serve</h2>
+      <p class="text-muted mb-0">
+        Reliable OEM, private label and bulk manufacturing support for multiple business categories.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-shop"></i></div>
+          <h6>Retail Brands</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-cart4"></i></div>
+          <h6>Supermarkets</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-boxes"></i></div>
+          <h6>Distributors</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-building"></i></div>
+          <h6>Hotels</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-hospital"></i></div>
+          <h6>Hospitals</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-bag-check"></i></div>
+          <h6>D2C Brands</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-globe2"></i></div>
+          <h6>Export Buyers</h6>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="industry-card h-100">
+          <div class="industry-icon"><i class="bi bi-diagram-3"></i></div>
+          <h6>Institutional Clients</h6>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- INDUSTRIES SERVED SECTION END -->
+
 <!-- PROCESS -->
 <section id="process" class="section-pad bg-white">
   <div class="container">
@@ -194,42 +342,60 @@
 
     <div class="row g-4">
       <div class="col-lg-6">
-        <div class="mrd-timeline">
+  <div class="mrd-timeline">
 
-          <div class="mrd-step">
-            <div class="mrd-step-ico"><i class="bi bi-inboxes"></i></div>
-            <div>
-              <div class="mrd-step-title">Incoming Material Checks</div>
-              <div class="small text-muted">Verification of raw materials for safe, consistent formulation.</div>
-            </div>
-          </div>
-
-          <div class="mrd-step">
-            <div class="mrd-step-ico"><i class="bi bi-activity"></i></div>
-            <div>
-              <div class="mrd-step-title">In-Process Monitoring</div>
-              <div class="small text-muted">Batch-wise monitoring to maintain performance and uniformity.</div>
-            </div>
-          </div>
-
-          <div class="mrd-step">
-            <div class="mrd-step-ico"><i class="bi bi-patch-check"></i></div>
-            <div>
-              <div class="mrd-step-title">Final Quality Assurance</div>
-              <div class="small text-muted">Final inspection and compliance checks before dispatch.</div>
-            </div>
-          </div>
-
-          <div class="mrd-step">
-            <div class="mrd-step-ico"><i class="bi bi-box-seam"></i></div>
-            <div>
-              <div class="mrd-step-title">Packaging & Dispatch</div>
-              <div class="small text-muted">Packaging integrity checks and planned distribution support.</div>
-            </div>
-          </div>
-
+    <div class="mrd-step">
+      <div class="mrd-step-ico"><i class="bi bi-chat-dots"></i></div>
+      <div>
+        <div class="mrd-step-title">Step 1 - Requirement Discussion</div>
+        <div class="small text-muted">
+          We understand your product category, quantity, packaging and brand requirements.
         </div>
       </div>
+    </div>
+
+    <div class="mrd-step">
+      <div class="mrd-step-ico"><i class="bi bi-eyedropper"></i></div>
+      <div>
+        <div class="mrd-step-title">Step 2 - Formula Development</div>
+        <div class="small text-muted">
+          Customized formulation is developed according to your product needs.
+        </div>
+      </div>
+    </div>
+
+    <div class="mrd-step">
+      <div class="mrd-step-ico"><i class="bi bi-patch-check"></i></div>
+      <div>
+        <div class="mrd-step-title">Step 3 - Sample Approval</div>
+        <div class="small text-muted">
+          Product sample is shared for review, testing and approval before production.
+        </div>
+      </div>
+    </div>
+
+    <div class="mrd-step">
+      <div class="mrd-step-ico"><i class="bi bi-gear-wide-connected"></i></div>
+      <div>
+        <div class="mrd-step-title">Step 4 - Production</div>
+        <div class="small text-muted">
+          Approved formulation is manufactured with consistent quality standards.
+        </div>
+      </div>
+    </div>
+
+    <div class="mrd-step">
+      <div class="mrd-step-ico"><i class="bi bi-box-seam"></i></div>
+      <div>
+        <div class="mrd-step-title">Step 5 - Packaging & Dispatch</div>
+        <div class="small text-muted">
+          Final products are packed, checked and dispatched as per client requirements.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
      <div class="col-lg-6">
     <div class="mrd-process-media">
@@ -264,6 +430,7 @@
 
   </div>
 </section>
+
 
 <!-- R&D -->
 <section class="section-pad bg-soft">

@@ -136,13 +136,15 @@ $(document).ready(function () {
             let name = item.data('name') ? item.data('name').toString() : '';
             let category = item.data('category') ? item.data('category').toString() : '';
             let categoryName = item.data('category-name') ? item.data('category-name').toString() : '';
+            let subcategory = item.data('subcategory') ? item.data('subcategory').toString() : '';
             let featured = item.data('featured') == 1;
             let isNew = item.data('new') == 1;
 
             let matchesSearch = 
                 name.includes(searchValue) || 
                 category.includes(searchValue) || 
-                categoryName.includes(searchValue);
+                categoryName.includes(searchValue) ||
+                subcategory.includes(searchValue);
 
             let matchesCategory = false;
 

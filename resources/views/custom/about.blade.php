@@ -86,11 +86,133 @@
                         >
                     @endif
                 </div>
+
+                <div class="row g-3 mt-3">
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-patch-check-fill"></i> ISO</div>
+      <div class="hero-stat-text">ISO Certified</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-shield-check"></i> GMP</div>
+      <div class="hero-stat-text">GMP Certified</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-geo-alt-fill"></i> INDIA</div>
+      <div class="hero-stat-text">Made in India</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-box-seam-fill"></i> OEM</div>
+      <div class="hero-stat-text">OEM Solutions</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-buildings-fill"></i> BULK</div>
+      <div class="hero-stat-text">Bulk Manufacturing</div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><i class="bi bi-award-fill"></i> ICI UK</div>
+      <div class="hero-stat-text">ISO 2600-2010</div>
+    </div>
+  </div>
+
+</div>
             </div>
 
         </div>
     </div>
 </section>
+
+<!-- WHY CHOOSE US START -->
+<section class="why-choose-aarl section-padding">
+  <div class="container">
+
+    <div class="row align-items-center g-4">
+
+      <div class="col-lg-5">
+        <div class="section-badge">
+          <i class="bi bi-stars"></i>
+          Why Choose Us
+        </div>
+
+        <h2 class="section-title">
+          Why Brands Choose Advance Ayurved Research Laboratories
+          <span>(AARL)</span>
+        </h2>
+
+        <p class="section-text">
+          AARL supports brands with reliable manufacturing infrastructure,
+          quality-focused production systems, flexible packaging options and
+          complete OEM / private label solutions for scalable product growth.
+        </p>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="why-choose-grid">
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-buildings-fill"></i></div>
+            <h4>Manufacturing Infrastructure</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-eyedropper"></i></div>
+            <h4>Custom Product Development</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-shield-check"></i></div>
+            <h4>Quality Control</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-box-seam-fill"></i></div>
+            <h4>Flexible Packaging Options</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-cash-coin"></i></div>
+            <h4>Competitive Pricing</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+            <h4>Fast Turnaround Time</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-patch-check-fill"></i></div>
+            <h4>OEM & Private Label Expertise</h4>
+          </div>
+
+          <div class="why-choose-card">
+            <div class="why-icon"><i class="bi bi-truck"></i></div>
+            <h4>Pan India Supply Capability</h4>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- WHY CHOOSE US END -->
 
  <!-- OUR STORY -->
 <section class="section-pad bg-white">

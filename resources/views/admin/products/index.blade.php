@@ -111,6 +111,7 @@ table.dataTable tbody tr:last-child td { border-bottom: none !important; }
                     <th>ID</th>
                     <th>Name</th>
                     <th>Category</th>
+                    <th>Sub Category</th>
                     <th>Price</th>
                     <th>Status</th>
                     <th>Featured</th>
@@ -124,6 +125,7 @@ table.dataTable tbody tr:last-child td { border-bottom: none !important; }
                     <td style="padding:14px 16px; color:#475569; font-size:13px;">#{{ $product->id }}</td>
                     <td style="padding:14px 16px; color:#0F172A; font-size:13px;">{{ $product->name }}</td>
                     <td style="padding:14px 16px; color:#475569; font-size:13px;">{{ $product->category?->name ?? '—' }}</td>
+                    <td style="padding:14px 16px; color:#475569; font-size:13px;">{{ $product->subcategory ?? '—' }}</td>
                     <td style="padding:14px 16px; color:#0F172A; font-size:13px;">{{ $product->price ? '$' . number_format($product->price, 2) : 'N/A' }}</td>
                     <td style="padding:14px 16px;"><span class="status-badge {{ $product->status ? 'status-active' : 'status-inactive' }}">{{ $product->status ? 'Active' : 'Inactive' }}</span></td>
                     <td style="padding:14px 16px;">@if($product->is_featured)<span class="featured-tag">Featured</span>@else — @endif</td>

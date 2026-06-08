@@ -275,6 +275,25 @@
                 </div>
 
                 <div>
+                    <label class="field-label" for="subcategory">Sub Category</label>
+
+                    <input
+                        type="text"
+                        name="subcategory"
+                        id="subcategory"
+                        value="{{ old('subcategory', $product->subcategory) }}"
+                        class="field-input"
+                        placeholder="e.g. Fabric Care, Hair Care"
+                    >
+
+                    @error('subcategory')
+                        <p class="field-error">
+                            <i class="fas fa-exclamation-circle"></i>{{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <div>
                     <label class="field-label" for="slug">Slug</label>
 
                     <input

@@ -150,6 +150,7 @@
                         data-name="{{ strtolower($product->name) }}"
                         data-category="{{ $categorySlug }}"
                         data-category-name="{{ strtolower($categoryName) }}"
+                        data-subcategory="{{ strtolower($product->subcategory ?? '') }}"
                         data-featured="{{ $product->is_featured ? 1 : 0 }}"
                         data-new="{{ $isNew ? 1 : 0 }}"
                     >
@@ -161,7 +162,7 @@
                             >
 
                             <span class="product-tag">
-                                {{ $categoryName }}
+                                {{ $product->subcategory ?: $categoryName }}
                             </span>
 
                             @if($product->is_featured)
@@ -183,6 +184,14 @@
                             <p class="text-muted small mb-3">
                                 {{ $product->short_description ?? 'Premium quality product for everyday use.' }}
                             </p>
+
+                            @if($product->subcategory)
+                                <div class="product-meta mb-3">
+                                    <span>
+                                        <i class="bi bi-diagram-3"></i> {{ $product->subcategory }}
+                                    </span>
+                                </div>
+                            @endif
 
                             @if($product->pack_size || $product->price)
                                 <div class="product-meta mb-3">
@@ -231,6 +240,51 @@
                 <i class="bi bi-search display-5 text-muted"></i>
                 <h5 class="mt-3">No matching products found</h5>
                 <p class="text-muted mb-0">Try another keyword or category.</p>
+            </div>
+        </div>
+
+        <!-- CATEGORY DIRECTORY -->
+        <div class="mb-5">
+            <div class="row g-3 align-items-end mb-3">
+                <div class="col-lg-7">
+                    <h3 class="fw-bold mb-1">Product Categories</h3>
+                    <p class="text-muted mb-0">Explore products by category and sub category.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                @foreach($categories as $category)
+                    @php
+                        $categoryProducts = $products
+                            ->where('category_id', $category->id)
+                            ->groupBy(function ($item) {
+                                return $item->subcategory ?: 'General';
+                            });
+                    @endphp
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="h-100 border rounded-3 p-4">
+                            <div>
+                                <h5 class="fw-bold mb-3">{{ $category->name }}</h5>
+
+                                @foreach($categoryProducts as $subcategory => $items)
+                                    <div class="mb-3">
+                                        <div class="fw-bold small mb-2 text-brand">{{ $subcategory }}</div>
+                                        <ul class="list-unstyled mb-0">
+                                            @foreach($items as $item)
+                                                <li class="small text-muted mb-2">
+                                                    <a href="{{ route('products.show', $item->slug) }}" class="text-decoration-none text-muted">
+                                                        {{ $item->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 

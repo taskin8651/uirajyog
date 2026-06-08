@@ -27,7 +27,7 @@
 <body>
 
 <!-- TOP BAR (Premium) -->
-<div class="topbar topbar-premium">
+<div class="topbar topbar-premium d-none d-lg-block">
   <div class="container">
     <div class="topbar-inner">
 
@@ -135,7 +135,7 @@
         class="nav-link navlink-premium {{ request()->routeIs('custom.manufacturing') ? 'active' : '' }}" 
         href="{{ route('custom.manufacturing') }}"
     >
-        Manufacturing & R&D
+        OEM Manufacturing
     </a>
 </li>
 
@@ -153,7 +153,7 @@
         class="nav-link navlink-premium {{ request()->routeIs('certificates.index') ? 'active' : '' }}" 
         href="{{ route('certificates.index') }}"
     >
-        Certifications
+        Quality & Certifications
     </a>
 </li>
 
@@ -162,7 +162,7 @@
         class="nav-link navlink-premium {{ request()->routeIs('custom.investor') ? 'active' : '' }}" 
         href="{{ url('/') . '#partner' }}"
     >
-        Investor / Distributor
+        Distributor Opportunity
     </a>
 </li>
 
@@ -225,10 +225,10 @@
         <h6 class="footer-title">Company</h6>
         <ul class="footer-links">
           <li><a href="{{ route('about') }}">About</a></li>
-          <li><a href="{{ route('custom.manufacturing') }}">Manufacturing & R&D</a></li>
+          <li><a href="{{ route('custom.manufacturing') }}">OEM Manufacturing</a></li>
           <li><a href="{{ route('custom.sustainability') }}">Sustainability</a></li>
-          <li><a href="{{ route('certificates.index') }}">Certifications</a></li>
-          <li><a href="{{ url('/') . '#partner' }}">Investor / Distributor</a></li>
+          <li><a href="{{ route('certificates.index') }}">Quality & Certifications</a></li>
+          <li><a href="{{ url('/') . '#partner' }}">Distributor Opportunity</a></li>
           <li><a href="{{ route('custom.enquiry') }}">Contact</a></li>
         </ul>
       </div>

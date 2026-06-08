@@ -18,7 +18,7 @@
         </span>
 
         <h1 class="fw-bold display-6 mb-3">
-          Certified & Trusted for <span class="text-brand">Quality</span> and <span class="text-brand">Consistency</span>
+         Committed to   <span class="text-brand">Quality</span> and <span class="text-brand">Compliance</span>
         </h1>
 
         <p class="text-muted mb-4">
@@ -36,10 +36,11 @@
         </div>
 
         <div class="certp-hero-chips mt-4">
-          <div class="certp-chip"><i class="bi bi-shield-check"></i> GMP Certified</div>
-          <div class="certp-chip"><i class="bi bi-award"></i> ISO Systems</div>
-          <div class="certp-chip"><i class="bi bi-clipboard-check"></i> QC Monitoring</div>
-          <div class="certp-chip"><i class="bi bi-graph-up-arrow"></i> Consistency</div>
+          <div class="certp-chip"><i class="bi bi-award"></i> ISO Certification</div>
+<div class="certp-chip"><i class="bi bi-shield-check"></i> GMP Certification</div>
+<div class="certp-chip"><i class="bi bi-clipboard-data"></i> Product Testing Standards</div>
+<div class="certp-chip"><i class="bi bi-check2-square"></i> Batch Quality System</div>
+<div class="certp-chip"><i class="bi bi-inboxes"></i> Raw Material Quality Checks</div>
         </div>
       </div>
 
@@ -260,7 +261,7 @@
                                         download 
                                         class="btn btn-sm btn-outline-dark"
                                     >
-                                        <i class="bi bi-download"></i> Download
+                                        <i class="bi bi-download"></i>  Download ISO Certificate
                                     </a>
                                 @else
                                     <span class="badge bg-secondary">

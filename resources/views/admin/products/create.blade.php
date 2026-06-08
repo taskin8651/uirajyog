@@ -277,6 +277,25 @@
                 </div>
 
                 <div>
+                    <label class="field-label" for="subcategory">Sub Category</label>
+
+                    <input 
+                        type="text" 
+                        name="subcategory" 
+                        id="subcategory" 
+                        value="{{ old('subcategory') }}" 
+                        class="field-input {{ $errors->has('subcategory') ? 'error' : '' }}" 
+                        placeholder="e.g. Fabric Care, Hair Care"
+                    >
+
+                    @error('subcategory')
+                        <p class="field-error">
+                            <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                        </p>
+                    @enderror
+                </div>
+
+                <div>
                     <label class="field-label" for="short_description">Short Description</label>
 
                     <textarea 

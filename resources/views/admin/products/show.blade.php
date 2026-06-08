@@ -59,6 +59,10 @@
             <p class="detail-value">{{ $product->price ? '$' . number_format($product->price, 2) : 'Not priced' }}</p>
         </div>
         <div class="detail-item">
+            <span class="detail-label">Sub Category</span>
+            <p class="detail-value">{{ $product->subcategory ?? 'Not assigned' }}</p>
+        </div>
+        <div class="detail-item">
             <span class="detail-label">Short Description</span>
             <p class="detail-value">{{ $product->short_description ?? 'No short description provided.' }}</p>
         </div>

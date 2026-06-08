@@ -36,6 +36,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'category_id'        => 'nullable|exists:product_categories,id',
+            'subcategory'        => 'nullable|string|max:255',
             'name'               => 'required|string|max:255|unique:products,name',
             'short_description'  => 'nullable|string',
             'description'        => 'nullable|string',
@@ -56,6 +57,7 @@ class ProductController extends Controller
 
         $product = Product::create([
             'category_id'        => $request->category_id,
+            'subcategory'        => $request->subcategory,
             'name'               => $request->name,
             'slug'               => $this->makeUniqueSlug($request->name),
             'short_description'  => $request->short_description,
@@ -113,6 +115,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'category_id'        => 'nullable|exists:product_categories,id',
+            'subcategory'        => 'nullable|string|max:255',
             'name'               => 'required|string|max:255|unique:products,name,' . $product->id,
             'short_description'  => 'nullable|string',
             'description'        => 'nullable|string',
@@ -133,6 +136,7 @@ class ProductController extends Controller
 
         $product->update([
             'category_id'        => $request->category_id,
+            'subcategory'        => $request->subcategory,
             'name'               => $request->name,
             'slug'               => $this->makeUniqueSlug($request->name, $product->id),
             'short_description'  => $request->short_description,

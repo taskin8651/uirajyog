@@ -1,5 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutSectionController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CertificateController;
+use App\Http\Controllers\Admin\EnquiryController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\HeroSectionController;
+use App\Http\Controllers\Admin\ManufactureSectionController;
+use App\Http\Controllers\Admin\OurStorySectionController;
+use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SustainabilitySectionController;
+
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
