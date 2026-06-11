@@ -121,10 +121,50 @@ $(document).ready(function () {
     }
 });
 
+// Desktop product menu hover support
+$(document).ready(function () {
+    function isDesktopNav() {
+        return window.matchMedia('(min-width: 992px)').matches;
+    }
+
+    $('.nav-item.dropdown').on('mouseenter', function () {
+        if (!isDesktopNav()) return;
+
+        $(this).children('.dropdown-menu').addClass('show');
+    });
+
+    $('.nav-item.dropdown').on('mouseleave', function () {
+        if (!isDesktopNav()) return;
+
+        $(this).children('.dropdown-menu').removeClass('show');
+        $(this).find('.product-submenu').removeClass('show');
+    });
+
+    $('.dropdown-submenu').on('mouseenter', function () {
+        if (!isDesktopNav()) return;
+
+        $(this).siblings('.dropdown-submenu').find('.product-submenu').removeClass('show');
+        $(this).children('.product-submenu').addClass('show');
+    });
+});
+
 // Product filtering and sorting functionality using jQuery
 
 $(document).ready(function () {
     let activeCategory = 'all';
+    let activeSubcategory = '';
+
+    const params = new URLSearchParams(window.location.search);
+    const urlCategory = params.get('category');
+    const urlSubcategory = params.get('subcategory');
+
+    if (urlCategory) {
+        activeCategory = urlCategory;
+    }
+
+    if (urlSubcategory) {
+        activeSubcategory = urlSubcategory;
+    }
 
     function filterProducts() {
         let searchValue = $('#productSearch').val().toLowerCase().trim();
@@ -137,6 +177,7 @@ $(document).ready(function () {
             let category = item.data('category') ? item.data('category').toString() : '';
             let categoryName = item.data('category-name') ? item.data('category-name').toString() : '';
             let subcategory = item.data('subcategory') ? item.data('subcategory').toString() : '';
+            let subcategorySlug = item.data('subcategory-slug') ? item.data('subcategory-slug').toString() : '';
             let featured = item.data('featured') == 1;
             let isNew = item.data('new') == 1;
 
@@ -158,7 +199,9 @@ $(document).ready(function () {
                 matchesCategory = category === activeCategory;
             }
 
-            if (matchesSearch && matchesCategory) {
+            let matchesSubcategory = !activeSubcategory || subcategorySlug === activeSubcategory;
+
+            if (matchesSearch && matchesCategory && matchesSubcategory) {
                 item.removeClass('d-none');
                 visibleCount++;
             } else {
@@ -221,6 +264,7 @@ $(document).ready(function () {
         $(this).addClass('active');
 
         activeCategory = $(this).data('category').toString();
+        activeSubcategory = '';
 
         filterProducts();
     });
@@ -232,6 +276,11 @@ $(document).ready(function () {
     $('#productSort').on('change', function () {
         sortProducts($(this).val());
     });
+
+    if (urlCategory) {
+        $('.products-pill').removeClass('active');
+        $('.products-pill[data-category="' + urlCategory + '"]').addClass('active');
+    }
 
     filterProducts();
 });

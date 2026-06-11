@@ -137,6 +137,7 @@
                     @php
                         $categorySlug = $product->category->slug ?? 'uncategorized';
                         $categoryName = $product->category->name ?? 'General';
+                        $subcategorySlug = \Illuminate\Support\Str::slug($product->subcategory ?: 'general');
 
                         $imageUrl = $product->image
                             ? $product->image->getUrl()
@@ -151,6 +152,7 @@
                         data-category="{{ $categorySlug }}"
                         data-category-name="{{ strtolower($categoryName) }}"
                         data-subcategory="{{ strtolower($product->subcategory ?? '') }}"
+                        data-subcategory-slug="{{ $subcategorySlug }}"
                         data-featured="{{ $product->is_featured ? 1 : 0 }}"
                         data-new="{{ $isNew ? 1 : 0 }}"
                     >

@@ -1,7 +1,22 @@
 @php
     // Fetch site settings (assuming only one record)
     $siteSetting = App\Models\SiteSetting::first();
-    $products = App\Models\Product::pluck('name', 'slug')->toArray();
+    $productMenuCategories = App\Models\ProductCategory::with(['products' => function ($query) {
+            $query->where('status', 1)
+                ->orderBy('sort_order', 'asc')
+                ->orderBy('id', 'desc');
+        }])
+        ->where('status', 1)
+        ->whereHas('products', function ($query) {
+            $query->where('status', 1);
+        })
+        ->orderBy('sort_order', 'asc')
+        ->orderBy('id', 'desc')
+        ->get();
+    $footerProducts = $productMenuCategories
+        ->flatMap(fn ($category) => $category->products)
+        ->pluck('name', 'slug')
+        ->toArray();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -107,15 +122,53 @@
         Products
     </a>
 
-    <ul class="dropdown-menu dropdown-premium">
-        @foreach($products as $slug => $name)
-            <li>
-                <a 
-                    class="dropdown-item {{ request()->routeIs('products.show') && request()->route('slug') == $slug ? 'active' : '' }}" 
-                    href="{{ route('products.show', $slug) }}"
+    <ul class="dropdown-menu dropdown-premium product-menu">
+        @foreach($productMenuCategories as $category)
+            @php
+                $categoryProducts = $category->products->groupBy(fn ($product) => $product->subcategory ?: 'General');
+                $isCategoryActive = request()->routeIs('products.*') && request('category') === $category->slug;
+            @endphp
+
+            <li class="dropdown-submenu">
+                <a
+                    class="dropdown-item product-menu-link {{ $isCategoryActive ? 'active' : '' }}"
+                    href="{{ route('products.index', ['category' => $category->slug]) }}"
                 >
-                    {{ $name }}
+                    <span>{{ $category->name }}</span>
+                    <i class="bi bi-chevron-right product-menu-arrow"></i>
                 </a>
+
+                <ul class="dropdown-menu dropdown-premium product-submenu">
+                    @foreach($categoryProducts as $subcategory => $items)
+                        @php
+                            $subcategorySlug = \Illuminate\Support\Str::slug($subcategory);
+                            $isSubcategoryActive = $isCategoryActive && request('subcategory') === $subcategorySlug;
+                        @endphp
+
+                        <li class="dropdown-submenu">
+                            <a
+                                class="dropdown-item product-menu-link {{ $isSubcategoryActive ? 'active' : '' }}"
+                                href="{{ route('products.index', ['category' => $category->slug, 'subcategory' => $subcategorySlug]) }}"
+                            >
+                                <span>{{ $subcategory }}</span>
+                                <i class="bi bi-chevron-right product-menu-arrow"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-premium product-submenu product-submenu-products">
+                                @foreach($items as $product)
+                                    <li>
+                                        <a
+                                            class="dropdown-item {{ request()->routeIs('products.show') && request()->route('slug') == $product->slug ? 'active' : '' }}"
+                                            href="{{ route('products.show', $product->slug) }}"
+                                        >
+                                            {{ $product->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
             </li>
         @endforeach
 
@@ -245,7 +298,7 @@
       <div class="col-6 col-lg-2">
         <h6 class="footer-title">Products</h6>
         <ul class="footer-links">
-          @foreach($products as $slug => $name)
+          @foreach($footerProducts as $slug => $name)
             <li><a href="{{ route('products.show', $slug) }}">{{ $name }}</a></li>
           @endforeach
         </ul>
