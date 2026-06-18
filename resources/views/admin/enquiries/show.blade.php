@@ -58,6 +58,20 @@
                 <p class="detail-value">{{ optional($enquiry->product)->name ?? 'General' }}</p>
             </div>
         </div>
+        <div class="detail-row">
+            <div style="flex:1; min-width:220px;">
+                <p class="detail-label">City</p>
+                <p class="detail-value">{{ $enquiry->city ?: '—' }}</p>
+            </div>
+            <div style="flex:1; min-width:220px;">
+                <p class="detail-label">Pincode</p>
+                <p class="detail-value">{{ $enquiry->pincode ?: '—' }}</p>
+            </div>
+        </div>
+        <div>
+            <p class="detail-label">Full Address</p>
+            <p class="detail-value">{{ $enquiry->address ?: '—' }}</p>
+        </div>
         <div>
             <p class="detail-label">Message</p>
             <p class="detail-value">{{ $enquiry->message ?: 'No message provided.' }}</p>

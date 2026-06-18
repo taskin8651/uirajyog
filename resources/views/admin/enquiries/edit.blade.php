@@ -75,6 +75,25 @@
                 </div>
 
                 <div>
+                    <label class="field-label" for="address">Full Address</label>
+                    <textarea name="address" id="address" class="field-textarea">{{ old('address', $enquiry->address) }}</textarea>
+                    @error('address')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+                    <div>
+                        <label class="field-label" for="city">City</label>
+                        <input type="text" name="city" id="city" value="{{ old('city', $enquiry->city) }}" class="field-input">
+                        @error('city')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+                    </div>
+                    <div>
+                        <label class="field-label" for="pincode">Pincode</label>
+                        <input type="text" name="pincode" id="pincode" value="{{ old('pincode', $enquiry->pincode) }}" class="field-input">
+                        @error('pincode')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror
+                    </div>
+                </div>
+
+                <div>
                     <label class="field-label" for="message">Message</label>
                     <textarea name="message" id="message" class="field-textarea">{{ old('message', $enquiry->message) }}</textarea>
                     @error('message')<p class="field-error"><i class="fas fa-exclamation-circle"></i>{{ $message }}</p>@enderror

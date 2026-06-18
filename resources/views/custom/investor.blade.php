@@ -198,6 +198,56 @@
             </div>
 
             <div class="col-12">
+                <label class="form-label">Full Address *</label>
+
+                <textarea 
+                    name="address" 
+                    rows="3" 
+                    class="form-control @error('address') is-invalid @enderror" 
+                    placeholder="Enter full address"
+                    required
+                >{{ old('address') }}</textarea>
+
+                @error('address')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">City *</label>
+
+                <input 
+                    type="text" 
+                    name="city" 
+                    value="{{ old('city') }}" 
+                    class="form-control @error('city') is-invalid @enderror" 
+                    placeholder="Enter city"
+                    required
+                >
+
+                @error('city')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Pincode *</label>
+
+                <input 
+                    type="text" 
+                    name="pincode" 
+                    value="{{ old('pincode') }}" 
+                    class="form-control @error('pincode') is-invalid @enderror" 
+                    placeholder="Enter pincode"
+                    required
+                >
+
+                @error('pincode')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-12">
                 <label class="form-label">Message *</label>
 
                 <textarea 

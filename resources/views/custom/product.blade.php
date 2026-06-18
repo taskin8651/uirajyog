@@ -27,20 +27,12 @@
         </p>
 
         <div class="d-flex gap-2 flex-wrap">
-          <a href="#catalog" class="btn btn-brand btn-lg">
-            <i class="bi bi-grid-3x3-gap"></i> Browse Catalog
-          </a>
           <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg">
             <i class="bi bi-people"></i> Distributor Enquiry
           </a>
         </div>
 
-        <div class="products-hero-strip mt-4">
-          <div class="products-hero-pill"><i class="bi bi-patch-check"></i> GMP Certified</div>
-          <div class="products-hero-pill"><i class="bi bi-award"></i> ISO Systems</div>
-          <div class="products-hero-pill"><i class="bi bi-recycle"></i> Eco Mindset</div>
-          <div class="products-hero-pill"><i class="bi bi-clipboard-check"></i> QC Checks</div>
-        </div>
+        @include('custom.partials.trust-cards')
       </div>
 
       <div class="col-lg-5">
@@ -310,7 +302,6 @@
           <div>
             <div class="products-category-title">Personal Care Range</div>
             <div class="products-category-text">Gentle hygiene products designed for everyday comfort.</div>
-            <a href="{{ route('custom.enquiry') }}" class="btn btn-dark mt-3"><i class="bi bi-chat-dots"></i> Ask for Catalog</a>
           </div>
           <i class="bi bi-heart-pulse products-category-icon"></i>
         </div>
@@ -319,34 +310,6 @@
 </section>
 
 
-
-
-<!-- PREMIUM ENQUIRY STRIP -->
-<section class="products-enquiry section-pad">
-  <div class="products-enquiry-bg"></div>
-
-  <div class="container position-relative">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-8 text-white">
-        <h2 class="fw-bold mb-2">Want the Full Product Catalog?</h2>
-        <p class="mb-0 text-white-50">
-          Share your city and preferred category — we’ll send the latest product list and distributor pricing details.
-        </p>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
-            <i class="bi bi-whatsapp"></i> WhatsApp Now
-          </a>
-          <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
-            <i class="bi bi-chat-dots"></i> Contact
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 @endsection

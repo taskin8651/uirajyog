@@ -35,13 +35,7 @@
           </a>
         </div>
 
-        <div class="certp-hero-chips mt-4">
-          <div class="certp-chip"><i class="bi bi-award"></i> ISO Certification</div>
-<div class="certp-chip"><i class="bi bi-shield-check"></i> GMP Certification</div>
-<div class="certp-chip"><i class="bi bi-clipboard-data"></i> Product Testing Standards</div>
-<div class="certp-chip"><i class="bi bi-check2-square"></i> Batch Quality System</div>
-<div class="certp-chip"><i class="bi bi-inboxes"></i> Raw Material Quality Checks</div>
-        </div>
+        @include('custom.partials.trust-cards')
       </div>
 
      <div class="col-lg-6">
@@ -123,73 +117,14 @@
         </div>
     </div>
 
-    <div class="row g-3 mt-3">
-        <div class="col-6">
-            <div class="certp-mini">
-                <div class="certp-mini-num">GMP</div>
-                <div class="certp-mini-text">Certified Unit</div>
-            </div>
-        </div>
-
-        <div class="col-6">
-            <div class="certp-mini">
-                <div class="certp-mini-num">ISO</div>
-                <div class="certp-mini-text">Quality Systems</div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
     </div>
   </div>
 </section>
 
-<!-- TRUST STATS -->
-<section class="section-pad bg-white">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="certp-stat">
-          <div class="certp-stat-ico"><i class="bi bi-shield-check"></i></div>
-          <div>
-            <div class="fw-bold">GMP</div>
-            <div class="small text-muted">Manufacturing compliance</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-6 col-lg-3">
-        <div class="certp-stat">
-          <div class="certp-stat-ico"><i class="bi bi-award"></i></div>
-          <div>
-            <div class="fw-bold">ISO</div>
-            <div class="small text-muted">Quality management systems</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="certp-stat">
-          <div class="certp-stat-ico"><i class="bi bi-clipboard-check"></i></div>
-          <div>
-            <div class="fw-bold">QC</div>
-            <div class="small text-muted">Stage-wise monitoring</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="certp-stat">
-          <div class="certp-stat-ico"><i class="bi bi-file-earmark-text"></i></div>
-          <div>
-            <div class="fw-bold">Documentation</div>
-            <div class="small text-muted">Process & audit records</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- DOCUMENTS -->
 <section id="documents" class="section-pad bg-soft">
@@ -581,8 +516,8 @@
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
-            <i class="bi bi-whatsapp"></i> WhatsApp
+          <a href="/#partner"  class="btn btn-light btn-lg">
+            <i class="bi bi-people"></i> OEM  Enquiry
           </a>
           <a href="{{ url('/') . '#partner' }}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-chat-dots"></i> Contact

@@ -41,68 +41,9 @@ From Research to Retail – Your Trusted Manufacturing Partner
           <a href="#contact" class="btn btn-brand btn-lg hero-btn">
             <i class="bi bi-file-earmark-text"></i> Request OEM Quote
           </a>
-          <a href="#certs" class="btn btn-outline-dark btn-lg hero-btn-outline">
-            <i class="bi bi-download"></i> Download Catalogue
-          </a>
         </div>
 
-        <!-- Trust strip -->
-        <div class="hero-trust mt-4">
-          <div class="hero-trust-item">
-            <i class="bi bi-shield-check"></i>
-            <div>
-              <div class="fw-bold">Certified Quality</div>
-              <div class="small text-muted">GMP & ISO standards</div>
-            </div>
-          </div>
-
-          <div class="hero-trust-divider"></div>
-
-          <div class="hero-trust-item">
-            <i class="bi bi-gear-wide-connected"></i>
-            <div>
-              <div class="fw-bold">OEM Solutions</div>
-              <div class="small text-muted">Private label support</div>
-            </div>
-          </div>
-
-          <div class="hero-trust-divider d-none d-md-block"></div>
-
-          <div class="hero-trust-item d-none d-md-flex">
-            <i class="bi bi-box-seam"></i>
-            <div>
-              <div class="fw-bold">Bulk Manufacturing</div>
-              <div class="small text-muted">Scalable supply</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Feature cards -->
-        <div class="row mt-4 g-3">
-          <div class="col-sm-4">
-            <div class="hero-mini-card">
-              <div class="hero-mini-icon"><i class="bi bi-heart-pulse"></i></div>
-              <div class="fw-bold">Formulation</div>
-              <div class="small text-muted">Custom development</div>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="hero-mini-card">
-              <div class="hero-mini-icon"><i class="bi bi-award"></i></div>
-              <div class="fw-bold">Quality</div>
-              <div class="small text-muted">Batch control</div>
-            </div>
-          </div>
-
-          <div class="col-sm-4">
-            <div class="hero-mini-card">
-              <div class="hero-mini-icon"><i class="bi bi-truck"></i></div>
-              <div class="fw-bold">Supply</div>
-              <div class="small text-muted">Pan India support</div>
-            </div>
-          </div>
-        </div>
+        @include('custom.partials.trust-cards')
       </div>
 
       <!-- RIGHT: PRODUCT SLIDER -->
@@ -231,52 +172,6 @@ From Research to Retail – Your Trusted Manufacturing Partner
           </div>
         </div>
 
-        <!-- Small quick stats -->
-       <div class="row g-3 mt-3">
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-patch-check-fill"></i> ISO</div>
-      <div class="hero-stat-text">ISO Certified</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-shield-check"></i> GMP</div>
-      <div class="hero-stat-text">GMP Certified</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-geo-alt-fill"></i> INDIA</div>
-      <div class="hero-stat-text">Made in India</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-box-seam-fill"></i> OEM</div>
-      <div class="hero-stat-text">OEM Solutions</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-buildings-fill"></i> BULK</div>
-      <div class="hero-stat-text">Bulk Manufacturing</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-award-fill"></i> ICI UK</div>
-      <div class="hero-stat-text">ISO 2600-2010</div>
-    </div>
-  </div>
-
-</div>
       </div>
 
     </div>
@@ -338,7 +233,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
             <div class="col-lg-6">
                 <div class="about-kicker mb-3">
                     <span class="badge badge-soft rounded-pill px-3 py-2">
-                        <i class="bi bi-info-circle me-1"></i> About Raj Yog
+                        <i class="bi bi-info-circle me-1"></i> About  Advance Ayurved Research Laboratories (AARL)
                     </span>
                 </div>
 
@@ -874,146 +769,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
 </section>
 
 
-<!-- SUSTAINABILITY (Premium) -->
-<section id="green" class="green-premium section-pad bg-soft">
-    <div class="container">
 
-        <div class="row align-items-center g-5 mb-4">
-            <!-- Left content -->
-            <div class="col-lg-6">
-                <span class="badge badge-soft rounded-pill px-3 py-2 mb-3">
-                    <i class="bi bi-leaf me-1"></i> Sustainability • Go Green
-                </span>
-
-                <h2 class="fw-bold mb-3">
-                    {{ $homeSustainabilitySection->title ?? 'Practical Steps for a Cleaner Home & a Cleaner Planet' }}
-                </h2>
-
-                <p class="text-muted mb-4">
-                    {!! nl2br(e($homeSustainabilitySection->description ?? 'Our sustainability approach focuses on safer formulations, responsible choices, and better everyday habits — without compromising product performance.')) !!}
-                </p>
-
-                <!-- mini highlights -->
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="green-mini">
-                            <div class="green-mini-icon">
-                                <i class="bi bi-recycle"></i>
-                            </div>
-
-                            <div>
-                                <div class="fw-bold">Eco Choices</div>
-                                <div class="small text-muted">Smarter ingredients</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="green-mini">
-                            <div class="green-mini-icon">
-                                <i class="bi bi-droplet"></i>
-                            </div>
-
-                            <div>
-                                <div class="fw-bold">Water Friendly</div>
-                                <div class="small text-muted">Efficient rinsing</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA -->
-                <div class="mt-4 d-flex gap-2 flex-wrap">
-                    <a href="{{ route('products.index') }}" class="btn btn-brand btn-lg green-btn">
-                        <i class="bi bi-box-seam"></i> Explore Products
-                    </a>
-
-                    <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-dark btn-lg green-btn">
-                        <i class="bi bi-chat-dots"></i> Ask About Go Green
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right image -->
-            <div class="col-lg-6">
-                <div class="green-media">
-                    @if($homeSustainabilitySection && $homeSustainabilitySection->image)
-                        <img
-                            src="{{ $homeSustainabilitySection->image->getUrl() }}"
-                            class="img-fluid green-img"
-                            alt="{{ $homeSustainabilitySection->title ?? 'Sustainability & Nature' }}"
-                        >
-                    @else
-                        <img
-                            src="{{ asset('assets/img/home_ Sustainability.png') }}"
-                            class="img-fluid green-img"
-                            alt="Sustainability & Nature"
-                        >
-                    @endif
-
-                    <div class="green-badge">
-                        <i class="bi bi-tree"></i>
-                        <div>
-                            <div class="fw-bold">Go Green Mission</div>
-                            <div class="small text-muted">Responsible by design</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pillars -->
-       <div class="row g-4 mt-2">
-      <div class="col-md-4">
-        <div class="green-card h-100">
-          <div class="green-card-icon"><i class="bi bi-recycle"></i></div>
-          <h5 class="fw-bold mb-2">Eco Formulations</h5>
-          <p class="text-muted small mb-0">
-            Better chemistry choices aligned with environmental responsibility while maintaining performance.
-          </p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="green-card h-100">
-          <div class="green-card-icon"><i class="bi bi-droplet-half"></i></div>
-          <h5 class="fw-bold mb-2">Water Friendly</h5>
-          <p class="text-muted small mb-0">
-            Designed to work effectively with efficient rinsing & usage — practical for everyday households.
-          </p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="green-card h-100">
-          <div class="green-card-icon"><i class="bi bi-people"></i></div>
-          <h5 class="fw-bold mb-2">Green Mindset</h5>
-          <p class="text-muted small mb-0">
-            Encouraging responsible daily choices across families, stores, and distribution partners.
-          </p>
-        </div>
-      </div>
-    </div>
-
-        <!-- Bottom CTA strip -->
-        <div class="green-strip mt-5">
-            <div>
-                <div class="fw-bold green-strip-title">
-                    Want to partner with a Go Green brand?
-                </div>
-
-                <div class="text-muted small">
-                    Join our distribution network and promote cleaner living across India.
-                </div>
-            </div>
-
-            <a href="{{ url('/') . '#partner' }}" class="btn btn-brand">
-                <i class="bi bi-people"></i> Become a Partner
-            </a>
-        </div>
-
-    </div>
-</section>
 
 
 <!-- CERTIFICATIONS (Premium) -->
@@ -1226,7 +982,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
                 </span>
 
                 <h2 class="partner-title fw-bold mt-3 mb-3">
-                    Partner With Raj Yog & Scale a 
+                    Partner With Advance Ayurved Research Laboratories (AARL)  & Scale a 
                     <span class="partner-highlight">Go Green</span> Brand
                 </h2>
 
@@ -1347,7 +1103,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
                 @enderror
             </div>
 
-            <div class="col-12">
+            <div class="col-lg-6">
                 <label class="form-label">Phone Number *</label>
 
                 <input 
@@ -1364,7 +1120,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
                 @enderror
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <label class="form-label">Email</label>
 
                 <input 
@@ -1376,6 +1132,56 @@ From Research to Retail – Your Trusted Manufacturing Partner
                 >
 
                 @error('email')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Full Address *</label>
+
+                <textarea 
+                    name="address" 
+                    rows="3" 
+                    class="form-control @error('address') is-invalid @enderror" 
+                    placeholder="Enter full address"
+                    required
+                >{{ old('address') }}</textarea>
+
+                @error('address')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">City *</label>
+
+                <input 
+                    type="text" 
+                    name="city" 
+                    value="{{ old('city') }}" 
+                    class="form-control @error('city') is-invalid @enderror" 
+                    placeholder="Enter city"
+                    required
+                >
+
+                @error('city')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Pincode *</label>
+
+                <input 
+                    type="text" 
+                    name="pincode" 
+                    value="{{ old('pincode') }}" 
+                    class="form-control @error('pincode') is-invalid @enderror" 
+                    placeholder="Enter pincode"
+                    required
+                >
+
+                @error('pincode')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -1673,7 +1479,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
                                         Product Information
                                     </option>
                                     <option value="Manufacturing / R&D" {{ old('subject') == 'Manufacturing / R&D' ? 'selected' : '' }}>
-                                        Manufacturing / R&D
+                                        OEM Manufacturing / R&D
                                     </option>
                                     <option value="Other" {{ old('subject') == 'Other' ? 'selected' : '' }}>
                                         Other

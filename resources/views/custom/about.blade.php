@@ -43,31 +43,7 @@
                     </a>
                 </div>
 
-                <div class="about-hero-trust mt-4">
-                    <div class="about-hero-trust-item">
-                        <i class="bi bi-patch-check"></i>
-                        <div>
-                            <div class="fw-bold">GMP</div>
-                            <div class="small text-muted">Certified manufacturing</div>
-                        </div>
-                    </div>
-
-                    <div class="about-hero-trust-item">
-                        <i class="bi bi-award"></i>
-                        <div>
-                            <div class="fw-bold">ISO</div>
-                            <div class="small text-muted">Quality systems</div>
-                        </div>
-                    </div>
-
-                    <div class="about-hero-trust-item">
-                        <i class="bi bi-recycle"></i>
-                        <div>
-                            <div class="fw-bold">Go Green</div>
-                            <div class="small text-muted">Eco-first thinking</div>
-                        </div>
-                    </div>
-                </div>
+                @include('custom.partials.trust-cards')
             </div>
 
             <div class="col-lg-5">
@@ -87,51 +63,6 @@
                     @endif
                 </div>
 
-                <div class="row g-3 mt-3">
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-patch-check-fill"></i> ISO</div>
-      <div class="hero-stat-text">ISO Certified</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-shield-check"></i> GMP</div>
-      <div class="hero-stat-text">GMP Certified</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-geo-alt-fill"></i> INDIA</div>
-      <div class="hero-stat-text">Made in India</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-box-seam-fill"></i> OEM</div>
-      <div class="hero-stat-text">OEM Solutions</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-buildings-fill"></i> BULK</div>
-      <div class="hero-stat-text">Bulk Manufacturing</div>
-    </div>
-  </div>
-
-  <div class="col-6 col-md-4">
-    <div class="hero-stat">
-      <div class="hero-stat-num"><i class="bi bi-award-fill"></i> ICI UK</div>
-      <div class="hero-stat-text">ISO 2600-2010</div>
-    </div>
-  </div>
-
-</div>
             </div>
 
         </div>

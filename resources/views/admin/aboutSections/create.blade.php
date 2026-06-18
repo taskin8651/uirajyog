@@ -94,6 +94,14 @@ $(function() {
         if (!file) { $('#preview-image').hide(); return; }
         $('#preview-image').attr('src', URL.createObjectURL(file)).show();
     });
+
+    const element = document.querySelector('#description');
+
+    if (element && typeof ClassicEditor !== 'undefined') {
+        ClassicEditor.create(element).catch(function (error) {
+            console.error('CKEditor error on #description', error);
+        });
+    }
 });
 </script>
 @endsection

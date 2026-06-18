@@ -56,23 +56,7 @@ We help businesses develop customized, high-quality, market-ready products with 
                     </a>
                 </div>
 
-                <div class="mrd-hero-chips mt-4">
-                    <div class="mrd-chip">
-                        <i class="bi bi-patch-check"></i> GMP Certified
-                    </div>
-
-                    <div class="mrd-chip">
-                        <i class="bi bi-award"></i> ISO Systems
-                    </div>
-
-                    <div class="mrd-chip">
-                        <i class="bi bi-clipboard-check"></i> QC Monitoring
-                    </div>
-
-                    <div class="mrd-chip">
-                        <i class="bi bi-lightbulb"></i> R&D Support
-                    </div>
-                </div>
+                @include('custom.partials.trust-cards')
             </div>
 
             <div class="col-lg-5">
@@ -125,52 +109,7 @@ We help businesses develop customized, high-quality, market-ready products with 
     </div>
 </section>
 
-<!-- KPI STRIP -->
-<section class="mrd-kpis">
-  <div class="container">
-    <div class="row g-3">
-      <div class="col-md-6 col-lg-3">
-        <div class="mrd-kpi">
-          <div class="mrd-kpi-ico"><i class="bi bi-building-check"></i></div>
-          <div>
-            <div class="mrd-kpi-num">GMP</div>
-            <div class="mrd-kpi-text">Certified Unit</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-6 col-lg-3">
-        <div class="mrd-kpi">
-          <div class="mrd-kpi-ico"><i class="bi bi-award"></i></div>
-          <div>
-            <div class="mrd-kpi-num">ISO</div>
-            <div class="mrd-kpi-text">Quality Systems</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="mrd-kpi">
-          <div class="mrd-kpi-ico"><i class="bi bi-clipboard-check"></i></div>
-          <div>
-            <div class="mrd-kpi-num">3-Step</div>
-            <div class="mrd-kpi-text">QC Framework</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-3">
-        <div class="mrd-kpi">
-          <div class="mrd-kpi-ico"><i class="bi bi-truck"></i></div>
-          <div>
-            <div class="mrd-kpi-num">Planned</div>
-            <div class="mrd-kpi-text">Dispatch & Supply</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- SERVICES SECTION START -->
@@ -191,49 +130,65 @@ We help businesses develop customized, high-quality, market-ready products with 
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico">
-            <i class="bi bi-eyedropper"></i>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico">
+              <i class="bi bi-eyedropper"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-2">Custom Product Development</h6>
+              <p class="text-muted small mb-0">
+                We create customized formulations according to client requirements.
+              </p>
+            </div>
           </div>
-          <h6 class="fw-bold mb-2">Custom Product Development</h6>
-          <p class="text-muted small mb-0">
-            We create customized formulations according to client requirements.
-          </p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico">
-            <i class="bi bi-box-seam"></i>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico">
+              <i class="bi bi-box-seam"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-2">Packaging Solutions</h6>
+              <p class="text-muted small mb-0">
+                Support for bottle selection, labeling, and packaging design.
+              </p>
+            </div>
           </div>
-          <h6 class="fw-bold mb-2">Packaging Solutions</h6>
-          <p class="text-muted small mb-0">
-            Support for bottle selection, labeling, and packaging design.
-          </p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico">
-            <i class="bi bi-buildings"></i>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico">
+              <i class="bi bi-buildings"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-2">Bulk Manufacturing</h6>
+              <p class="text-muted small mb-0">
+                Large-scale production capability with consistent quality standards.
+              </p>
+            </div>
           </div>
-          <h6 class="fw-bold mb-2">Bulk Manufacturing</h6>
-          <p class="text-muted small mb-0">
-            Large-scale production capability with consistent quality standards.
-          </p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico">
-            <i class="bi bi-shield-check"></i>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-2">Quality Assurance</h6>
+              <p class="text-muted small mb-0">
+                Strict quality testing at every manufacturing stage.
+              </p>
+            </div>
           </div>
-          <h6 class="fw-bold mb-2">Quality Assurance</h6>
-          <p class="text-muted small mb-0">
-            Strict quality testing at every manufacturing stage.
-          </p>
         </div>
       </div>
 
@@ -447,33 +402,49 @@ We help businesses develop customized, high-quality, market-ready products with 
     <div class="row g-4">
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico"><i class="bi bi-bezier2"></i></div>
-          <h6 class="fw-bold mb-2">Formulation Upgrades</h6>
-          <p class="text-muted small mb-0">Optimization for performance, stability and user experience.</p>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico"><i class="bi bi-bezier2"></i></div>
+            <div>
+              <h6 class="fw-bold mb-2">Formulation Upgrades</h6>
+              <p class="text-muted small mb-0">Optimization for performance, stability and user experience.</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico"><i class="bi bi-droplet-half"></i></div>
-          <h6 class="fw-bold mb-2">Efficiency Focus</h6>
-          <p class="text-muted small mb-0">Designed for practical usage and effective rinsing behavior.</p>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico"><i class="bi bi-droplet-half"></i></div>
+            <div>
+              <h6 class="fw-bold mb-2">Efficiency Focus</h6>
+              <p class="text-muted small mb-0">Designed for practical usage and effective rinsing behavior.</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico"><i class="bi bi-recycle"></i></div>
-          <h6 class="fw-bold mb-2">Responsible Choices</h6>
-          <p class="text-muted small mb-0">Aligned with Go Green mindset and safer daily essentials.</p>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico"><i class="bi bi-recycle"></i></div>
+            <div>
+              <h6 class="fw-bold mb-2">Responsible Choices</h6>
+              <p class="text-muted small mb-0">Aligned with Go Green mindset and safer daily essentials.</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-3">
         <div class="mrd-rd-card h-100">
-          <div class="mrd-rd-ico"><i class="bi bi-clipboard-data"></i></div>
-          <h6 class="fw-bold mb-2">Testing & Validation</h6>
-          <p class="text-muted small mb-0">Checks for stability, consistency and repeatable outcomes.</p>
+          <div class="mrd-rd-head">
+            <div class="mrd-rd-ico"><i class="bi bi-clipboard-data"></i></div>
+            <div>
+              <h6 class="fw-bold mb-2">Testing & Validation</h6>
+              <p class="text-muted small mb-0">Checks for stability, consistency and repeatable outcomes.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -787,8 +758,8 @@ We help businesses develop customized, high-quality, market-ready products with 
 
       <div class="col-lg-4">
         <div class="d-flex gap-2 flex-wrap justify-content-lg-end">
-          <a href="https://wa.me/{{ $siteSetting->whatsapp_number ?? '91XXXXXXXXXX' }}" target="_blank" class="btn btn-light btn-lg">
-            <i class="bi bi-whatsapp"></i> WhatsApp
+          <a href="/#partner"  class="btn btn-light btn-lg">
+            <i class="bi bi-people"></i> OEM  Enquiry
           </a>
           <a href="{{ route('custom.enquiry') }}" class="btn btn-outline-light btn-lg">
             <i class="bi bi-chat-dots"></i> Contact

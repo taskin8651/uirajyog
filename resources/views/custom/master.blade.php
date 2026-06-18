@@ -42,7 +42,7 @@
 <body>
 
 <!-- TOP BAR (Premium) -->
-<div class="topbar topbar-premium d-none d-lg-block">
+<div class="topbar topbar-premium d-none ">
   <div class="container">
     <div class="topbar-inner">
 
@@ -192,14 +192,7 @@
     </a>
 </li>
 
-<li class="nav-item">
-    <a 
-        class="nav-link navlink-premium {{ request()->routeIs('custom.sustainability') ? 'active' : '' }}" 
-        href="{{ route('custom.sustainability') }}"
-    >
-        Sustainability
-    </a>
-</li>
+
 
 <li class="nav-item">
     <a 
@@ -260,7 +253,7 @@
       <!-- Brand -->
       <div class="col-lg-4">
         <a href="{{ route('home') }}" class="footer-brand">
-          <img src="{{ $siteSetting->logo->getUrl() ?? 'assets/img/logo.png' }}" alt="Raj Yog" class="footer-logo">
+          <img src="{{ $siteSetting->footer_logo->getUrl() ?? 'assets/img/logo.png' }}" alt="Raj Yog" class="footer-logo">
         </a>
 
         <p class="footer-desc">
@@ -288,7 +281,6 @@
         <ul class="footer-links">
           <li><a href="{{ route('about') }}">About</a></li>
           <li><a href="{{ route('custom.manufacturing') }}">OEM Manufacturing</a></li>
-          <li><a href="{{ route('custom.sustainability') }}">Sustainability</a></li>
           <li><a href="{{ route('certificates.index') }}">Quality & Certifications</a></li>
           <li><a href="{{ url('/') . '#partner' }}">Distributor Opportunity</a></li>
           <li><a href="{{ route('custom.enquiry') }}">Contact</a></li>
@@ -297,11 +289,44 @@
 
       <div class="col-6 col-lg-2">
         <h6 class="footer-title">Products</h6>
-        <ul class="footer-links">
-          @foreach($footerProducts as $slug => $name)
-            <li><a href="{{ route('products.show', $slug) }}">{{ $name }}</a></li>
+        <div class="footer-product-tree">
+          @foreach($productMenuCategories as $category)
+            @php
+              $categoryProducts = $category->products->groupBy(fn ($product) => $product->subcategory ?: 'General');
+            @endphp
+
+            <details class="footer-tree-item">
+              <summary>
+                <span class="footer-product-icon"><i class="bi bi-folder2-open"></i></span>
+                <span class="footer-product-name">{{ $category->name }}</span>
+                <i class="bi bi-chevron-down footer-product-arrow"></i>
+              </summary>
+
+              <div class="footer-subtree">
+                @foreach($categoryProducts as $subcategory => $items)
+                  <details class="footer-tree-item footer-tree-subitem">
+                    <summary>
+                      <span class="footer-product-icon"><i class="bi bi-layers"></i></span>
+                      <span class="footer-product-name">{{ $subcategory }}</span>
+                      <i class="bi bi-chevron-down footer-product-arrow"></i>
+                    </summary>
+
+                    <ul class="footer-product-list">
+                      @foreach($items as $product)
+                        <li>
+                          <a href="{{ route('products.show', $product->slug) }}">
+                            <i class="bi bi-box-seam"></i>
+                            <span>{{ $product->name }}</span>
+                          </a>
+                        </li>
+                      @endforeach
+                    </ul>
+                  </details>
+                @endforeach
+              </div>
+            </details>
           @endforeach
-        </ul>
+        </div>
       </div>
 
       <!-- Contact -->
@@ -334,23 +359,7 @@
           </div>
         </div>
 
-        <!-- Newsletter (premium card) -->
-        <div class="footer-newsletter mt-4">
-          <div class="fw-bold mb-1">Newsletter</div>
-          <div class="small text-white-50 mb-3">Get updates on products, launches & distributor opportunities.</div>
-
-          <form class="footer-newsletter-form">
-            <input type="email" class="form-control" placeholder="Enter your email">
-            <button type="button" class="btn btn-brand">
-              <i class="bi bi-send"></i>
-            </button>
-          </form>
-
-          <div class="footer-newsletter-note">
-            We respect your privacy. No spam.
-          </div>
-        </div>
-
+       
       </div>
     </div>
 
