@@ -793,43 +793,33 @@ From Research to Retail – Your Trusted Manufacturing Partner
         </p>
 
         <!-- Trust metrics -->
-        <div class="row g-3">
-          <div class="col-6">
+        <div class="row g-3 cert-trusted-grid">
+          <div class="col-md-4">
             <div class="cert-stat">
               <div class="cert-stat-icon"><i class="bi bi-shield-check"></i></div>
               <div>
-                <div class="fw-bold">GMP</div>
+                <div class="fw-bold">GMP Certified</div>
                 <div class="small text-muted">Certified Unit</div>
               </div>
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-md-4">
             <div class="cert-stat">
               <div class="cert-stat-icon"><i class="bi bi-award"></i></div>
               <div>
-                <div class="fw-bold">ISO</div>
+                <div class="fw-bold">ISO Standards</div>
                 <div class="small text-muted">Quality Systems</div>
               </div>
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-md-4">
             <div class="cert-stat">
               <div class="cert-stat-icon"><i class="bi bi-clipboard-check"></i></div>
               <div>
-                <div class="fw-bold">QC</div>
+                <div class="fw-bold">QC Monitoring</div>
                 <div class="small text-muted">Batch Monitoring</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="cert-stat">
-              <div class="cert-stat-icon"><i class="bi bi-graph-up-arrow"></i></div>
-              <div>
-                <div class="fw-bold">Consistency</div>
-                <div class="small text-muted">Standard Processes</div>
               </div>
             </div>
           </div>

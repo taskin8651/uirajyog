@@ -15,13 +15,7 @@
     </div>
   </div>
 
-  <div class="hero-trust-item">
-    <i class="bi bi-box-seam"></i>
-    <div>
-      <div class="fw-bold">Bulk Manufacturing</div>
-      <div class="small text-muted">Scalable supply</div>
-    </div>
-  </div>
+  
 
   <div class="hero-trust-item">
     <i class="bi bi-heart-pulse"></i>
