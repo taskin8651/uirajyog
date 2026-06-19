@@ -2731,6 +2731,14 @@ body{
   .about-page-hero p,
   .about-page-hero .text-muted{
     text-align: left !important;
+    max-width: calc(100vw - 24px);
+    overflow-wrap: anywhere;
+  }
+
+  .about-page-hero p *,
+  .about-page-hero .text-muted *{
+    max-width: 100% !important;
+    white-space: normal !important;
     overflow-wrap: anywhere;
   }
 
