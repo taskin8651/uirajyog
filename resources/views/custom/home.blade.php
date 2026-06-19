@@ -251,7 +251,26 @@ From Research to Retail – Your Trusted Manufacturing Partner
     {!! $aboutSection->description ?? 'Raj Yog focuses on safer, eco-friendly formulations for daily essentials.' !!}
 </div>
 <style>
-    
+    .about-description {
+    width: 100%;
+    color: #6c757d;
+}
+
+.about-description p {
+    width: 100%;
+    margin: 0 0 16px;
+    text-align: justify !important;
+    text-justify: inter-word;
+    line-height: 1.85;
+    letter-spacing: 0;
+    word-spacing: normal;
+    overflow-wrap: break-word;
+}
+
+.about-description p:last-child {
+    margin-bottom: 0;
+   margin-bottom: 0;
+}
 
 </style>
 
