@@ -23,13 +23,13 @@
                     {!! $aboutSection->title ?? 'Built on <span class="text-brand">Quality</span>, <span class="text-brand">Safety</span> & Responsibility' !!}
                 </h1>
 
-                <p class="text-muted mb-4">
+                <p class="text-muted mb-4" style="width: 100%;text-align: justify;">
                     {{ $aboutSection->short_description ?? 'Raj Yog delivers eco-conscious home & personal care products with structured manufacturing, quality checks, and a Go Green mindset — made for modern Indian homes.' }}
                 </p>
 
                 @if($aboutSection && $aboutSection->description)
-                    <p class="text-muted mb-4">
-                        {!! nl2br(e($aboutSection->description)) !!}
+                    <p class="text-muted mb-4" style="width: 100%;text-align: justify;">
+                        {!! $aboutSection->description !!}
                     </p>
                 @endif
 
@@ -211,7 +211,7 @@
                     <div class="col-sm-6">
                         <div class="about-box">
                             <div class="about-box-icon">
-                                <i class="bi bi-flask"></i>
+                                <i class="bi bi-clipboard2-pulse"></i>
                             </div>
                             <div>
                                 <div class="fw-bold mb-1">R&amp;D Focus</div>

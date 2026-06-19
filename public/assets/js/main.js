@@ -124,7 +124,11 @@ $(document).ready(function () {
 // Desktop product menu hover support
 $(document).ready(function () {
     function isDesktopNav() {
-        return window.matchMedia('(min-width: 992px)').matches;
+        return window.matchMedia('(min-width: 1200px) and (hover: hover) and (pointer: fine)').matches;
+    }
+
+    function isCompactNav() {
+        return !isDesktopNav();
     }
 
     $('.nav-item.dropdown').on('mouseenter', function () {
@@ -145,6 +149,45 @@ $(document).ready(function () {
 
         $(this).siblings('.dropdown-submenu').find('.product-submenu').removeClass('show');
         $(this).children('.product-submenu').addClass('show');
+    });
+
+    $('.product-menu-link').on('click', function (event) {
+        if (!isCompactNav()) return;
+
+        const submenu = $(this).siblings('.product-submenu');
+
+        if (!submenu.length) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const parentItem = $(this).parent('.dropdown-submenu');
+        const willOpen = !submenu.hasClass('show');
+
+        parentItem
+            .siblings('.dropdown-submenu')
+            .removeClass('is-open')
+            .find('.product-submenu')
+            .removeClass('show');
+
+        parentItem.toggleClass('is-open', willOpen);
+        submenu.toggleClass('show', willOpen);
+    });
+
+    $('.product-menu').on('click', function (event) {
+        if (isCompactNav()) {
+            event.stopPropagation();
+        }
+    });
+
+    $('.nav-item.dropdown').on('hidden.bs.dropdown', function () {
+        $(this).find('.product-submenu').removeClass('show');
+        $(this).find('.dropdown-submenu').removeClass('is-open');
+    });
+
+    $(window).on('resize', function () {
+        $('.product-submenu').removeClass('show');
+        $('.dropdown-submenu').removeClass('is-open');
     });
 });
 

@@ -21,7 +21,8 @@ body{
 }
 
 /* Utilities */
-.section-pad { padding: 80px 0; }
+.section-pad,
+.section-padding { padding: 80px 0; }
 .bg-soft { background: #f8f9fa; }
 
 .rounded-xxl { border-radius: var(--radius-xl); }
@@ -335,7 +336,7 @@ body{
   overflow-y: auto;
 }
 
-@media (min-width: 992px){
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine){
   .nav-item.dropdown:hover > .dropdown-menu,
   .dropdown-submenu:hover > .product-submenu,
   .product-submenu.show{
@@ -358,6 +359,24 @@ body{
   border: 1px solid rgba(0,0,0,.12);
   border-radius: 14px;
   padding: 8px 10px;
+  color: var(--brand-deep);
+}
+
+.premium-toggler:focus{
+  box-shadow: 0 0 0 .18rem rgba(0,75,143,.15);
+}
+
+.premium-toggler .navbar-toggler-icon{
+  background-image: none;
+  display: grid;
+  place-items: center;
+}
+
+.premium-toggler .navbar-toggler-icon::before{
+  content: "\F479";
+  font-family: "bootstrap-icons";
+  font-size: 24px;
+  line-height: 1;
 }
 
 /* Contact button */
@@ -372,10 +391,28 @@ body{
   transform: translateY(-1px);
 }
 
-/* Mobile adjustments */
-@media (max-width: 991px){
+/* Compact nav adjustments */
+@media (max-width: 1199.98px){
   .navbar-premium{
     background: rgba(255,255,255,.96);
+  }
+
+  .navbar-expand-lg .navbar-toggler{
+    display: block;
+  }
+
+  .navbar-expand-lg .navbar-collapse{
+    display: none !important;
+    flex-basis: 100%;
+  }
+
+  .navbar-expand-lg .navbar-collapse.show{
+    display: block !important;
+  }
+
+  .nav-premium{
+    align-items: stretch !important;
+    padding-top: 10px;
   }
 
   .dropdown-premium{
@@ -383,11 +420,8 @@ body{
     box-shadow: none;
   }
 
-  .product-menu,
-  .product-submenu,
-  .product-submenu-products{
+  .product-menu{
     position: static;
-    display: block;
     min-width: 100%;
     max-height: none;
     margin: 6px 0 8px 10px;
@@ -397,7 +431,24 @@ body{
   }
 
   .product-submenu{
+    position: static;
+    display: none;
+    min-width: 100%;
+    max-height: none;
+    margin: 6px 0 8px 10px;
+    padding: 6px;
+    border-radius: 12px;
     border-left: 2px solid rgba(0,75,143,.12);
+    box-shadow: none;
+  }
+
+  .product-submenu.show{
+    display: block;
+  }
+
+  .product-submenu-products{
+    max-height: 280px;
+    overflow-y: auto;
   }
 
   .dropdown-submenu::after{
@@ -410,6 +461,11 @@ body{
 
   .product-menu-arrow{
     transform: rotate(90deg);
+    transition: transform .18s ease;
+  }
+
+  .dropdown-submenu.is-open > .product-menu-link .product-menu-arrow{
+    transform: rotate(-90deg);
   }
 
   .navlink-premium{
@@ -503,7 +559,28 @@ body{
   font-size: 18px;
 }
 
-@media (max-width: 420px){
+@media (max-width: 575px){
+  .hero-trust{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .hero-trust-item{
+    min-width: 0;
+    padding: 12px;
+  }
+
+  .hero-trust-item i{
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 360px){
   .hero-trust{
     grid-template-columns: 1fr;
   }
@@ -956,9 +1033,11 @@ body{
     height: 380px;
   }
   .about-float-2{
+    display: none;
     right: 12px;
   }
   .about-float-1{
+    display: none;
     left: 12px;
   }
 }
@@ -1793,6 +1872,10 @@ body{
   color: rgba(15,23,42,.65);
   line-height: 1.4;
 }
+.partner-form .form-label{
+  font-weight: 700;
+  color: var(--brand-deep);
+}
 
 /* Quick buttons */
 .partner-quick{
@@ -2613,6 +2696,149 @@ body{
   .about-hero-img{ height: 320px; }
   .about-story-img{ height: 360px; }
   .about-process-img{ height: 360px; }
+}
+
+@media (max-width: 575px){
+  html,
+  body{
+    overflow-x: hidden;
+  }
+
+  .about-page-hero,
+  .about-page-hero.section-pad,
+  .why-choose-aarl.section-padding,
+  .section-pad{
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .about-page-hero .container,
+  .about-page-hero .row,
+  .about-page-hero [class*="col-"]{
+    max-width: 100%;
+  }
+
+  .about-page-hero .display-6,
+  .about-page-hero h1{
+    font-size: 30px;
+    line-height: 1.16;
+  }
+
+  .about-page-hero .row > *{
+    min-width: 0;
+  }
+
+  .about-page-hero p,
+  .about-page-hero .text-muted{
+    text-align: left !important;
+    overflow-wrap: anywhere;
+  }
+
+  .about-page-hero .hero-trust{
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .about-page-hero .hero-trust-item > div{
+    min-width: 0;
+  }
+
+  .about-page-hero .btn,
+  .about-cta-box .btn{
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-hero-media,
+  .about-story-media,
+  .about-process-media{
+    border-radius: 18px;
+  }
+
+  .about-hero-img{
+    height: 240px;
+  }
+
+  .about-story-img,
+  .about-process-img{
+    height: 280px;
+  }
+
+  .about-story-badge{
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 12px;
+  }
+
+  .about-story-badge i,
+  .about-box-icon,
+  .process-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+  }
+
+  .about-box,
+  .process-step{
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .value-card{
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .about-stat{
+    min-height: 100%;
+    padding: 14px 10px;
+  }
+
+  .about-stat-num{
+    font-size: 20px;
+  }
+
+  .about-stat-text{
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .about-cta-box{
+    display: grid;
+    gap: 16px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .why-choose-aarl .section-title{
+    font-size: 28px;
+    line-height: 1.18;
+  }
+
+  .why-choose-aarl .section-text{
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .why-choose-card{
+    min-height: auto;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 18px;
+  }
+
+  .why-icon{
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    border-radius: 15px;
+    font-size: 19px;
+  }
+
+  .why-choose-card h4{
+    font-size: 15px;
+  }
 }
 
 /* ===========================
@@ -4953,12 +5179,31 @@ body{
 
   .why-choose-card {
     min-height: auto;
-    padding: 20px 18px;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 18px;
   }
 
   .why-choose-aarl .section-title {
     font-size: 28px;
     line-height: 1.18;
+  }
+
+  .why-choose-aarl .section-text{
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .why-icon{
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    border-radius: 15px;
+    font-size: 19px;
+  }
+
+  .why-choose-card h4{
+    font-size: 15px;
   }
 }
 

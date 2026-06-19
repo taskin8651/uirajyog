@@ -211,7 +211,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
                     </div>
 
                     <!-- Floating cards -->
-                    <div class="about-float about-float-1">
+                    <div class="about-float about-float-1 ">
                         <i class="bi bi-shield-check"></i>
                         <div>
                             <div class="fw-bold">Quality First</div>
@@ -220,7 +220,7 @@ From Research to Retail – Your Trusted Manufacturing Partner
                     </div>
 
                     <div class="about-float about-float-2">
-                        <i class="bi bi-leaf"></i>
+                        <i class="bi bi-clipboard2-pulse"></i>
                         <div>
                             <div class="fw-bold">Go Green</div>
                             <div class="small text-muted">Eco-conscious approach</div>
@@ -242,14 +242,14 @@ From Research to Retail – Your Trusted Manufacturing Partner
                 </h2>
 
                 @if($aboutSection && $aboutSection->short_description)
-                    <p class="text-muted mb-3">
+                    <p class="text-muted mb-3" style="width: 100%;text-align: justify;">
                         {!! $aboutSection->short_description !!}
                     </p>
                 @endif
 
-                <p class="text-muted mb-4">
-                    {!! $aboutSection->description ?? 'Raj Yog focuses on safer, eco-friendly formulations for daily essentials. Our approach is research-backed, performance-first, and aligned with responsible manufacturing.' !!}
-                </p>
+                <p class="text-muted mb-4" style="width: 100%;text-align: justify;">
+    {!! $aboutSection->description ?? 'Raj Yog focuses on safer, eco-friendly formulations for daily essentials. Our approach is research-backed, performance-first, and aligned with responsible manufacturing.' !!}
+</p>
 
                 <!-- Icon feature grid -->
                 <div class="row g-3">
