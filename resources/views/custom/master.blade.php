@@ -337,7 +337,7 @@
           <div class="footer-contact-item">
             <span class="footer-contact-icon"><i class="bi bi-geo-alt"></i></span>
             <div>
-              <div class="fw-bold">{{ $siteSetting->city ?? 'Kota, Rajasthan' }}</div>
+              <div class="fw-bold">{{ $siteSetting->address ?? 'Kota, Rajasthan' }}</div>
               <div class="small text-white-50">India</div>
             </div>
           </div>
