@@ -408,7 +408,7 @@
         <div class="col-lg-6">
           <div class="about-process-media">
             <img
-              src="{{ $certificates->pdf->getUrl() }}"
+              src="{{ $certificates->pdf?->getUrl() ?? 'PDF Not Available' }}"
               class="about-process-img"
               alt="Process Image 1200x900"
             />
